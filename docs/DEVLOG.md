@@ -135,3 +135,7 @@ Tarih: 2026-11-11 (Europe/Istanbul). Her anlamlı çalışma bu dosyaya eklenir.
 - Harita atölyesinde genel görünüm/bölge odakları, gezinme/yakınlaşma veTR/EN var. Oyun karakteri/düşman eklenmedi.
 - nature_plan_smoke veri ayrımı, bölge sürekliliği, zemin/dal bağlantıları ve yalnız haritayla açılan varsayılan sahne kontrolünü geçti. Bu yapısal kontrol doğa kalitesi onayı sayılmadı.
 - Godot'tan alınmış teknik plan görüntüsü art/planning altında; önceki oyun görüntüleri ayrı arşiv olarak açıkça işaretlendi.
+
+## 019 — Harita önceliği teslimi
+- Üretim planı, ayrı harita verisi, yalnız harita açan sahne ve teknik plan görüntüsü `a8022b2` kaydıyla GitHub main dalına gönderildi.
+- Yapısal harita kontrolü geçti; harita/doğa tamamlandı olarak işaretlenmedi. Bu teslim kaydı aynı dala gönderilir.
