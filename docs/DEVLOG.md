@@ -29,4 +29,5 @@ Tarih: 2026-11-11 (Europe/Istanbul). Her anlamlı çalışma bu dosyaya eklenir.
 - dino-hop oluşturma çağrısı GitHub createRepository yetkisi eksikliğiyle reddedildi; depo oluşmadı.
 - Kullanıcı dino-hopo deposunu oluşturduğunu bildirdi.
 - 07erkanoz/dino-hopo doğrulandı: boş ve herkese açık. Görünürlük korunur.
-- İlk kaynak kaydı ve GitHub yüklemesi hazırlanıyor; sonuç aşağıya eklenecek.
+- İlk kaynak kaydı `ce0840a` oluşturuldu ve GitHub main dalına başarıyla gönderildi.
+- Bu işlem günlüğünün sonuç kaydı ayrı bir dokümantasyon commit’i ile gönderilir.
