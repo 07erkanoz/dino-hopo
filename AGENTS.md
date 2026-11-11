@@ -12,3 +12,7 @@
 - Dört kahraman vardır, kontrol yuvası ve hero_index ayrıdır. 02/04 için isim uydurma.
 - Dünya görsel kuralları docs/WORLD.md içinde: tek sabit poster, blur/sis, dev sıradan çiçek, tekrarlı yuvarlak ağaç duvarı ve kopuk kaya stilleri reddedildi. Teknik test geçmesini görsel onay gibi sunma.
 - Bumerangda son karar: keşifle edinilir, dönerse tekrar kullanılır, araziye takılırsa kaybedilir. Eski3 atış önerisini geri getirme.
+
+- EN GÜNCEL ÖNCELİK: docs/PRODUCTION_PLAN.md. Kullanıcı sırası harita→doğa→engeller/zorluklar→canlılar→bulmaca/görevler→hareket/etkileşim. Şu an harita aşaması; yeni dövüş/düşman/animasyon ekleme. Doğa eksiklerini efekt/oyunla örtme.
+- F5 varsayılanı nature_workspace.tscn; eski main.tscn arşiv denemesidir. Harita taslağını bitmiş doğa/oyun gibi sunma.
+- Sarmaşık serbest koordinatla başlamaz; aynı dünya katmanındaki destek ağacı ve dalına referans verir. Ağaç kökü terrain yüzeyinden türetilir.

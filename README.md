@@ -4,15 +4,33 @@ Türkçe / English · Godot 4.6.3 · GDScript · 2D platform adventure
 
 GitHub: https://github.com/07erkanoz/dino-hopo
 
+## Güncel çalışma: önce harita ve doğa
+
+Üretim sırası kullanıcı düzeltmesiyle yeniden kuruldu: **harita → doğa → engeller/zorluklar → canlılar → bulmaca/görevler → hareket/etkileşim**.
+
+**F5 artık Harita Atölyesi'ni açar.** Burada yalnız teknik harita taslağı vardır; düşman, silah, görev veya oynanabilir kahraman yoktur. Doğa çiziminin tamamlandığı iddia edilmez.
+
+[Esas üretim planı](docs/PRODUCTION_PLAN.md) · [İlk harita taslağı](docs/maps/01-map-plan.md)
+
+- Sürükle: haritada gezin; tekerlek: yakınlaş.
+- Genel plan/bölge düğmeleri; R: genel plan; Tab: rotalar; TR/EN: dil.
+- Veri: `world/nature/01-map.json`; sahne: `scenes/nature_workspace.tscn`.
+- Yapısal kontrol: `godot --headless --path . --script tests/nature_plan_smoke.gd`.
+
+Aşağıdaki oynanış kayıtları ve eski sahne **önceki denemelerin arşividir**. Oyun denemesi `scenes/main.tscn` olarak korunur, varsayılan açılmaz.
+
+---
+
+## Önceki oyun denemesi
+
 **İlk oynanabilir dünya geliştirme sürümü.** Onaylı dört kahraman oyuna bağlı; dünya görseli kullanıcı eleştirileriyle yeniden tasarlanıyor. Tamamlanmış oyun veya nihai bölüm değildir.
 
 [Yeni sesli vuruş/tepki kaydı](art/review/combat-hit-v3.mp4) · [Önceki hareket çalışması](art/review/motion-study-v2.mp4) · [Önceki oynanış kaydı](art/review/forest-playtest.mp4) · [Görseller](art/README.md) · [İşlem günlüğü](docs/DEVLOG.md)
 
 ![Dört kahraman seçimi](art/review/character-select-in-engine.png)
 
-## Başlatma
-Godot 4.6 ile `project.godot` dosyasını açın, **F5** ile çalıştırın. Komut satırından `godot --path .`.
-Menüden tek/iki oyuncu, ardından dört kahramandan seçim yapılır.
+## Önceki denemeyi elle açma
+Godot'ta `scenes/main.tscn` dosyasını açıp F6 kullanılır. Güncel varsayılan F5 girişi harita atölyesidir; bu eski oyun menüsünü açmaz.
 
 | Kontrol | Oyuncu 1 | Oyuncu 2 |
 |---|---|---|
@@ -54,4 +72,4 @@ Grafik ekranında `godot --path . --script tests/capture_art.gd` gerçek Godot e
 Linux/Windows/Android/iOS hedeflenir. Henüz derlenmiş platform paketleri yok. Export templates gerekir; Android için SDK/JDK; iOS son paketleme ve imzalama için Mac/Xcode gerekir.
 
 ## English
-An early local co-op platform adventure featuring four approved illustrated heroes, including Çağan and Deniz. One continuous world prototype includes independent parallax scenery, climbing vines, warning rocks, collectibles, checkpoints, clubs and discoverable returning boomerangs that can be lost on terrain. The scenery is under revision; this is not a finished game. Open `project.godot` in Godot4.6 and press F5. English is selectable in the menu.
+The active stage is now **map first, then nature**. F5 opens a geography-only map workspace with pan/zoom, region views and TR/EN labels. This is a layout draft, not finished scenery or a playable level. Gameplay/creatures/quests/animation follow the map and nature stages. The previous game prototype is preserved at `scenes/main.tscn` and can be opened manually with F6. See `docs/PRODUCTION_PLAN.md`.

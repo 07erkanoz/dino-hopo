@@ -1,0 +1,500 @@
+{
+  "id": "01-nature-plan",
+  "status": "map_draft",
+  "width": 6144,
+  "height": 1536,
+  "reference_actor_height": 128,
+  "name": {
+    "tr": "Çiçekli Vadi · Harita Taslağı",
+    "en": "Blooming Valley · Map Draft"
+  },
+  "regions": [
+    {
+      "id": "grove",
+      "from": 0,
+      "to": 1024,
+      "name": {
+        "tr": "Giriş korusu",
+        "en": "Entrance grove"
+      },
+      "purpose": {
+        "tr": "Ferah açıklık, doğal giriş",
+        "en": "Open clearing and natural entrance"
+      }
+    },
+    {
+      "id": "roots",
+      "from": 1024,
+      "to": 2048,
+      "name": {
+        "tr": "Dev kökler sırtı",
+        "en": "Giant-root ridge"
+      },
+      "purpose": {
+        "tr": "Yükselen arazi, üst rota bağlantısı",
+        "en": "Rising terrain and upper-route connection"
+      }
+    },
+    {
+      "id": "river",
+      "from": 2048,
+      "to": 3072,
+      "name": {
+        "tr": "Nehir kıyısı",
+        "en": "Riverbank"
+      },
+      "purpose": {
+        "tr": "İki kıyı ve doğal yatak",
+        "en": "Two banks and a natural riverbed"
+      }
+    },
+    {
+      "id": "falls",
+      "from": 3072,
+      "to": 4096,
+      "name": {
+        "tr": "Şelale terasları",
+        "en": "Waterfall terraces"
+      },
+      "purpose": {
+        "tr": "Su kaynağı, düşüş ve kaya terasları",
+        "en": "Water source, drop and rock terraces"
+      }
+    },
+    {
+      "id": "cave",
+      "from": 4096,
+      "to": 5120,
+      "name": {
+        "tr": "Kök mağarası",
+        "en": "Root cavern"
+      },
+      "purpose": {
+        "tr": "Alt geçit, üst sırtla birleşme",
+        "en": "Lower passage reconnects to upper ridge"
+      }
+    },
+    {
+      "id": "exit",
+      "from": 5120,
+      "to": 6144,
+      "name": {
+        "tr": "Çıkış açıklığı",
+        "en": "Exit clearing"
+      },
+      "purpose": {
+        "tr": "Yeniden açılan manzara",
+        "en": "Landscape opens again"
+      }
+    }
+  ],
+  "surface": [
+    [
+      0,
+      1120
+    ],
+    [
+      600,
+      1088
+    ],
+    [
+      1024,
+      1024
+    ],
+    [
+      1400,
+      880
+    ],
+    [
+      1750,
+      800
+    ],
+    [
+      2048,
+      960
+    ],
+    [
+      2230,
+      1088
+    ],
+    [
+      2440,
+      1216
+    ],
+    [
+      2730,
+      1216
+    ],
+    [
+      2910,
+      1100
+    ],
+    [
+      3072,
+      1056
+    ],
+    [
+      3360,
+      1040
+    ],
+    [
+      3680,
+      920
+    ],
+    [
+      3960,
+      880
+    ],
+    [
+      4096,
+      1024
+    ],
+    [
+      4400,
+      1120
+    ],
+    [
+      4800,
+      1120
+    ],
+    [
+      5120,
+      1080
+    ],
+    [
+      5480,
+      1024
+    ],
+    [
+      5800,
+      1024
+    ],
+    [
+      6144,
+      1056
+    ]
+  ],
+  "routes": [
+    {
+      "id": "main",
+      "name": {
+        "tr": "Ana akış",
+        "en": "Main route"
+      },
+      "color": "bb6939",
+      "points": [
+        [
+          128,
+          1050
+        ],
+        [
+          760,
+          980
+        ],
+        [
+          1440,
+          800
+        ],
+        [
+          1830,
+          770
+        ],
+        [
+          2180,
+          990
+        ],
+        [
+          2400,
+          1060
+        ],
+        [
+          2860,
+          1010
+        ],
+        [
+          3370,
+          960
+        ],
+        [
+          3900,
+          810
+        ],
+        [
+          4370,
+          1050
+        ],
+        [
+          4840,
+          1050
+        ],
+        [
+          5480,
+          960
+        ],
+        [
+          6020,
+          990
+        ]
+      ]
+    },
+    {
+      "id": "upper",
+      "name": {
+        "tr": "Üst rota taslağı",
+        "en": "Upper route draft"
+      },
+      "color": "397c56",
+      "points": [
+        [
+          1100,
+          930
+        ],
+        [
+          1390,
+          670
+        ],
+        [
+          1760,
+          620
+        ],
+        [
+          2050,
+          750
+        ],
+        [
+          2230,
+          1010
+        ]
+      ]
+    },
+    {
+      "id": "lower",
+      "name": {
+        "tr": "Alt geçit taslağı",
+        "en": "Lower passage draft"
+      },
+      "color": "835e91",
+      "points": [
+        [
+          3970,
+          820
+        ],
+        [
+          4210,
+          1055
+        ],
+        [
+          4460,
+          1210
+        ],
+        [
+          4780,
+          1210
+        ],
+        [
+          5010,
+          1030
+        ],
+        [
+          5300,
+          1000
+        ]
+      ]
+    }
+  ],
+  "water": {
+    "river": {
+      "left": 2230,
+      "right": 2910,
+      "surface_y": 1100,
+      "bottom_y": 1216
+    },
+    "waterfall": {
+      "source": [
+        3650,
+        610
+      ],
+      "lip": [
+        3770,
+        610
+      ],
+      "pool": [
+        3770,
+        1010
+      ],
+      "width": 80,
+      "outlet": [
+        [
+          3770,
+          1010
+        ],
+        [
+          3360,
+          1100
+        ],
+        [
+          2910,
+          1100
+        ]
+      ],
+      "headland": [
+        [
+          3320,
+          560
+        ],
+        [
+          3680,
+          610
+        ],
+        [
+          3770,
+          610
+        ],
+        [
+          3770,
+          1010
+        ],
+        [
+          3500,
+          988
+        ],
+        [
+          3320,
+          1040
+        ]
+      ],
+      "feed_stream": [
+        [
+          3360,
+          570
+        ],
+        [
+          3520,
+          592
+        ],
+        [
+          3650,
+          610
+        ]
+      ]
+    }
+  },
+  "cavern": {
+    "bounds": [
+      4290,
+      1140,
+      650,
+      220
+    ],
+    "entrance": [
+      4250,
+      1160
+    ],
+    "exit": [
+      5010,
+      1120
+    ]
+  },
+  "trees": [
+    {
+      "id": "t01",
+      "x": 420,
+      "height": 640,
+      "branches": [
+        {
+          "id": "b1",
+          "offset": [
+            130,
+            -410
+          ]
+        }
+      ],
+      "layer": "world"
+    },
+    {
+      "id": "t02",
+      "x": 1420,
+      "height": 660,
+      "branches": [
+        {
+          "id": "b1",
+          "offset": [
+            145,
+            -360
+          ]
+        }
+      ],
+      "layer": "world"
+    },
+    {
+      "id": "t03",
+      "x": 3320,
+      "height": 720,
+      "branches": [
+        {
+          "id": "b1",
+          "offset": [
+            -145,
+            -420
+          ]
+        }
+      ],
+      "layer": "world"
+    },
+    {
+      "id": "t04",
+      "x": 5540,
+      "height": 640,
+      "branches": [
+        {
+          "id": "b1",
+          "offset": [
+            -120,
+            -380
+          ]
+        }
+      ],
+      "layer": "world"
+    }
+  ],
+  "vines": [
+    {
+      "id": "v01",
+      "tree_id": "t02",
+      "branch_id": "b1",
+      "length": 300
+    },
+    {
+      "id": "v02",
+      "tree_id": "t03",
+      "branch_id": "b1",
+      "length": 340
+    }
+  ],
+  "stage_order": [
+    "map",
+    "nature",
+    "obstacles",
+    "creatures",
+    "puzzles_quests",
+    "character_and_nature_motion"
+  ],
+  "notes": {
+    "tr": "Yalnız yerleşim taslağı. Doğa çizimi ve oyun bölümü tamamlanmış değildir.",
+    "en": "Layout draft only. Nature artwork and the playable level are not finished."
+  },
+  "layers": [
+    {
+      "id": "far",
+      "scroll_scale": 0.2
+    },
+    {
+      "id": "middle",
+      "scroll_scale": 0.55
+    },
+    {
+      "id": "world",
+      "scroll_scale": 1.0
+    }
+  ]
+}

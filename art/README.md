@@ -1,5 +1,8 @@
 # Dino Hop! — Çizimler / Artwork
 
+**Güncel aşama harita/doğa önceliğidir.** [Üretim planı](../docs/PRODUCTION_PLAN.md) · [Teknik harita taslağı](../docs/maps/01-map-plan.md). Aşağıdaki oyun görselleri önceki denemeler ve kaynak arşividir.
+
+
 ## Onaylanan dört kahraman
 ![Onaylanan kadro](characters/approved-four-heroes-board.png)
 

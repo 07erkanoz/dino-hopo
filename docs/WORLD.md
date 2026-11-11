@@ -33,3 +33,6 @@ Headless hareket, seçim, atlas, kaynak görsel bütünlüğü ve dünya etkile�
 
 ## Oynanış geri bildirimi sonrası
 İlk boynuzlu dinozor1700 civarındaki geniş açıklığa taşındı.1450/1760/2060 çevresindeki sık kaya sütunları kaldırıldı; 500'de küçük basamak, ilk üst rota için sarmaşık ve açıklık öncesinde1400'de kaçınma sarmaşığı eklendi. Toplam3 düşman ve4 sarmaşık var. Büyük hayvana gövde çarpışması, uyarı/hamle/toparlanma ve oyuncuya3 can/geri savurma eklendi. Hareket ve ölçek çalışması [ANIMATION.md](ANIMATION.md) içinde.
+
+## Önce harita/doğa — güncel çalışma ayrımı
+Bu dosyanın önceki motor/sahne anlatımı eski denemeye aittir. Güncel varsayılan yalnız harita atölyesidir. `world/nature/01-map.json` eski düşman/silah verisinden ayrıdır. [Esas üretim planı](PRODUCTION_PLAN.md) ve [harita taslağı](maps/01-map-plan.md) yeni çalışmayı tanımlar. Doğa tamamlanmış sayılmaz.

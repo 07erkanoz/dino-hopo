@@ -12,3 +12,6 @@ Başlangıç prototipi nihai oyun değildir. Şu an tam bölüm, ağ, saldırı,
 
 ## Güncel ilerleme
 Dört onaylı kahraman ve seçim ekranı, sopa/bumerang, modüler parallax dünya, tırmanma, düşen kaya ve ilk5120 birimlik bölüm temeli uygulandı. Orman görseli kullanıcı eleştirileriyle yeniden ele alındı; son düzen henüz onaylı değil.42 atlas ve kaynak hash kontrolleri ile hareket/dünya testleri bulunur. Tam animasyon/ses/diğer dünya mekanikleri, ağ ve platform paketleri sonraki aşamalar.
+
+## Önce harita/doğa — önceki sıranın yerine geçer
+Kullanıcı, harita/doğa tamamlanmadan oyuna geçildiğini belirtti. Esas sıra artık [PRODUCTION_PLAN.md](PRODUCTION_PLAN.md). Önceki özellik listeleri geçmiş denemedir. Aktif çalışma yalnız map_draft; ardından doğa, sonra oyun katmanları.

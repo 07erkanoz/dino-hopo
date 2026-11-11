@@ -34,3 +34,5 @@
 | D30 | Kabul | Kaynak çizimler, yeni görseller, animasyonlar, kod, video ve kararlar GitHub'a eksiksiz gönderilir. |
 | D31 | Kabul | Kullanıcı vuruşun ve darbe tepkisinin görünür/komik olmadığını belirtti. Görsel+fizik+ses temasta birlikte çalışmalı. |
 | D32 | Teknik pilot | Çağan'a8 gövde+sopa karesi; büyük boynuzluya4 tepki; aktif kare, süpürülmüş sopa ucu, tek hedef/isabet, geri itilme, yerel hit-stop ve ses. Yeni hareketler henüz görsel onay almadı. |
+| D33 | Kabul | Kullanıcının esas sırası: harita → doğa → engeller/zorluklar → dinozor/yaratık → bulmaca/görev → kahraman/doğa hareketleri. Harita/doğa tamamlanmadan oyun özelliklerine ilerlenmez. |
+| D34 | Teknik taslak | Yalnız coğrafya içeren ayrı nature verisi ve harita atölyesi varsayılan başlangıç olur.6144×1536 ve altı bölge kesinleşmiş tasarım değildir. |

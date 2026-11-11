@@ -121,3 +121,17 @@ Tarih: 2026-11-11 (Europe/Istanbul). Her anlamlı çalışma bu dosyaya eklenir.
 - combat_smoke testi8 saldırı, isabet/ıskalama/ters yön/duvar ayrımı, tek temas,4 tepki, geri itilme, yerel duraklama, efekt ve gerçekten oynayan ses düğümlerini doğruladı.
 -6s Godot MovieMaker kaydı gerçek girdilerle alındı; H264/AAC kanalları ve boş olmayan ses miksajı doğrulandı. MP4 ve gerçek temas ekranı depoya eklendi. Test geçmesi komiklik/görsel kalite onayı olarak sunulmaz.
 - Temel oyun,74 atlas/kaynak bütünlüğü, dünya, hareket ve yeni savaş testlerinin beşi son değişikliklerle geçti.
+
+## 017 — Önceki vuruş çalışmasının teslim kaydı
+- `b4cdeec` ile saldırı/tepki kaynakları, sesler, kod, testler ve video GitHub main dalına gönderilmişti. Bu, görsel kalite onayı değildir.
+- Kullanıcı devamında kesilmiş ayak, efektin sopayı örtmesi, havada başlayan/çirkin sarmaşıklar ve doğanın uyumsuzluğunu belirtti. Ayak için üretilen aday görsel review klasörüne alındı; aktif düzeltme diye sunulmadı.
+
+## 018 — 2026-11-12: önce harita ve doğa
+- Kullanıcı geliştirme sırasını düzeltti: harita, doğa, engeller/zorluklar, canlılar, bulmaca/görevler, kahraman/doğa hareketleri. Bu sıra esas çalışma planına ve AGENTS kurallarına işlendi.
+- Eski main.tscn oyun denemesi silinmeden korundu; varsayılan başlangıç yalnız nature_workspace.tscn harita atölyesi oldu.
+- Düşman/silah/görev içermeyen ayrı nature harita verisi ve6 bölgelik coğrafi taslak oluşturuldu. Boyutlar ve bölgeler çalışma önerisidir; kullanıcı onayı veya tamamlanmış doğa değildir.
+- Ana/üst/alt bağlantılar, arazi profili, nehir, şelale beslemesi/eşiği/havuzu/çıkışı ve mağara hacmi şemaya işlendi.
+- Ağaç ayağı arazi yüzeyinden, sarmaşık başlangıcı tree_id/branch_id yuvasından türetilir. Destekler aynı dünya katmanındadır.
+- Harita atölyesinde genel görünüm/bölge odakları, gezinme/yakınlaşma veTR/EN var. Oyun karakteri/düşman eklenmedi.
+- nature_plan_smoke veri ayrımı, bölge sürekliliği, zemin/dal bağlantıları ve yalnız haritayla açılan varsayılan sahne kontrolünü geçti. Bu yapısal kontrol doğa kalitesi onayı sayılmadı.
+- Godot'tan alınmış teknik plan görüntüsü art/planning altında; önceki oyun görüntüleri ayrı arşiv olarak açıkça işaretlendi.

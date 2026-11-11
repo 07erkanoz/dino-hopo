@@ -41,3 +41,6 @@ Son kullanıcı geri bildirimine göre eş yükselen kutular ve dev çiçekler k
 
 ## İlk karşılaşmanın yeniden düzenlenmesi
 Kullanıcı küçük/robotik dinozorları ve yalnız zıplama akışını eleştirdi. İlk büyük dinozor için1280–2176 arasındaki açıklık genişletildi; sık engeller azaltıldı, girişte tırmanma/kaçınma seçeneği var. Güncel toplam3 düşman,4 sarmaşık; önceki4 düşman/2 sarmaşık sayıları tarihsel kayıttır. Tam bölüm tasarımı hâlâ onay bekliyor.
+
+## Güncel başlangıç: harita taslağı
+Önceki oynanış dosyası arşivde kalır. Yeni ilk harita `world/nature/01-map.json`;6144×1536 ve altı coğrafi bölge çalışma taslağıdır. Engel, canlı, görev ve hareket aşamaları harita/doğa sonrasına bırakıldı. [Harita belgesi](maps/01-map-plan.md).

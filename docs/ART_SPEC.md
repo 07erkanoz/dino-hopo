@@ -55,3 +55,6 @@ Yeni ölçütler: kahraman boyu yaklaşık128, fizik kapsülü88, çiçek22–35
 
 ## Darbe animasyonları
 8 saldırı+4 tepki karesi ile aktif atlas74 bölge oldu. Kaynaklar `art/animation/cagan-club-attack-study.png` ve `ceratopsian-hit-study.png`. İlk saldırı çiziminin mat arka planı, görsel düzenleme aracıyla temizlendi; başarısız sürüm review arşivindedir. Onaylı ana kaynaklar değiştirilmedi, yeni hareketler ayrı onay bekler.
+
+## Harita aşamasına dönüş
+`art/planning/01-map-overview.png` Godot harita atölyesinden teknik şemadır, doğa/oyun resmi değildir. `art/review/cagan-attack-gutter-candidate.png` önceki ayak kesilmesi için üretilen aday kaynaktır; bu aşama değişikliği nedeniyle aktif kaynak olarak doğrulanmadı/bağlanmadı. Kaynaklar korunur; yeni karakter/efekt işi yerine önce harita ve doğa ele alınır.
