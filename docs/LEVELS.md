@@ -27,3 +27,6 @@ Kullanıcı en az 10 bölüm ve artan zorluk istedi. Aşağıdaki 12+3 ayrıntı
 
 ## Dinozor davranış havuzu
 Hapşıran küçük otçul; kayaya boynuzu takılan boynuzlu; platform görevi gören uzunboyun; meyve hırsızı hızlı tür; hıçkıran iri takipçi; binebilir kanatlı pterozor; taşıyıcı su sürüngeni; buzda kayan tüylü tür. Tarih öncesi canlılar mizahi biçimde bir arada; pterozor ve su sürüngenleri bilimsel olarak dinozor değildir.
+
+## İlk çizim paketi uygulaması
+Şelaleli vadi arka planı, kahraman pozları, çimli platformlar, meyve/tabela/mağara ve altı canlı hareket test alanına yerleştirildi. Bu sahne görsel dil denemesidir; Bölüm 1 tamamlandı veya Şelale bölümü oynanabilir oldu anlamına gelmez. Dinozorlar bu sürümde görsel yerleştirmedir.

@@ -5,8 +5,13 @@ GitHub: https://github.com/07erkanoz/dino-hopo
 Türkçe / English • Godot 4.6 • GDScript • 2D cartoon co-op platformer
 
 ## Durum / Status
-İlk proje iskeleti ve oynanabilir hareket test alanı. Nihai çizgi film grafikleri, tam bölümler ve çevrim içi oyun henüz uygulanmadı.
-Initial movement sandbox; final art, full levels and online play are not implemented.
+İlk çizim paketiyle çalışan hareket test alanı: şelaleli vadi, iki çizilmiş kahraman, platform/nesne atlası ve altı canlı. Tam bölümler, tam animasyonlar ve çevrim içi oyun henüz uygulanmadı.
+Movement sandbox with the first illustrated art pack; full levels, full animation sets and online play are not implemented.
+
+## Yeni çizimler
+[Çizimlerin tamamı ve kullanım bilgileri](art/README.md) · Oyunda menüden **Çizim galerisi**.
+
+![Yeni çizimlerle Godot sahnesi](art/review/gameplay-in-engine.png)
 
 ## Çalıştırma
 Godot 4.6 ile `project.godot` dosyasını açın ve F6 değil **F5** ile başlatın.
@@ -34,5 +39,6 @@ Referans görseldeki eski “Lost Valley” başlığı geçersizdir; oyun adı 
 ## Doğrulama
 `godot --headless --path . --editor --import --quit`
 `godot --headless --path . --script tests/smoke.gd`
+`godot --headless --path . --script tests/art_smoke.gd`
 
 Linux, Windows ve Android çıktıları için Godot export templates gerekir; Android SDK/JDK, iOS son paketlemesi için macOS/Xcode gerekir. Bu başlangıçta dağıtım paketleri üretilmedi.

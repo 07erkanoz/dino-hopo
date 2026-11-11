@@ -1,9 +1,11 @@
 extends Node2D
 
 const Player = preload("res://scripts/player.gd")
+const Art = preload("res://scripts/art.gd")
+const BACKGROUND = preload("res://art/backgrounds/waterfall-valley.png")
 const TEXT := {
-	"tr": {"solo": "Tek oyuncu", "duo": "İki oyuncu · aynı ekran", "sub": "Hareket test alanı · geliştirme sürümü", "help": "P1: A/D + W     P2: ←/→ + ↑     R: geri dön     Esc: menü", "fruit": "Meyve", "check": "Kontrol noktası!", "finish": "Test alanı tamam!", "back": "Menüye dön", "hint": "Üst yoldaki meyveleri keşfet!"},
-	"en": {"solo": "One player", "duo": "Two players · shared screen", "sub": "Movement sandbox · development build", "help": "P1: A/D + W     P2: ←/→ + ↑     R: respawn     Esc: menu", "fruit": "Fruit", "check": "Checkpoint!", "finish": "Sandbox complete!", "back": "Back to menu", "hint": "Explore the fruit on the upper path!"}
+	"tr": {"solo": "Tek oyuncu", "duo": "İki oyuncu · aynı ekran", "sub": "Şelale Vadisi · çizim ve hareket denemesi", "help": "P1: A/D + W     P2: ←/→ + ↑     R: geri dön     Esc: menü", "fruit": "Meyve", "check": "Kontrol noktası!", "finish": "Test alanı tamam!", "back": "Menüye dön", "hint": "Üst yoldaki meyveleri keşfet!"},
+	"en": {"solo": "One player", "duo": "Two players · shared screen", "sub": "Waterfall Valley · art and movement preview", "help": "P1: A/D + W     P2: ←/→ + ↑     R: respawn     Esc: menu", "fruit": "Fruit", "check": "Checkpoint!", "finish": "Sandbox complete!", "back": "Back to menu", "hint": "Explore the fruit on the upper path!"}
 }
 var language := "tr"
 var world: Node2D
@@ -22,8 +24,12 @@ var toast: Label
 var menu: Control
 var left_held := false
 var right_held := false
+var soil_texture: AtlasTexture
 
 func _ready() -> void:
+	soil_texture = AtlasTexture.new()
+	soil_texture.atlas = Art.sprite("props", 2).atlas
+	soil_texture.region = Rect2(1155, 156, 248, 245)
 	overlay = CanvasLayer.new()
 	add_child(overlay)
 	show_menu()
@@ -59,6 +65,16 @@ func show_menu() -> void:
 	backdrop.color = Color("ffe9b8")
 	backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	menu.add_child(backdrop)
+	var painting := TextureRect.new()
+	painting.texture = BACKGROUND
+	painting.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	painting.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	painting.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	menu.add_child(painting)
+	var veil := ColorRect.new()
+	veil.color = Color(1.0, 0.95, 0.82, 0.62)
+	veil.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	menu.add_child(veil)
 	var center := CenterContainer.new()
 	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	menu.add_child(center)
@@ -88,6 +104,11 @@ func show_menu() -> void:
 		language = "en" if language == "tr" else "tr"
 		show_menu())
 	box.add_child(lang)
+	var gallery := Button.new()
+	gallery.text = "Çizim galerisi" if language == "tr" else "Art gallery"
+	gallery.custom_minimum_size.y = 54
+	gallery.pressed.connect(show_gallery)
+	box.add_child(gallery)
 	queue_redraw()
 
 func start_game(count: int) -> void:
@@ -129,6 +150,18 @@ func start_game(count: int) -> void:
 	menu_button.custom_minimum_size = Vector2(64, 54)
 	menu_button.pressed.connect(show_menu)
 	overlay.add_child(menu_button)
+	# Readability panels behind HUD, keep their draw order behind text.
+	for bounds in [Rect2(12, 10, 680, 43), Rect2(12, 55, 790, 55)]:
+		var panel := Panel.new()
+		var style := StyleBoxFlat.new()
+		style.bg_color = Color(1.0, 0.96, 0.85, 0.88)
+		style.set_corner_radius_all(12)
+		panel.add_theme_stylebox_override("panel", style)
+		panel.position = bounds.position
+		panel.size = bounds.size
+		panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		overlay.add_child(panel)
+		overlay.move_child(panel, 0)
 	make_touch_controls()
 	active = true
 	queue_redraw()
@@ -214,27 +247,86 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			for player in players:
 				player.respawn()
 
+func draw_asset(group: String, index: int, foot: Vector2, height: float) -> void:
+	var texture := Art.sprite(group, index)
+	var dimensions := texture.get_size()
+	var size := dimensions * (height / dimensions.y)
+	draw_texture_rect(texture, Rect2(foot - Vector2(size.x / 2.0, size.y), size), false)
+
 func _draw() -> void:
 	if not active:
 		return
-	draw_rect(Rect2(-1000, -1000, 6000, 2400), Color("9cdbdd"))
-	for i in range(-1, 10):
-		var x := float(i * 430)
-		draw_colored_polygon(PackedVector2Array([Vector2(x-200, 600), Vector2(x+150, 155), Vector2(x+500, 600)]), Color("79b6ba"))
-		draw_circle(Vector2(x+90, 135), 38, Color("fff1cd"))
-		draw_circle(Vector2(x+130, 125), 48, Color("fff1cd"))
-		draw_circle(Vector2(x+170, 140), 32, Color("fff1cd"))
-	# Water gap; falling into it returns to checkpoint.
-	draw_rect(Rect2(1100, 650, 160, 350), Color("3a9fc6"))
+	# Full 16:9 painting stays behind the camera, avoiding repeated image seams.
+	draw_texture_rect(BACKGROUND, Rect2(camera.position - Vector2(640, 360), Vector2(1280, 720)), false)
+	# Background cast; these are artwork previews, not enemy AI or ride mechanics.
+	draw_asset("creatures", 1, Vector2(700, 605), 158)
+	draw_asset("creatures", 2, Vector2(2200, 605), 105)
+	draw_asset("creatures", 4, Vector2(1190, 712), 75)
+	var flight_y := 205.0 + sin(Time.get_ticks_msec() / 1100.0) * 12.0
+	draw_asset("creatures", 3, Vector2(1870, flight_y), 110)
 	for rect in platforms:
-		draw_rect(rect, Color("ae754e"))
-		draw_rect(Rect2(rect.position, Vector2(rect.size.x, 16)), Color("85bc50"))
-		for x in range(int(rect.position.x) + 16, int(rect.end.x), 64):
-			draw_circle(Vector2(x, rect.position.y + 30), 5, Color("d69861"))
+		if rect.size.y > 100:
+			# An interior region, excluding outlined tile edges, fills the soil.
+			for x in range(int(rect.position.x), int(rect.end.x), 128):
+				var tile_width := minf(128, rect.end.x - x)
+				for y in range(int(rect.position.y) + 35, int(rect.end.y), 126):
+					draw_texture_rect(soil_texture, Rect2(x, y, tile_width, 128), false)
+			# Reuse the painted top as matching segments, not tiny stretched rocks.
+			for x in range(int(rect.position.x), int(rect.end.x), 192):
+				var width := minf(192, rect.end.x - x)
+				draw_texture_rect(Art.sprite("props", 0), Rect2(x - 1, rect.position.y - 12, width + 2, 86), false)
+		else:
+			draw_texture_rect(Art.sprite("props", 0), Rect2(rect.position - Vector2(4, 12), Vector2(rect.size.x + 8, 88)), false)
 	for fruit in berries:
-		draw_circle(fruit, 13, Color("e85d59"))
-		draw_line(fruit + Vector2(0, -10), fruit + Vector2(7, -21), Color("3d854b"), 5)
-	draw_line(Vector2(1560, 600), Vector2(1560, 500), Color("6c4935"), 8)
-	draw_rect(Rect2(1560, 500, 60, 38), Color("f6d06e") if saved_checkpoint else Color("fff1cd"))
-	draw_circle(Vector2(3100, 560), 70, Color("674e49"))
-	draw_circle(Vector2(3100, 570), 48, Color("293f43"))
+		draw_asset("props", 3, fruit + Vector2(0, 15), 34)
+	draw_asset("props", 4, Vector2(1560, 600), 112)
+	if saved_checkpoint:
+		draw_circle(Vector2(1560, 482), 7, Color("ffdb6b"))
+	draw_asset("props", 5, Vector2(3090, 605), 156)
+	draw_asset("creatures", 0, Vector2(875, 600), 92)
+	draw_asset("creatures", 5, Vector2(2590, 600), 84)
+
+func show_gallery() -> void:
+	active = false
+	clear_ui()
+	var base := Control.new()
+	base.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	overlay.add_child(base)
+	var paper := ColorRect.new()
+	paper.color = Color("f6edda")
+	paper.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	base.add_child(paper)
+	var gallery_theme := Theme.new()
+	var gallery_panel := StyleBoxFlat.new()
+	gallery_panel.bg_color = Color("fcf7ed")
+	gallery_panel.border_color = Color("dbc9a7")
+	gallery_panel.set_border_width_all(2)
+	gallery_panel.set_corner_radius_all(12)
+	gallery_theme.set_stylebox("panel", "TabContainer", gallery_panel)
+	base.theme = gallery_theme
+	label_at("DINO HOP!  /  " + ("ÇİZİM GALERİSİ" if language == "tr" else "ART GALLERY"), Vector2(30, 18), 32, base)
+	var tabs := TabContainer.new()
+	tabs.position = Vector2(24, 80)
+	tabs.size = Vector2(1232, 555)
+	base.add_child(tabs)
+	var items := [
+		["Kahramanlar / Heroes", "res://art/characters/heroes-poses.png"],
+		["Vadi / Valley", "res://art/backgrounds/waterfall-valley.png"],
+		["Zemin / Props", "res://art/environment/jungle-props.png"],
+		["Canlılar / Creatures", "res://art/creatures/creatures-natural-v3.png"]
+	]
+	for item in items:
+		var image := TextureRect.new()
+		image.name = item[0]
+		image.texture = load(item[1])
+		image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		tabs.add_child(image)
+	var back := Button.new()
+	back.text = tr_text("back")
+	back.position = Vector2(30, 651)
+	back.custom_minimum_size = Vector2(220, 50)
+	back.pressed.connect(show_menu)
+	base.add_child(back)
+	label_at("WIP · " + ("Poz çizimleri; tam animasyon seti değil." if language == "tr" else "Pose drawings; not a complete animation set."), Vector2(280, 663), 18, base)
+	queue_redraw()

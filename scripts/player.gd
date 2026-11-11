@@ -59,15 +59,18 @@ func respawn() -> void:
 	position = checkpoint
 	velocity = Vector2.ZERO
 
+const Art = preload("res://scripts/art.gd")
+
 func _draw() -> void:
-	# Temporary original vector-style test character; final cartoon sprite pending.
-	var bounce := sin(Time.get_ticks_msec() * 0.02) * 3.0 if absf(velocity.x) > 10.0 and is_on_floor() else 0.0
-	draw_circle(Vector2(0, -34 + bounce), 24, tint)
-	draw_circle(Vector2(0, -64 + bounce), 23, Color("ffdbac"))
-	draw_circle(Vector2(-7, -81 + bounce), 14, Color("593d35"))
-	draw_circle(Vector2(10 * facing, -67 + bounce), 4, Color("203f44"))
-	draw_circle(Vector2(22 * facing, -59 + bounce), 9, Color("ffdbac"))
-	draw_line(Vector2(-13, -12), Vector2(-18, -3), Color("593d35"), 11)
-	draw_line(Vector2(12, -12), Vector2(19, -3), Color("593d35"), 11)
-	draw_circle(Vector2(-9, -33 + bounce), 4, Color("593d35"))
-	draw_circle(Vector2(10, -42 + bounce), 4, Color("593d35"))
+	var pose := 0
+	if not is_on_floor():
+		pose = 3
+	elif absf(velocity.x) > 10.0:
+		pose = 1 + (int(Time.get_ticks_msec() / 140) % 2)
+	var texture := Art.sprite("heroes", slot * 4 + pose)
+	var source_size := texture.get_size()
+	var artwork_scale := 0.25 if slot == 0 else 0.24
+	var size := source_size * artwork_scale
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2(facing, 1.0))
+	draw_texture_rect(texture, Rect2(Vector2(-size.x / 2.0, -size.y), size), false)
+	draw_set_transform(Vector2.ZERO)

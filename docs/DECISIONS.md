@@ -15,3 +15,6 @@
 | D11 | Teknik başlangıç | Önce yerel PC co-op; çevrim içi mobil ve platformlar arası oyun sonraki kilometre taşı. |
 | D12 | Kabul | İşlemler, kararlar, bölüm bilgileri Markdown'da; görseller projede tutulur. |
 | D13 | Kabul | Kullanıcı 07erkanoz/dino-hopo deposunu oluşturdu. Mevcut herkese açık görünürlük korunur. CLI yeni depo oluşturamıyor; mevcut depoya yükleme yapılır. |
+| D14 | Kabul | Kullanıcı gerçek çizimlere başlanmasını, görsellerin projeye eklenmesini istedi. |
+| D15 | Kabul | İlk dinozor çizimleri fazla yapmacık bulundu ve reddedildi. |
+| D16 | Yeni tasarım önerisi | Daha doğal oranlı, küçük gözlü, türleri belirgin canlılar; v3 onay bekliyor. |
