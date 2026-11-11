@@ -38,3 +38,6 @@ Hapşıran küçük otçul; kayaya boynuzu takılan boynuzlu; platform görevi g
 19 meyve, iki sarmaşık, üst keşif alanı, iki bumerang bulma noktası, dört devriyeli dinozor, iki düşen-kaya bölgesi, kontrol noktası ve çıkış bulunur. Bölümün beş parçası aynı sürekli alanda ilerler. Eski basit test sahnesinden farklı olarak kamera 1280'lik tek sahnede kalmaz.
 
 Son kullanıcı geri bildirimine göre eş yükselen kutular ve dev çiçekler kaldırıldı; tabana bağlı doğal kaya/zemin görseli ve çarpışmaları kullanılır. Görsel düzen hâlâ kullanıcı değerlendirmesine açıktır; tamamlandı olarak işaretlenmez.
+
+## İlk karşılaşmanın yeniden düzenlenmesi
+Kullanıcı küçük/robotik dinozorları ve yalnız zıplama akışını eleştirdi. İlk büyük dinozor için1280–2176 arasındaki açıklık genişletildi; sık engeller azaltıldı, girişte tırmanma/kaçınma seçeneği var. Güncel toplam3 düşman,4 sarmaşık; önceki4 düşman/2 sarmaşık sayıları tarihsel kayıttır. Tam bölüm tasarımı hâlâ onay bekliyor.

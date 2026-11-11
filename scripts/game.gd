@@ -192,7 +192,8 @@ func start_game(count: int, heroes: Array = []) -> void:
 		player.position = Vector2(level.spawns[i][0], level.spawns[i][1])
 		player.checkpoint = player.position
 		player.collision_layer = 2
-		player.collision_mask = 1
+		player.collision_mask = 5
+		player.z_index = 2
 		world.add_child(player)
 		players.append(player)
 	camera = Camera2D.new()
@@ -205,6 +206,7 @@ func start_game(count: int, heroes: Array = []) -> void:
 		var dino := Dino.new()
 		dino.position = Vector2(spot[0], spot[1])
 		dino.species = int(spot[2])
+		dino.game = self
 		world.add_child(dino)
 		targets.append(dino)
 	for zone in level.rock_zones:
@@ -331,8 +333,8 @@ func _process(_delta: float) -> void:
 				secret_found = true
 				toast.text = "Gizli çiçek bahçesi!" if language == "tr" else "Secret flower garden!"
 		for target in targets:
-			if player.grace <= 0 and target.stunned <= 0 and absf(target.position.x - player.position.x) < 47 and absf(target.position.y - player.position.y) < 45:
-				player.respawn()
+			if player.grace <= 0 and target.dangerous and absf(target.position.x - player.position.x) < target.contact_radius and absf(target.position.y - player.position.y) < 75:
+				player.hurt(target.position.x)
 	secret_fade = move_toward(secret_fade, 0.15 if secret_found else 1.0, _delta * 2)
 	hud.text = "%s  %d / %d" % [tr_text("fruit"), score, total]
 	inventory_label.text = ("Bumerang · " if language == "tr" else "Boomerang · ") + " | ".join(inventory)
@@ -447,8 +449,8 @@ func on_club_hit(hero: CharacterBody2D) -> void:
 	if not active: return
 	for target in targets:
 		var offset: Vector2 = target.global_position - hero.global_position
-		if absf(offset.x) < 105 and offset.x * hero.facing > 0 and absf(offset.y) < 55:
-			var ray := PhysicsRayQueryParameters2D.create(hero.global_position + Vector2(0, -45), target.global_position + Vector2(0, -35), 1)
+		if absf(offset.x) < target.hit_radius + 65 and offset.x * hero.facing > 0 and absf(offset.y) < 55:
+			var ray := PhysicsRayQueryParameters2D.create(hero.global_position + Vector2(0, -45), target.hit_center(), 1)
 			if get_world_2d().direct_space_state.intersect_ray(ray).is_empty(): target.stun()
 
 func try_throw(hero: CharacterBody2D) -> bool:

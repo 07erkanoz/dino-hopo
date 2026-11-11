@@ -20,3 +20,6 @@ Kullanıcı 4 karakteri onayladı ve 01/03'e çocuklarının isimlerini verdi. �
 
 ## Seçim ve denge
 Tek oyuncu dört kahramandan birini seçer. Yerel iki oyuncu kendi kahramanını seçer; kontrol yuvası ile karakter kimliği birbirinden ayrıdır. Aynı kahramanın iki oyuncu tarafından seçilmesine de izin verilir; P1/P2 etiketleri ayırır. Tüm kahramanların hareket ve silah yetenekleri başlangıçta aynıdır; farklı istatistikler kullanıcı kararı olmadan eklenmez.
+
+## Hareket pilotu
+2026-11-12: Çağan için ayrı12 karelik hareket çalışması eklendi; diğer3 kahramanın animasyonları bu aşamada henüz güncellenmedi. Onaylı PNG'ler aynıdır. Yeni kareler ayrı görsel onay bekler; [ayrıntılar](ANIMATION.md).

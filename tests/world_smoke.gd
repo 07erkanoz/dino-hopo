@@ -35,6 +35,8 @@ func run() -> void:
 	# Collect a real pickup; do not grant an invisible default power.
 	hero.position = game.power_pickups[0] + Vector2(0, 40)
 	await frames()
+	await process_frame
+	await process_frame
 	check(hero.has_boomerang and game.power_pickups.size() == 1)
 	# Safe open air: returns, stays owned, and a second throw is permitted.
 	hero.position = Vector2(150, 600)
@@ -54,18 +56,18 @@ func run() -> void:
 	check(not hero.has_boomerang and not hero.boomerang_active, "Terrain collision must lose boomerang")
 	# Melee is repeatable without needing any pickup.
 	var target = game.targets[0]
-	hero.position = Vector2(860, 600)
+	hero.position = Vector2(1540, 600)
 	hero.facing = 1
-	target.position = Vector2(935, 600)
+	target.position = Vector2(1660, 600)
 	hero.begin_swing()
 	await frames(12)
 	check(target.stunned > 0, "Club failed to stun nearby dinosaur")
 	# A held jump touch near a vine climbs instead of repeatedly jumping.
-	hero.position = Vector2(590, 580)
+	hero.position = Vector2(590, 536)
 	hero.velocity = Vector2.ZERO
 	hero.touch_jump = true
 	await frames(20)
-	check(hero.climbing and hero.position.y < 545, "Vine did not lift hero")
+	check(hero.climbing and hero.position.y < 500, "Vine did not lift hero")
 	hero.touch_jump = false
 	# Discover upper path and exercise moving camera.
 	hero.position = Vector2(730, 225)

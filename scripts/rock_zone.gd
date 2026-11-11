@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 		rock_y += velocity_y * delta
 		for hero in game.players:
 			if hero.grace <= 0 and hero.position.distance_to(Vector2(position.x, rock_y + 35)) < 48:
-				hero.respawn()
+				hero.hurt(position.x)
 		var ray := PhysicsRayQueryParameters2D.create(previous, Vector2(position.x, rock_y + 22), 1)
 		if rock_y > floor_y or not get_world_2d().direct_space_state.intersect_ray(ray).is_empty():
 			falling = false

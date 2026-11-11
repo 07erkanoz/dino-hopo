@@ -29,9 +29,9 @@ func _physics_process(delta: float) -> void:
 		if not is_instance_valid(target): continue
 		var key := "%s:%s" % [target.get_instance_id(), returning]
 		if hit_targets.has(key): continue
-		var center: Vector2 = target.global_position + Vector2(0, -35)
+		var center: Vector2 = target.hit_center()
 		var closest := Geometry2D.get_closest_point_to_segment(center, previous, global_position)
-		if closest.distance_to(center) < 38:
+		if closest.distance_to(center) < target.hit_radius:
 			target.stun()
 			hit_targets[key] = true
 	if returning and global_position.distance_to(destination) < 22:

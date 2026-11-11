@@ -92,3 +92,15 @@ Tarih: 2026-11-11 (Europe/Istanbul). Her anlamlı çalışma bu dosyaya eklenir.
 - Kaydın10. saniyesinde Çağan nehir kıyısı/kontrol noktası sonrası yükseltilerde,8/19 meyveyle ilerliyor; ilk geçişin oynanabilirliği gözlendi.
 -44MB ara AVI yalnız work/ altında; depoya2.3MB sıkıştırılmış MP4 eklendi.
 - Karakter seçimi, ilk alan ve şelale bölgesinin gerçek ekran görüntüleri son düzenle yenilendi. Bunlar görsel revizyon durumundadır, kullanıcı onayı yerine geçmez.
+
+## 014 — 2026-11-12: robotik hareket ve ölçek geri bildirimi
+- Kullanıcı kahraman/dinozor hareketlerini robotik, dinozorları küçük, motor/oynanışı yetersiz buldu. Teknik test geçmesi kalite onayı sayılmadı.
+- Çağan için12 kareli ayrı hareket çalışması, ilk boynuzlu dinozor için8 kareli yürüyüş çalışması görsel aracıyla üretildi. Onaylı kaynak PNG'ler değiştirilmedi. Yeni kareler kullanıcı tarafından ayrıca onaylanmadı.
+- Koşu/yürüyüş gerçek yer değiştirmesine bağlandı; sabit global zamanla iki poz değişimi kaldırıldı. Ortak hücre pivotu/ayak tabanı kullanılır. Hızlanma, frenleme, sıçrama hazırlığı ve iniş durumları eklendi.
+- Büyük boynuzlu208, hızlı küçük türler140, kahraman128 birim. Fizik ve hedef hacimleri beraber değişti. Kahraman gövde içinden geçmez ve çizim sırası hayvanın arkasında kaybolmasını önler.
+- İlk büyük karşılaşma açıklığa taşındı; uyarı/hamle/toparlanma ve can/geri savurma sistemi eklendi. Sık kaya sütunları azaltıldı, ek kaçınma sarmaşığı kondu.
+- Devriye sınırında her kare ters yöne dönme hatası bulundu; yalnız sınırdan dışarı hareket ederken dönüş tetiklenecek biçimde düzeltildi.
+- Dünya testinde idle işlenen pickup beklenmeden fizik karesinde okunuyordu; iki process_frame beklemesiyle gerçek olay döngüsü beklendi.
+- Hareket, dünya, kaynak bütünlüğü/62 atlas ve temel oyun testlerinin dördü geçti. Yeni hareket testleri dururken ayakların durmasını, çoklu fazları, ivmeyi, sıçrama/inişi, büyük türü, saldırı durumlarını ve hasar aralığını kontrol eder.
+-9s gerçek Godot MovieMaker kaydı açıklıkta başlatıldı, sonra yalnız tuş girdileri kullanıldı. Tam kaliteli oyun diye sunulmaz.
+- Kullanıcı bütün kod ve görsellerin GitHub'a gönderilmesini tekrar istedi; yeni kaynaklar/video/belgeler ilk teslimle aynı depoya hazırlanıyor.

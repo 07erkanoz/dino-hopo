@@ -30,3 +30,6 @@ Beş ilerleme bölgesi: çiçekli koru → nehir kıyısı → kayalık şelale 
 
 ## Doğrulama ve sınır
 Headless hareket, seçim, atlas, kaynak görsel bütünlüğü ve dünya etkileşim testleri; ayrıca Godot/OpenGL gerçek ekran kontrolü. Bu ilk bölüm başlangıcıdır, nihai görsel onay veya tamamlanmış 12 bölüm değildir. Tam animasyonlar, sesler, yüzme/kanatlı dosta binme, ağ co-op ve mağaza paketleri henüz yapılmadı.
+
+## Oynanış geri bildirimi sonrası
+İlk boynuzlu dinozor1700 civarındaki geniş açıklığa taşındı.1450/1760/2060 çevresindeki sık kaya sütunları kaldırıldı; 500'de küçük basamak, ilk üst rota için sarmaşık ve açıklık öncesinde1400'de kaçınma sarmaşığı eklendi. Toplam3 düşman ve4 sarmaşık var. Büyük hayvana gövde çarpışması, uyarı/hamle/toparlanma ve oyuncuya3 can/geri savurma eklendi. Hareket ve ölçek çalışması [ANIMATION.md](ANIMATION.md) içinde.

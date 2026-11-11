@@ -6,7 +6,7 @@ GitHub: https://github.com/07erkanoz/dino-hopo
 
 **İlk oynanabilir dünya geliştirme sürümü.** Onaylı dört kahraman oyuna bağlı; dünya görseli kullanıcı eleştirileriyle yeniden tasarlanıyor. Tamamlanmış oyun veya nihai bölüm değildir.
 
-[Gerçek oynanış kaydı](art/review/forest-playtest.mp4) · [Görseller](art/README.md) · [İşlem günlüğü](docs/DEVLOG.md)
+[Yeni hareket çalışması: Çağan + büyük dinozor](art/review/motion-study-v2.mp4) · [Önceki oynanış kaydı](art/review/forest-playtest.mp4) · [Görseller](art/README.md) · [İşlem günlüğü](docs/DEVLOG.md)
 
 ![Dört kahraman seçimi](art/review/character-select-in-engine.png)
 
@@ -32,11 +32,12 @@ R: kontrol noktasına dön. Esc: menü. Kontrolcü: sol çubuk, alt yüz düğme
 - Köklü toprak ve tabana oturan kayalık yükseltiler; nehir, şelale, sarmaşık, üst keşif alanı, düşen kayalar.
 - Sopa ile sersemletme; bulunarak edinilen, geri döndükçe tekrar atılan, araziye takılırsa kaybolan bumerang.
 - 19 meyve, kontrol noktası ve bölüm çıkışı.
+- **Yeni hareket pilotu:** Çağan için8 adımlı koşu ve iniş/hazırlık; ilk büyük dinozor için8 fazlı yürüyüş, uyarılı hamle ve toparlanma. Tür ölçekleri, çarpışma,3 can ve geri savurma güncellendi. Diğer kahraman/tür animasyonları hâlâ eski deneme düzeyinde; tüm hareketler tamamlanmadı.
 
 Henüz yapılmayanlar: tam animasyon döngüleri, sesler, yüzme, kanatlı dosta binme, ağ/PC-mobil co-op, kalan bölümler ve dağıtım paketleri.
 
 ## Tasarım ve kararlar
-[Karakterler](docs/CHARACTERS.md) · [Dünya](docs/WORLD.md) · [Silahlar](docs/COMBAT.md) · [Oyun tasarımı](docs/GAME_DESIGN.md) · [Bölümler](docs/LEVELS.md) · [Kararlar](docs/DECISIONS.md) · [Görsel sözleşmesi](docs/ART_SPEC.md) · [Yol haritası](docs/ROADMAP.md)
+[Hareket çalışması](docs/ANIMATION.md) · [Karakterler](docs/CHARACTERS.md) · [Dünya](docs/WORLD.md) · [Silahlar](docs/COMBAT.md) · [Oyun tasarımı](docs/GAME_DESIGN.md) · [Bölümler](docs/LEVELS.md) · [Kararlar](docs/DECISIONS.md) · [Görsel sözleşmesi](docs/ART_SPEC.md) · [Yol haritası](docs/ROADMAP.md)
 
 ## Kontroller / Tests
 ```
@@ -44,6 +45,7 @@ godot --headless --path . --editor --import --quit
 godot --headless --path . --script tests/smoke.gd
 godot --headless --path . --script tests/art_smoke.gd
 godot --headless --path . --script tests/world_smoke.gd
+godot --headless --path . --script tests/motion_smoke.gd
 ```
 Grafik ekranında `godot --path . --script tests/capture_art.gd` gerçek Godot ekran görüntülerini yeniler. `tests/record_demo.gd` gerçek tuş girdileriyle kısa bir otomatik oynanış kaydı içindir, kamera ışınlamaz.
 

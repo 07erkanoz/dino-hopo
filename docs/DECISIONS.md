@@ -27,3 +27,8 @@
 | D23 | Kabul | İlerledikçe değişen doğal ağaç/kaya/yeşillik düzeni; Prehistorik 2'nin bölüm yapısı referans. Sabit poster önünde yürüme istenmiyor. |
 | D24 | Kabul | Yapmacık ve bulanık arka plan, aşırı büyük çiçekler, uyumsuz kaya/zemin, tekrarlı yuvarlak ağaç duvarları reddedildi. |
 | D25 | Teknik başlangıç | 128 birim kahraman; 22–35 birim sıradan çiçek; köklü zemin ve tabana bağlı kaya yükseltileri. Yeni dünya görseli henüz kullanıcı onayı almadı. |
+| D26 | Kabul | Kullanıcı mevcut hareketleri robotik ve dinozorları küçük buldu. Yalnız zıplamaya dayalı oynanış yetersiz. |
+| D27 | Teknik pilot | Önce Çağan ve bir büyük boynuzlu dinozorda8 fazlı hareket, gerçek mesafeye bağlı adımlar, zemin teması ve ivme çalışması. Yeni animasyon kareleri henüz onaylanmadı. |
+| D28 | Teknik pilot | Büyük boynuzlu208, küçük hızlı türler140, kahraman128 birim. Ölçekle beraber fizik ve hedef hacmi ayarlanır. |
+| D29 | Teknik pilot | İlk büyük karşılaşma geniş açıklıkta; uyarı/hamle/toparlanma, sopa/bumerang, ön sarmaşıkla kaçınma.3 can ve darbe geri savurması. |
+| D30 | Kabul | Kaynak çizimler, yeni görseller, animasyonlar, kod, video ve kararlar GitHub'a eksiksiz gönderilir. |

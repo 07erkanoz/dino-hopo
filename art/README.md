@@ -47,3 +47,10 @@ PNG çizimleri bu proje için OpenAI görsel üretim aracıyla üretildi. Kahram
 Ham PNG'ler korunur. `atlas-regions.json` motorun okuyacağı gerçek piksel bölgelerini kaydeder; alpha içeriği ölçülür. RGBA dosyalarının tam şeffaf piksellerinde görünmeyen RGB renkleri olabilir; alpha destekleyen görüntüleyici kullanılmalı.
 
 Godot menüsünde **Çizim galerisi / Art gallery** bulunur. Doğrulama: `tests/art_smoke.gd`42 aktif sprite bölgesini ve onaylı kahraman kaynaklarının hash'lerini kontrol eder. Ticari isim/marka kontrolü henüz yapılmadı.
+
+## Yeni hareket pilotu
+[Çağan ve büyük dinozor:9 saniyelik motor kaydı](review/motion-study-v2.mp4).
+
+![İlk büyük karşılaşma](review/first-large-dino-in-engine.png)
+
+Kaynaklar: `animation/cagan-locomotion-study.png` (12 kare), `animation/ceratopsian-walk-study.png` (8 kare). Onaylı pafta/atlas korunur; yeni hareketler ayrı değerlendirme aşamasında. Diğer kahramanlar ve küçük türler henüz aynı hareket düzeyine yükseltilmedi. Aktif atlas bölgesi sayısı62 oldu.

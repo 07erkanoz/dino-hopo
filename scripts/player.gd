@@ -26,6 +26,16 @@ var _was_jumping := false
 var _was_club := false
 var _was_throw := false
 var grace := 1.4
+var run_distance := 0.0
+var run_frame := 0
+var landing_left := 0.0
+var takeoff_left := 0.0
+var jump_windup := 0.0
+var launch_pending := false
+var hurt_left := 0.0
+var health := 3
+var motion_state := "idle"
+var name_tag: Label
 
 func _ready() -> void:
 	var shape := CollisionShape2D.new()
@@ -35,7 +45,7 @@ func _ready() -> void:
 	shape.shape = capsule
 	shape.position.y = -44.0
 	add_child(shape)
-	var name_tag := Label.new()
+	name_tag = Label.new()
 	name_tag.text = "P%d · %s" % [slot + 1, Roster.hero_name(hero_index, language)]
 	name_tag.position = Vector2(-65, -152)
 	name_tag.size.x = 130
@@ -47,6 +57,13 @@ func _ready() -> void:
 	add_child(name_tag)
 
 func _physics_process(delta: float) -> void:
+	var previous_position := position
+	var was_grounded := is_on_floor()
+	var incoming_y := velocity.y
+	landing_left = maxf(0, landing_left - delta)
+	takeoff_left = maxf(0, takeoff_left - delta)
+	jump_windup = maxf(0, jump_windup - delta)
+	hurt_left = maxf(0, hurt_left - delta)
 	grace = maxf(0.0, grace - delta)
 	var left := KEY_A if slot == 0 else KEY_LEFT
 	var right := KEY_D if slot == 0 else KEY_RIGHT
@@ -80,17 +97,38 @@ func _physics_process(delta: float) -> void:
 	elif dismount and can_climb:
 		velocity.y = -400
 		velocity.x = (axis if axis != 0 else facing) * 260
-	elif jump_buffer > 0.0 and coyote > 0.0:
+	elif not launch_pending and jump_buffer > 0.0 and coyote > 0.0:
+		launch_pending = true
+		jump_windup = 0.045
+		jump_buffer = 0.0
+	if launch_pending and jump_windup <= 0.0:
 		velocity.y = -720.0
 		coyote = 0.0
-		jump_buffer = 0.0
+		launch_pending = false
+		takeoff_left = 0.065
 	if not climbing:
 		if not jumping and not dismount and velocity.y < -240.0:
 			velocity.y += 2000.0 * delta
 		velocity.y = minf(velocity.y + 1700.0 * delta, 1100.0)
-	velocity.x = move_toward(velocity.x, axis * 300.0, 2200.0 * delta)
-	if axis != 0.0: facing = signf(axis)
+	if hurt_left <= 0:
+		var rate := 950.0 if was_grounded else 650.0
+		var target_speed := axis * 300.0
+		if axis == 0: rate = 1800.0 if was_grounded else 280.0
+		if axis * velocity.x < 0 and absf(velocity.x) > 35:
+			target_speed = 0.0
+			rate = 2100.0
+		velocity.x = move_toward(velocity.x, target_speed, rate * delta)
+		if axis != 0 and (absf(velocity.x) < 35 or velocity.x * axis > 0): facing = signf(axis)
+	if climbing and position.y < 170 and velocity.y < 0: velocity.y = 0
 	move_and_slide()
+	if is_on_floor() and not was_grounded and incoming_y > 140:
+		landing_left = 0.13
+	if is_on_floor() and absf(position.x - previous_position.x) > 0.05:
+		run_distance += absf(position.x - previous_position.x)
+		run_frame = int(fmod(run_distance / 144.0, 1.0) * 8)
+	motion_state = "climb" if climbing else ("jump" if not is_on_floor() else ("run" if absf(velocity.x) > 12 else "idle"))
+	if landing_left > 0: motion_state = "land"
+	if launch_pending: motion_state = "anticipate"
 	position.x = clampf(position.x, 28.0, world_width - 35)
 	if position.y > 950.0: respawn()
 	club_cooldown = maxf(0.0, club_cooldown - delta)
@@ -117,17 +155,54 @@ func respawn() -> void:
 	velocity = Vector2.ZERO
 	climbing = false
 	grace = 1.4
+	health = 3
+	launch_pending = false
+	jump_windup = 0
+	hurt_left = 0
+	if is_instance_valid(name_tag): name_tag.text = "P%d · %s" % [slot + 1, Roster.hero_name(hero_index, language)]
+
+func hurt(from_x: float) -> void:
+	if grace > 0: return
+	health -= 1
+	if health <= 0:
+		respawn()
+		return
+	grace = 1.1
+	hurt_left = 0.2
+	velocity = Vector2(360 if position.x >= from_x else -360, -260)
+	name_tag.text = "P%d · %s  %d♥" % [slot + 1, Roster.hero_name(hero_index, language), health]
 
 func _draw() -> void:
+	# The gait advances with actual travel, not global wall-clock time.
+	if is_on_floor():
+		var shadow := PackedVector2Array()
+		for i in 24: shadow.append(Vector2(cos(i * TAU / 24) * 24, sin(i * TAU / 24) * 4))
+		draw_colored_polygon(shadow, Color(0.2, 0.16, 0.1, 0.2))
 	var pose := 0
 	if not is_on_floor(): pose = 3
-	elif absf(velocity.x) > 10: pose = 1 + (int(Time.get_ticks_msec() / 140) % 2)
-	var texture := Art.sprite("heroes", Roster.frame(hero_index, pose))
-	var idle_height := Art.sprite("heroes", hero_index).get_height()
-	var size := texture.get_size() * (128.0 / idle_height)
-	draw_set_transform(Vector2.ZERO, 0.0, Vector2(facing, 1))
-	draw_texture_rect(texture, Rect2(Vector2(-size.x / 2, -size.y), size), false)
+	elif absf(velocity.x) > 10: pose = 1 + (run_frame / 4)
 	var anchor := Vector2(29, -51) if pose == 0 else Vector2(40, -64)
+	draw_set_transform(Vector2.ZERO, 0, Vector2(facing, 1))
+	var use_motion := hero_index == 0 and (motion_state != "idle" or swing_left > 0)
+	if use_motion:
+		var frame := run_frame
+		if motion_state == "anticipate": frame = 9
+		elif motion_state == "land": frame = 11
+		elif motion_state == "jump" or motion_state == "climb": frame = 10
+		elif motion_state == "idle": frame = 8
+		if takeoff_left > 0: frame = 9
+		if swing_left > 0: frame = 9 if swing_left > 0.17 else 11
+		var texture := Art.sprite("cagan_motion", frame)
+		var sheet: Dictionary = Art.data.cagan_motion
+		var factor := 128.0 / float(sheet.reference_height)
+		var origin := Vector2(sheet.root_x, sheet.ground) * factor
+		draw_texture_rect(texture, Rect2(-origin, texture.get_size() * factor), false)
+		var anchors := [Vector2(37,-64), Vector2(37,-48), Vector2(35,-62), Vector2(38,-82), Vector2(37,-64), Vector2(37,-48), Vector2(35,-62), Vector2(38,-82), Vector2(29,-51), Vector2(-24,-42), Vector2(48,-64), Vector2(45,-43)]
+		anchor = anchors[frame]
+	else:
+		var texture := Art.sprite("heroes", Roster.frame(hero_index, pose))
+		var size := texture.get_size() * (128.0 / Art.sprite("heroes", hero_index).get_height())
+		draw_texture_rect(texture, Rect2(Vector2(-size.x / 2, -size.y), size), false)
 	var angle := 0.85
 	if swing_left > 0: angle = lerpf(-1.5, 1.1, 1.0 - swing_left / 0.29)
 	draw_set_transform(Vector2(anchor.x * facing, anchor.y), angle * facing, Vector2(facing, 1))

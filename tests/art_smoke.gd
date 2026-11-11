@@ -6,7 +6,7 @@ func _initialize() -> void:
 	for path in approval:
 		assert(FileAccess.get_sha256("res://" + path) == approval[path], "Approved hero artwork changed")
 	var count := 0
-	for entry in [["heroes", 16], ["props", 6], ["creatures", 6], ["equipment", 4], ["jungle", 6], ["habitat", 4]]:
+	for entry in [["heroes", 16], ["props", 6], ["creatures", 6], ["equipment", 4], ["jungle", 6], ["habitat", 4], ["cagan_motion", 12], ["ceratopsian_motion", 8]]:
 		for i in entry[1]:
 			var sprite := Art.sprite(entry[0], i)
 			assert(sprite.region.size.x > 0 and sprite.region.size.y > 0)

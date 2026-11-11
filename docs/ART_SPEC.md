@@ -49,3 +49,6 @@ Kullanıcı ilk bebek/oyuncak görünümünü reddetti. Dev göz, şişkin oyunc
 Motor aynı PNG'leri bölgelerle okur, kaynak çizimleri kesip yeniden boyutlandırarak değiştirmez. Oyun dünyasında arka plan tek resim değildir: ayrı sprite düğümleri ve üç Parallax2D katmanı kullanılır. Menü dekoru ayrı tam resim olabilir.
 
 Yeni ölçütler: kahraman boyu yaklaşık128, fizik kapsülü88, çiçek22–35. Teknik ilk paftadaki64×96 karakter hedefi görsel okunabilirlik için bu prototipte değişmiştir. 64px yerleşim referansı korunur; karmaşık dış kaya silüeti dikdörtgen fizik üstüyle birebir piksel temas garantisi değildir. Tam TileSet iç/dış köşeleri ve tüm animasyonlar sonraki üretim işidir.
+
+## Hareket çalışması kaynakları — 2026-11-12
+`art/animation/cagan-locomotion-study.png` ve `ceratopsian-walk-study.png` ile20 yeni kare, toplam62 aktif atlas bölgesi. Ayrı dosyalar, onaylanmış PNG'lerin üzerine yazılmadı. Tam hücre bölgeleri/ortak pivotla oynatılır. Yeni hareket çizimleri henüz kullanıcı onayı almadı. [Hareket sözleşmesi](ANIMATION.md).
