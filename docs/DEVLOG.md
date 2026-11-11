@@ -157,3 +157,7 @@ Tarih: 2026-11-11 (Europe/Istanbul). Her anlamlı çalışma bu dosyaya eklenir.
 -10s gerçek Godot kamera gezintisi24fps ile kaydedildi. Bağımsız ağaç/parallax ve dalına bağlı sarmaşıklar kamera hareketinde görülebilir. Aktör veya oyun/nature animasyonu eklenmedi.
 - Sade toprakla son dört doğa görüntüsü ve güncel harita şeması yenilendi. Kaynak PNG'ler korunur; MP4 yalnız native kaydın sıkıştırılmasıdır.
 - Son nature_plan_smoke ve nature_style_smoke kontrolleri geçti. Yeni stil nihai görsel onayı almış sayılmadı.
+
+## 022 — Doğa çalışması GitHub teslimi
+- Yeni üç görsel kaynak, dört doğa görüntüsü, kamera gezintisi, yerleşim/stil verisi, kod ve Markdown kayıtları `2a75a00` ile main dalına gönderildi.
+- Aktif çalışma aşama2 olarak kaldı; yeni oynanış öğesi eklenmedi. Bu sonuç kaydı aynı dala gönderilir.
