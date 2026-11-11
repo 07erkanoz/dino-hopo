@@ -3,6 +3,9 @@ signal club_hit(hero: CharacterBody2D)
 signal throw_requested(hero: CharacterBody2D)
 const Art = preload("res://scripts/art.gd")
 const Roster = preload("res://scripts/roster.gd")
+const Feedback = preload("res://scripts/hit_feedback.gd")
+const ATTACK_DURATIONS := [0.04, 0.08, 0.08, 0.055, 0.075, 0.08, 0.08, 0.07]
+const ATTACK_TOTAL := 0.58
 var slot := 0
 var hero_index := 0
 var language := "tr"
@@ -35,6 +38,14 @@ var launch_pending := false
 var hurt_left := 0.0
 var health := 3
 var motion_state := "idle"
+var attack_frame := 0
+var attack_targets: Dictionary = {}
+var attack_number := 0
+var attack_facing := 1.0
+var previous_club_tip := Vector2.ZERO
+var hit_pause := 0.0
+var swing_sound_played := false
+var sfx_enabled := true
 var name_tag: Label
 
 func _ready() -> void:
@@ -57,6 +68,10 @@ func _ready() -> void:
 	add_child(name_tag)
 
 func _physics_process(delta: float) -> void:
+	if hit_pause > 0:
+		hit_pause = maxf(0, hit_pause - delta)
+		queue_redraw()
+		return
 	var previous_position := position
 	var was_grounded := is_on_floor()
 	var incoming_y := velocity.y
@@ -113,12 +128,15 @@ func _physics_process(delta: float) -> void:
 	if hurt_left <= 0:
 		var rate := 950.0 if was_grounded else 650.0
 		var target_speed := axis * 300.0
+		if swing_left > 0 and was_grounded:
+			target_speed = 0
+			rate = 2800.0
 		if axis == 0: rate = 1800.0 if was_grounded else 280.0
 		if axis * velocity.x < 0 and absf(velocity.x) > 35:
 			target_speed = 0.0
 			rate = 2100.0
 		velocity.x = move_toward(velocity.x, target_speed, rate * delta)
-		if axis != 0 and (absf(velocity.x) < 35 or velocity.x * axis > 0): facing = signf(axis)
+		if swing_left <= 0 and axis != 0 and (absf(velocity.x) < 35 or velocity.x * axis > 0): facing = signf(axis)
 	if climbing and position.y < 170 and velocity.y < 0: velocity.y = 0
 	move_and_slide()
 	if is_on_floor() and not was_grounded and incoming_y > 140:
@@ -136,9 +154,14 @@ func _physics_process(delta: float) -> void:
 	var club := Input.is_physical_key_pressed(KEY_F if slot == 0 else KEY_K) or Input.is_joy_button_pressed(slot, JOY_BUTTON_X) or (slot == 0 and touch_club)
 	var throwing := Input.is_physical_key_pressed(KEY_G if slot == 0 else KEY_L) or Input.is_joy_button_pressed(slot, JOY_BUTTON_Y) or (slot == 0 and touch_throw)
 	if club and not _was_club: begin_swing()
-	if swing_left > 0 and swing_left < 0.16 and not attack_connected:
-		attack_connected = true
-		club_hit.emit(self)
+	if swing_left > 0:
+		attack_frame = attack_frame_at(ATTACK_TOTAL - swing_left)
+		if attack_frame >= 2 and not swing_sound_played:
+			swing_sound_played = true
+			if sfx_enabled: Feedback.play_sound(self, "swing", 1.0, -14)
+		if attack_frame == 3 or attack_frame == 4:
+			club_hit.emit(self)
+		previous_club_tip = club_tip()
 	if throwing and not _was_throw: throw_requested.emit(self)
 	_was_club = club
 	_was_throw = throwing
@@ -146,9 +169,28 @@ func _physics_process(delta: float) -> void:
 
 func begin_swing() -> void:
 	if club_cooldown > 0: return
-	club_cooldown = 0.4
-	swing_left = 0.29
+	club_cooldown = ATTACK_TOTAL + 0.04
+	swing_left = ATTACK_TOTAL
 	attack_connected = false
+	attack_frame = 0
+	attack_targets.clear()
+	attack_number += 1
+	attack_facing = facing
+	swing_sound_played = false
+	previous_club_tip = club_tip()
+
+func attack_frame_at(elapsed: float) -> int:
+	var cursor := 0.0
+	for i in ATTACK_DURATIONS.size():
+		cursor += ATTACK_DURATIONS[i]
+		if elapsed < cursor: return i
+	return 7
+
+func club_tip() -> Vector2:
+	# In source frame3 the club head is x~379,y~237; frame4 follows down.
+	var local := Vector2(56, -73) if attack_frame == 3 else Vector2(55, -16)
+	if attack_frame < 3: local = Vector2(-35, -90)
+	return global_position + Vector2(local.x * attack_facing, local.y)
 
 func respawn() -> void:
 	position = checkpoint
@@ -178,6 +220,17 @@ func _draw() -> void:
 		var shadow := PackedVector2Array()
 		for i in 24: shadow.append(Vector2(cos(i * TAU / 24) * 24, sin(i * TAU / 24) * 4))
 		draw_colored_polygon(shadow, Color(0.2, 0.16, 0.1, 0.2))
+	if hero_index == 0 and swing_left > 0:
+		var texture := Art.sprite("cagan_attack", attack_frame)
+		var sheet: Dictionary = Art.data.cagan_attack
+		var factor := 128.0 / float(sheet.reference_height)
+		var origin := Vector2(sheet.root_x, sheet.ground) * factor
+		draw_set_transform(Vector2.ZERO, 0, Vector2(attack_facing, 1))
+		if attack_frame == 3 or attack_frame == 4:
+			draw_arc(Vector2(-10,-76), 76, -1.3, 0.4, 14, Color(1.0,0.94,0.7,0.35), 5, true)
+		draw_texture_rect(texture, Rect2(-origin, texture.get_size() * factor), false)
+		draw_set_transform(Vector2.ZERO)
+		return
 	var pose := 0
 	if not is_on_floor(): pose = 3
 	elif absf(velocity.x) > 10: pose = 1 + (run_frame / 4)
@@ -204,7 +257,7 @@ func _draw() -> void:
 		var size := texture.get_size() * (128.0 / Art.sprite("heroes", hero_index).get_height())
 		draw_texture_rect(texture, Rect2(Vector2(-size.x / 2, -size.y), size), false)
 	var angle := 0.85
-	if swing_left > 0: angle = lerpf(-1.5, 1.1, 1.0 - swing_left / 0.29)
+	if swing_left > 0: angle = lerpf(-1.5, 1.1, 1.0 - swing_left / ATTACK_TOTAL)
 	draw_set_transform(Vector2(anchor.x * facing, anchor.y), angle * facing, Vector2(facing, 1))
 	var club := Art.sprite("equipment", 0)
 	var club_size := club.get_size() * (64.0 / club.get_height())

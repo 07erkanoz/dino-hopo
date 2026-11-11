@@ -21,3 +21,6 @@ Bumerang takıldığında şu an kayıp mesajıyla kaldırılır. Dala asılı k
 
 ## Karşılaşma ve darbe güncellemesi
 2026-11-12: Büyük boynuzlu tür208, küçük hızlı türler140 birim; vuruş/hedef hacimleri buna göre ayarlı. Dinozor gövdesi kahramanla fiziksel olarak çarpışır. İlk büyük karşılaşma geniş açıklığa taşındı;0.7s uyarı, hamle, toparlanma ve sersemleme durumları var. Kahramanda3 can, geri savurma ve hasar aralığı eklendi; kaya darbeleri de bu can sistemini kullanır. Can bitince kontrol noktasına dönüş. Tam dövüş animasyonu/denge bitmiş değildir.
+
+## Güncel temas zinciri
+2026-11-12: [HIT_FEEDBACK.md](HIT_FEEDBACK.md) güncel savuruş/tepki sözleşmesidir. Çağan'ın sopayı elde tuttuğu8 tam gövde karesi ve büyük dinozorun4 tepki karesi bağlandı. Temasta geri itilme, yerel kısa duraklama, bulut, yıldız, kısa parıltı ve gerçek ses var. Boşa/ters yöne/duvar arkasına vuruş efekt veya isabet yaratmaz. Bumerang aynı tepki hattını daha hafif kullanır. Tam set henüz tüm kahramanlara yayılmadı.

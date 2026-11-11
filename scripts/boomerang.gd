@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 		var center: Vector2 = target.hit_center()
 		var closest := Geometry2D.get_closest_point_to_segment(center, previous, global_position)
 		if closest.distance_to(center) < target.hit_radius:
-			target.stun()
+			game.register_hit(target, previous, closest, 0.6)
 			hit_targets[key] = true
 	if returning and global_position.distance_to(destination) < 22:
 		hero.boomerang_active = false

@@ -52,3 +52,6 @@ Yeni ölçütler: kahraman boyu yaklaşık128, fizik kapsülü88, çiçek22–35
 
 ## Hareket çalışması kaynakları — 2026-11-12
 `art/animation/cagan-locomotion-study.png` ve `ceratopsian-walk-study.png` ile20 yeni kare, toplam62 aktif atlas bölgesi. Ayrı dosyalar, onaylanmış PNG'lerin üzerine yazılmadı. Tam hücre bölgeleri/ortak pivotla oynatılır. Yeni hareket çizimleri henüz kullanıcı onayı almadı. [Hareket sözleşmesi](ANIMATION.md).
+
+## Darbe animasyonları
+8 saldırı+4 tepki karesi ile aktif atlas74 bölge oldu. Kaynaklar `art/animation/cagan-club-attack-study.png` ve `ceratopsian-hit-study.png`. İlk saldırı çiziminin mat arka planı, görsel düzenleme aracıyla temizlendi; başarısız sürüm review arşivindedir. Onaylı ana kaynaklar değiştirilmedi, yeni hareketler ayrı onay bekler.

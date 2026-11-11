@@ -32,3 +32,5 @@
 | D28 | Teknik pilot | Büyük boynuzlu208, küçük hızlı türler140, kahraman128 birim. Ölçekle beraber fizik ve hedef hacmi ayarlanır. |
 | D29 | Teknik pilot | İlk büyük karşılaşma geniş açıklıkta; uyarı/hamle/toparlanma, sopa/bumerang, ön sarmaşıkla kaçınma.3 can ve darbe geri savurması. |
 | D30 | Kabul | Kaynak çizimler, yeni görseller, animasyonlar, kod, video ve kararlar GitHub'a eksiksiz gönderilir. |
+| D31 | Kabul | Kullanıcı vuruşun ve darbe tepkisinin görünür/komik olmadığını belirtti. Görsel+fizik+ses temasta birlikte çalışmalı. |
+| D32 | Teknik pilot | Çağan'a8 gövde+sopa karesi; büyük boynuzluya4 tepki; aktif kare, süpürülmüş sopa ucu, tek hedef/isabet, geri itilme, yerel hit-stop ve ses. Yeni hareketler henüz görsel onay almadı. |

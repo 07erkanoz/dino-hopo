@@ -15,8 +15,19 @@ var travelled := 0.0
 var walk_frame := 0
 var dangerous := false
 var desired_direction := -1.0
+var hit_pause := 0.0
+var recoil_left := 0.0
+var recoil_direction := 1.0
+var reaction_frame := 0
+var flash_left := 0.0
+var flash_material: ShaderMaterial
 
 func _ready() -> void:
+	var shader := Shader.new()
+	shader.code = "shader_type canvas_item; uniform float flash=0.0; void fragment(){vec4 t=COLOR; COLOR=vec4(mix(t.rgb,vec3(1.0,0.96,0.76),flash),t.a);}"
+	flash_material = ShaderMaterial.new()
+	flash_material.shader = shader
+	material = flash_material
 	home_x = position.x
 	if species != 0:
 		body_height = 140
@@ -39,6 +50,17 @@ func stun() -> void:
 	dangerous = false
 	queue_redraw()
 
+func receive_hit(from: Vector2, strength: float = 1.0) -> void:
+	stun()
+	recoil_direction = 1.0 if global_position.x >= from.x else -1.0
+	recoil_left = 0.43
+	hit_pause = 0.055
+	flash_left = 0.075
+	reaction_frame = 0
+	velocity.x = recoil_direction * 220 * strength
+	if is_on_floor(): velocity.y = -95 * strength
+	flash_material.set_shader_parameter("flash", 0.85)
+
 func hit_center() -> Vector2:
 	return global_position - Vector2(0, body_height * 0.43)
 
@@ -48,6 +70,21 @@ func enter_turn(new_direction: float) -> void:
 	desired_direction = new_direction
 
 func _physics_process(delta: float) -> void:
+	flash_left = maxf(0, flash_left - delta)
+	flash_material.set_shader_parameter("flash", flash_left / 0.075 * 0.85)
+	if hit_pause > 0:
+		hit_pause = maxf(0, hit_pause - delta)
+		queue_redraw()
+		return
+	if recoil_left > 0:
+		recoil_left = maxf(0, recoil_left - delta)
+		var elapsed := 0.43 - recoil_left
+		reaction_frame = 0 if elapsed < 0.07 else (1 if elapsed < 0.18 else (2 if elapsed < 0.32 else 3))
+		velocity.x = move_toward(velocity.x, 0, 580 * delta)
+		velocity.y = minf(velocity.y + 1700 * delta, 1000)
+		move_and_slide()
+		queue_redraw()
+		return
 	var old_x := position.x
 	stunned = maxf(0, stunned - delta)
 	state_left = maxf(0, state_left - delta)
@@ -106,7 +143,14 @@ func _draw() -> void:
 	draw_colored_polygon(shadow, Color(0.2,0.16,0.1,0.17))
 	var lean := 0.035 if state == "windup" else 0.0
 	draw_set_transform(Vector2.ZERO, lean * direction, Vector2(-direction, 1))
-	if species == 0:
+	if species == 0 and (recoil_left > 0 or (state == "stunned" and stun_count > 0)):
+		var frame := reaction_frame if recoil_left > 0 else 3
+		var image := Art.sprite("ceratopsian_hit", frame)
+		var sheet: Dictionary = Art.data.ceratopsian_hit
+		var factor := body_height / float(sheet.reference_height)
+		var origin := Vector2(sheet.root_x, sheet.ground) * factor
+		draw_texture_rect(image, Rect2(-origin, image.get_size() * factor), false)
+	elif species == 0:
 		var frame := walk_frame if absf(velocity.x) > 3 else 0
 		var image := Art.sprite("ceratopsian_motion", frame)
 		var sheet: Dictionary = Art.data.ceratopsian_motion

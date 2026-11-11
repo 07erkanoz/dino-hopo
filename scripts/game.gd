@@ -3,6 +3,7 @@ extends Node2D
 const Player = preload("res://scripts/player.gd")
 const Art = preload("res://scripts/art.gd")
 const Roster = preload("res://scripts/roster.gd")
+const HitFeedback = preload("res://scripts/hit_feedback.gd")
 const CharacterSelect = preload("res://scripts/character_select.gd")
 const Forest = preload("res://scripts/forest.gd")
 const Dino = preload("res://scripts/dino.gd")
@@ -35,6 +36,10 @@ var level: Dictionary = {}
 var selected_heroes: Array = [0, 2]
 var targets: Array = []
 var power_pickups: Array[Vector2] = []
+var sfx_enabled := true
+var hit_events := 0
+var last_hit_position := Vector2.ZERO
+var impact_shake := 0.0
 var secret_found := false
 var secret_fade := 1.0
 var inventory_label: Label
@@ -137,6 +142,13 @@ func show_menu() -> void:
 		dialog.popup_centered()
 		dialog.confirmed.connect(dialog.queue_free))
 	box.add_child(controls)
+	var sound_toggle := Button.new()
+	sound_toggle.text = ("Sesler: Açık" if sfx_enabled else "Sesler: Kapalı") if language == "tr" else ("Sound: On" if sfx_enabled else "Sound: Off")
+	sound_toggle.custom_minimum_size.y = 42
+	sound_toggle.pressed.connect(func():
+		sfx_enabled = not sfx_enabled
+		show_menu())
+	box.add_child(sound_toggle)
 	queue_redraw()
 
 func show_character_select(count: int) -> void:
@@ -169,6 +181,8 @@ func start_game(count: int, heroes: Array = []) -> void:
 	berries.clear()
 	power_pickups.clear()
 	score = 0
+	hit_events = 0
+	impact_shake = 0
 	completed = false
 	saved_checkpoint = false
 	secret_found = false
@@ -185,6 +199,7 @@ func start_game(count: int, heroes: Array = []) -> void:
 		player.slot = i
 		player.hero_index = selected_heroes[i]
 		player.language = language
+		player.sfx_enabled = sfx_enabled
 		player.world_width = level.width
 		player.vines = level.vines
 		player.club_hit.connect(on_club_hit)
@@ -298,6 +313,9 @@ func _process(_delta: float) -> void:
 		center += player.position
 	center /= players.size()
 	camera.position = Vector2(clampf(center.x, 640, float(level.width) - 640), 360)
+	impact_shake = move_toward(impact_shake, 0, _delta * 36)
+	var shake_time := Time.get_ticks_msec() / 1000.0
+	camera.offset = Vector2(sin(shake_time * 61), cos(shake_time * 83) * 0.6) * impact_shake
 	for player in players:
 		if player.position.x < camera.position.x - 620:
 			player.position = Vector2(camera.position.x - 480, 220)
@@ -447,11 +465,31 @@ func show_gallery() -> void:
 
 func on_club_hit(hero: CharacterBody2D) -> void:
 	if not active: return
+	var tip: Vector2 = hero.club_tip()
 	for target in targets:
+		if hero.attack_targets.has(target.get_instance_id()): continue
 		var offset: Vector2 = target.global_position - hero.global_position
-		if absf(offset.x) < target.hit_radius + 65 and offset.x * hero.facing > 0 and absf(offset.y) < 55:
-			var ray := PhysicsRayQueryParameters2D.create(hero.global_position + Vector2(0, -45), target.hit_center(), 1)
-			if get_world_2d().direct_space_state.intersect_ray(ray).is_empty(): target.stun()
+		if offset.x * hero.attack_facing < 0: continue
+		var closest := Geometry2D.get_closest_point_to_segment(target.hit_center(), hero.previous_club_tip, tip)
+		if closest.distance_to(target.hit_center()) > target.hit_radius + 12: continue
+		var ray := PhysicsRayQueryParameters2D.create(hero.global_position + Vector2(0,-65), closest, 1)
+		if not get_world_2d().direct_space_state.intersect_ray(ray).is_empty(): continue
+		hero.attack_targets[target.get_instance_id()] = true
+		hero.attack_connected = true
+		hero.hit_pause = 0.045
+		register_hit(target, hero.global_position, closest, 1.0)
+
+func register_hit(target: Node2D, from: Vector2, contact: Vector2, strength: float) -> void:
+	target.receive_hit(from, strength)
+	hit_events += 1
+	last_hit_position = contact
+	impact_shake = 3.5 * strength
+	var feedback := HitFeedback.new()
+	feedback.position = contact
+	feedback.side = 1 if target.position.x > from.x else -1
+	feedback.variant = hit_events
+	feedback.sound_enabled = sfx_enabled
+	world.add_child(feedback)
 
 func try_throw(hero: CharacterBody2D) -> bool:
 	if not active or not hero.has_boomerang or hero.boomerang_active: return false

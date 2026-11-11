@@ -54,3 +54,10 @@ Godot menüsünde **Çizim galerisi / Art gallery** bulunur. Doğrulama: `tests/
 ![İlk büyük karşılaşma](review/first-large-dino-in-engine.png)
 
 Kaynaklar: `animation/cagan-locomotion-study.png` (12 kare), `animation/ceratopsian-walk-study.png` (8 kare). Onaylı pafta/atlas korunur; yeni hareketler ayrı değerlendirme aşamasında. Diğer kahramanlar ve küçük türler henüz aynı hareket düzeyine yükseltilmedi. Aktif atlas bölgesi sayısı62 oldu.
+
+## Yeni savuruş ve darbe tepkisi
+[6s sesli Godot kaydı](review/combat-hit-v3.mp4).
+
+![Temas anı](review/combat-contact-in-engine.png)
+
+`animation/cagan-club-attack-study.png`:8 gövde+sopa karesi; `animation/ceratopsian-hit-study.png`:4 tepki karesi. Tam şeffaf kaynaklar, ayrı yeni hareket çalışmalarıdır; onaylı pafta kaynaklarına dokunulmadı. Yeni karelerin görsel onayı henüz yoktur. Başarısız matlı ilk sürüm yalnız `review/cagan-attack-rejected-matte.png` arşivindedir. Aktif atlas sayısı74. [Ses kaynakları](../audio/README.md), [temas sözleşmesi](../docs/HIT_FEEDBACK.md).

@@ -60,7 +60,7 @@ func run() -> void:
 	hero.facing = 1
 	target.position = Vector2(1660, 600)
 	hero.begin_swing()
-	await frames(12)
+	await frames(23)
 	check(target.stunned > 0, "Club failed to stun nearby dinosaur")
 	# A held jump touch near a vine climbs instead of repeatedly jumping.
 	hero.position = Vector2(590, 536)

@@ -25,3 +25,6 @@ Kahraman3 canla başlar. Darbe kısa geri savurma ve hasar dokunulmazlığı ver
 `tests/motion_smoke.gd`:8 adımın kullanılması, durunca ayak fazının durması, hızlanma, hazırlık/hava/iniş, büyük tür ölçeği, uyarı/hamle/toparlanma, can ve hasar aralığı.
 
 Kalanlar: Deniz/02/04 için aynı kalitede hareket dizileri; küçük türlerin tam yürüyüşü, özel tırmanma ve saldırı kareleri; tam elle temizlenmiş/pürüzsüz üretim animasyonu ve ses eşleşmesi. Pilot koşu kareleri tek başına doğal animasyon kalitesini garanti etmez; hareketli görsel değerlendirme gerekir.
+
+## Saldırı güncellemesi
+Önceki crouch/landing pozlarını saldırı gibi değiştirme yaklaşımı Çağan için kaldırıldı. Ayrı8 gövde+sopa ve4 hedef tepki karesi geldi. [Temas zinciri](HIT_FEEDBACK.md) güncel uygulamadır.

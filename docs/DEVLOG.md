@@ -109,3 +109,15 @@ Tarih: 2026-11-11 (Europe/Istanbul). Her anlamlı çalışma bu dosyaya eklenir.
 - Yeni animasyon kaynakları, tüm kod değişiklikleri,9s motor videosu, ekran çıktısı, testler ve Markdown belgeleri `e13d2f9` kaydıyla main dalına gönderildi.
 - Dört test grubunun tamamı geçti;62 atlas bölgesi ve onaylı kaynak hash kontrolü başarılı. Görsel onay ve diğer kahramanların animasyonları tamamlanmış sayılmadı.
 - Bu teslim kaydı aynı dala ayrı dokümantasyon kaydıyla gönderilir.
+
+## 016 — 2026-11-12: savuruş ve tepki zinciri
+- Kullanıcı vuruş hareketini kötü, isabet ve tepkiyi yetersiz, komiklik hedefini karşılanmamış buldu. Yalnız yıldız eklemekle tamamlandı sayılmadı.
+- Çağan için8 tam gövde+sopa pozu, büyük boynuzlu için4 tepki pozu görsel aracıyla üretildi. Kaynaklar ayrı, onaylı pafta/pozlar değişmedi. Yeni hareketler henüz kullanıcı onayı almadı.
+- İlk saldırı atlasının arka planı tam şeffaf değildi; aktif asset testi yakaladı. Görsel düzenleme aracıyla alfa temizlendi; başarısız kaynak review arşivine alındı.74 aktif bölge ve kaynak bütünlüğü kontrolü geçer.
+- Etkin3/4 saldırı karelerinde gerçek sopa ucu süpürmesi; yön, arazi ve hedef başına tek temas kontrolü eklendi. Yerde yön kilidi/frenleme var.
+- Dinozora fiziksel geri itilme,4 pozlu irkilme/dengesizlik/toparlanma, yerel darbe duraklaması, kısa krem parıltı, temas bulutu/yıldız ve sönümlü kamera tepkisi bağlandı.
+- Dört özgün WAV matematiksel sentezle üretildi; üretici tools/generate_sfx.py sürümlenir. Gerçek AudioStreamPlayer ile whoosh/tahta/iki lastiksi tepki sesi oynar. Menüde ses aç/kapat var. Seslendirme/müzik tamamlanmadı.
+- Shader'da doku rengini iki kez çarpmamak için doğrudan COLOR örneği kullanıldı; normal hayvan rengi korunur.
+- combat_smoke testi8 saldırı, isabet/ıskalama/ters yön/duvar ayrımı, tek temas,4 tepki, geri itilme, yerel duraklama, efekt ve gerçekten oynayan ses düğümlerini doğruladı.
+-6s Godot MovieMaker kaydı gerçek girdilerle alındı; H264/AAC kanalları ve boş olmayan ses miksajı doğrulandı. MP4 ve gerçek temas ekranı depoya eklendi. Test geçmesi komiklik/görsel kalite onayı olarak sunulmaz.
+- Temel oyun,74 atlas/kaynak bütünlüğü, dünya, hareket ve yeni savaş testlerinin beşi son değişikliklerle geçti.
