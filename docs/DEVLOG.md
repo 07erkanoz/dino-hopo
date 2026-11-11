@@ -104,3 +104,8 @@ Tarih: 2026-11-11 (Europe/Istanbul). Her anlamlı çalışma bu dosyaya eklenir.
 - Hareket, dünya, kaynak bütünlüğü/62 atlas ve temel oyun testlerinin dördü geçti. Yeni hareket testleri dururken ayakların durmasını, çoklu fazları, ivmeyi, sıçrama/inişi, büyük türü, saldırı durumlarını ve hasar aralığını kontrol eder.
 -9s gerçek Godot MovieMaker kaydı açıklıkta başlatıldı, sonra yalnız tuş girdileri kullanıldı. Tam kaliteli oyun diye sunulmaz.
 - Kullanıcı bütün kod ve görsellerin GitHub'a gönderilmesini tekrar istedi; yeni kaynaklar/video/belgeler ilk teslimle aynı depoya hazırlanıyor.
+
+## 015 — 2026-11-12: GitHub gönderimi
+- Yeni animasyon kaynakları, tüm kod değişiklikleri,9s motor videosu, ekran çıktısı, testler ve Markdown belgeleri `e13d2f9` kaydıyla main dalına gönderildi.
+- Dört test grubunun tamamı geçti;62 atlas bölgesi ve onaylı kaynak hash kontrolü başarılı. Görsel onay ve diğer kahramanların animasyonları tamamlanmış sayılmadı.
+- Bu teslim kaydı aynı dala ayrı dokümantasyon kaydıyla gönderilir.
