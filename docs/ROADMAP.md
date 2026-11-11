@@ -15,3 +15,6 @@ Dört onaylı kahraman ve seçim ekranı, sopa/bumerang, modüler parallax düny
 
 ## Önce harita/doğa — önceki sıranın yerine geçer
 Kullanıcı, harita/doğa tamamlanmadan oyuna geçildiğini belirtti. Esas sıra artık [PRODUCTION_PLAN.md](PRODUCTION_PLAN.md). Önceki özellik listeleri geçmiş denemedir. Aktif çalışma yalnız map_draft; ardından doğa, sonra oyun katmanları.
+
+## Aşama2 — çizgi film doğası
+Kullanıcının son talimatıyla doğa çalışması başladı. F5 doğal görünümü açar, aynı haritaya geri geçiş bulunur. Yeni kaynaklar ve yerleşim [NATURE_STYLE.md](NATURE_STYLE.md) içinde. Engel/canlı/görev/animasyon geliştirmesi başlamadı.

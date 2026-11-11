@@ -1,6 +1,7 @@
 extends Node2D
-## Map review tool; intentionally no game controller, enemies or final art.
+## Nature/map review tool. No game controller, enemies, combat or quests.
 const Plan = preload("res://scripts/nature_plan.gd")
+const Nature = preload("res://scripts/nature_scenery.gd")
 var data: Dictionary
 var camera: Camera2D
 var overlay: CanvasLayer
@@ -8,6 +9,8 @@ var language := "tr"
 var show_routes := true
 var dragging := false
 var overview_zoom := 0.19
+var show_nature := true
+var nature: Node2D
 var ready_for_review := false
 
 func _ready() -> void:
@@ -16,8 +19,11 @@ func _ready() -> void:
 	add_child(camera)
 	overlay = CanvasLayer.new()
 	add_child(overlay)
+	nature = Nature.new()
+	nature.data = data
+	add_child(nature)
 	build_ui()
-	overview()
+	focus_region(0)
 	ready_for_review = true
 	queue_redraw()
 
@@ -37,8 +43,18 @@ func build_ui() -> void:
 	panel.position = Vector2.ZERO
 	panel.size = Vector2(1280, 152)
 	overlay.add_child(panel)
-	text("DINO HOP!  /  " + ("HARİTA ATÖLYESİ" if language == "tr" else "MAP WORKSPACE"), Vector2(22,12), 27)
-	text(data.notes[language], Vector2(22,50), 17)
+	text("DINO HOP!  /  " + (("DOĞA ATÖLYESİ" if show_nature else "HARİTA ATÖLYESİ") if language == "tr" else ("NATURE WORKSPACE" if show_nature else "MAP WORKSPACE")), Vector2(22,12), 27)
+	text(data.notes[language] if show_nature else ("Harita taslağı · arazi ve bağlantılar" if language == "tr" else "Map draft · geography and connections"), Vector2(22,50), 17)
+	var mode := Button.new()
+	mode.text = ("Haritayı göster" if show_nature else "Doğayı göster") if language == "tr" else ("Show map" if show_nature else "Show nature")
+	mode.position = Vector2(992,16)
+	mode.size = Vector2(155,40)
+	mode.pressed.connect(func():
+		show_nature = not show_nature
+		nature.visible = show_nature
+		build_ui()
+		queue_redraw())
+	overlay.add_child(mode)
 	var labels := ["Genel plan", "Giriş", "Kökler", "Nehir", "Şelale", "Mağara", "Çıkış"] if language == "tr" else ["Overview", "Grove", "Roots", "River", "Falls", "Cavern", "Exit"]
 	for i in labels.size():
 		var button := Button.new()
@@ -57,8 +73,8 @@ func build_ui() -> void:
 		build_ui()
 		queue_redraw())
 	overlay.add_child(lang)
-	text("Sürükle: gezdir · Tekerlek: yakınlaş · R: genel plan · Tab: rotalar" if language == "tr" else "Drag: pan · Wheel: zoom · R: overview · Tab: routes", Vector2(22,674), 17)
-	text("1 Harita → 2 Doğa → 3 Engeller → 4 Canlılar → 5 Bulmaca/Görev → 6 Hareket" if language == "tr" else "1 Map → 2 Nature → 3 Obstacles → 4 Creatures → 5 Puzzles/Quests → 6 Motion", Vector2(22,699), 13)
+	text("Sürükle: gezdir · Tekerlek: yakınlaş · R: genel plan · Tab: rotalar · H: paneli gizle" if language == "tr" else "Drag: pan · Wheel: zoom · R: overview · Tab: routes · H: hide panels", Vector2(22,674), 17)
+	text("Aşama 2: Doğa · Engeller, canlılar ve hareket çalışması henüz başlamadı" if language == "tr" else "Stage2: Nature · Obstacles, creatures and motion work have not started", Vector2(22,699), 13)
 
 func overview() -> void:
 	camera.zoom = Vector2.ONE * overview_zoom
@@ -68,7 +84,8 @@ func overview() -> void:
 func focus_region(index: int) -> void:
 	var region: Dictionary = data.regions[index]
 	camera.zoom = Vector2.ONE * 0.72
-	camera.position = Vector2((region.from+region.to)/2.0, 750)
+	var heights := [780,640,960,800,1060,780]
+	camera.position = Vector2((region.from+region.to)/2.0, heights[index] if show_nature else 750)
 	queue_redraw()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -81,6 +98,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera.position -= event.relative / camera.zoom
 	elif event is InputEventKey and event.pressed:
 		if event.physical_keycode == KEY_R: overview()
+		if event.physical_keycode == KEY_H: overlay.visible = not overlay.visible
 		if event.physical_keycode == KEY_TAB:
 			show_routes = not show_routes
 			queue_redraw()
@@ -91,7 +109,7 @@ func line(points: Array, color: Color, width: float) -> void:
 	draw_polyline(poly, color, width, true)
 
 func _draw() -> void:
-	if data.is_empty(): return
+	if data.is_empty() or show_nature: return
 	draw_rect(Rect2(-4000,-4000,16000,10000), Color("f4f1e6"))
 	for x in range(0,int(data.width)+1,256):
 		draw_line(Vector2(x,180),Vector2(x,1536),Color("d9dfd0"),2)
@@ -103,11 +121,13 @@ func _draw() -> void:
 		draw_string(ThemeDB.fallback_font,Vector2(region.from+35,300),region.name[language],HORIZONTAL_ALIGNMENT_LEFT,-1,52,Color("2e4540"))
 		draw_string(ThemeDB.fallback_font,Vector2(region.from+35,350),str(region.from)+"–"+str(region.to),HORIZONTAL_ALIGNMENT_LEFT,-1,30,Color("68806c"))
 	var ground := PackedVector2Array()
-	for point in data.surface: ground.append(Vector2(point[0],point[1]))
+	for x in range(0,int(data.width)+1,24): ground.append(Vector2(x,Plan.surface_at(data,x)))
 	ground.append(Vector2(data.width,1536))
 	ground.append(Vector2(0,1536))
 	draw_colored_polygon(ground,Color("d6c1a0"))
-	line(data.surface,Color("697d4b"),14)
+	var surface_line := PackedVector2Array()
+	for x in range(0,int(data.width)+1,12): surface_line.append(Vector2(x,Plan.surface_at(data,x)))
+	draw_polyline(surface_line,Color("697d4b"),14,true)
 	var river: Dictionary = data.water.river
 	draw_rect(Rect2(river.left,river.surface_y,river.right-river.left,river.bottom_y-river.surface_y),Color("7bbaba"))
 	var falls: Dictionary = data.water.waterfall

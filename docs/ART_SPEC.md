@@ -58,3 +58,8 @@ Yeni ölçütler: kahraman boyu yaklaşık128, fizik kapsülü88, çiçek22–35
 
 ## Harita aşamasına dönüş
 `art/planning/01-map-overview.png` Godot harita atölyesinden teknik şemadır, doğa/oyun resmi değildir. `art/review/cagan-attack-gutter-candidate.png` önceki ayak kesilmesi için üretilen aday kaynaktır; bu aşama değişikliği nedeniyle aktif kaynak olarak doğrulanmadı/bağlanmadı. Kaynaklar korunur; yeni karakter/efekt işi yerine önce harita ve doğa ele alınır.
+
+## Yeni çizgi film doğa seti
+`art/nature/cartoon-trees-01.png`:2 ağaç; `cartoon-ground-plants-01.png`:6 parça; `cartoon-soil-quiet-01.png`:opak sade dolgu. Eski gerçekçi ağaç/kaya kaynakları bu doğa sahnesine alınmadı. Harita ve stil manifesti `world/nature/` içindedir. Dal pikseli opak kahverengi kaynak üzerinden ölçülür; sarmaşık Marker2D çocuğudur. İnce sarmaşık görseli motor içinde çizilir, büyük yapraklı eski resim kullanılmaz.
+
+`art/nature/review-*.png` gerçek Godot doğa görüntüleridir. İlk fazla desenli kök dolgusu yerine sade toprak kullanıldı. Yeni kaynaklar/stil kullanıcı tarafından henüz nihai onay almadı. Kahraman kaynakları değişmedi.

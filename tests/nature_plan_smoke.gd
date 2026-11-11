@@ -12,7 +12,7 @@ func check(ok: bool, message: String) -> void:
 
 func run() -> void:
 	var data := Plan.read()
-	check(data.status == "map_draft", "Do not label unfinished nature as approved")
+	check(data.status in ["map_draft", "nature_study"], "Do not label unfinished nature as approved")
 	for key in ["enemies","weapons","fruit","quests","rock_zones","spawns"]:
 		check(not data.has(key), "Gameplay leaked into the nature plan")
 	var end := 0
@@ -42,5 +42,5 @@ func run() -> void:
 	for child in scene.get_children():
 		check(not child is CharacterBody2D, "Actor in map-only workspace")
 	check(ProjectSettings.get_setting("application/run/main_scene") == "res://scenes/nature_workspace.tscn", "Game prototype still starts by default")
-	if failures == 0: print("PASS: separate map data, continuous regions, terrain-bound trees, branch-bound vines, map-only default scene")
+	if failures == 0: print("PASS: separate map data, continuous regions, terrain-bound trees, branch-bound vines, map/nature-only default scene")
 	quit(1 if failures > 0 else 0)

@@ -2,9 +2,9 @@
 
 2026-11-12 tarihli kullanıcı düzeltmesi bu planın dayanağıdır. Önceki prototipte arazi/doğa oturmadan oyun, düşman ve dövüş eklendi; bu yaklaşım bırakıldı.
 
-## Şu an:1 — Harita
+## Şu an:2 — Doğa
 
-Aktif sahne `scenes/nature_workspace.tscn`, veri `world/nature/01-map.json`. F5 harita atölyesini açar. Veri yalnız coğrafya, rotalar, su bağlantıları ve ağaç/dal yerleşim taslağı içerir. Düşman, silah, meyve, görev veya kahraman hareketi eklenmez.
+Aktif sahne `scenes/nature_workspace.tscn`, veri `world/nature/01-map.json`. Kullanıcının “Tamam şimdi doğaya geçelim” talimatıyla aşama2 başladı. F5 doğa görünümünü açar; Haritayı göster düğmesiyle aynı yerleşim planına dönülür. Veri yalnız coğrafya, rotalar, su bağlantıları ve ağaç/dal yerleşim taslağı içerir. Düşman, silah, meyve, görev veya kahraman hareketi eklenmez.
 
 [İlk harita planı](maps/01-map-plan.md). Harita **taslaktır**; çizgi film doğası veya bitmiş oynanabilir bölüm değildir.6144×1536 ölçüsü ve bölge sınırları teknik çalışma önerisidir, kullanıcı tarafından kesinleştirilmedi.
 
@@ -19,7 +19,7 @@ Aktif sahne `scenes/nature_workspace.tscn`, veri `world/nature/01-map.json`. F5 
 | **5 Bulmacalar ve görevler** | Keşif, geri dönüş, alternatif yollar ve amaçlar | Harita akışını kullanan, anlaşılır görev/bulmaca düzeni vardır. |
 | **6 Kahraman/doğa hareketleri** | Tam hareket setleri, çevre tepkileri, etkileşim ve zamanlama | Kahraman, canlı, doğa ve ses bir olay zinciri olarak çalışır; yalnız parça sayısı veya teknik test yeterli sayılmaz. |
 
-Kullanıcının belirttiği sıradır. Harita/doğa eksiklerini yeni animasyon, efekt veya görev ekleyerek gizlemek yerine ilgili aşamada düzeltiriz. Yeni çalışmada bu aşamadan ileri özellik geliştirilmez. Doğa inceleme sırasında görülen sorunlar önce giderilir.
+Kullanıcının belirttiği sıradır. Harita/doğa eksiklerini yeni animasyon, efekt veya görev ekleyerek gizlemek yerine ilgili aşamada düzeltiriz. Yeni çalışmada doğa aşamasından ileri özellik geliştirilmez. Doğa inceleme sırasında görülen sorunlar önce giderilir.
 
 ## Bağlantı kuralları
 
@@ -39,3 +39,6 @@ Kesilmiş ayak, efektin sopayı kapatması ve eski sarmaşık görünümü önce
 ## Doğrulama
 
 `tests/nature_plan_smoke.gd` veri ayrımını, bölge sürekliliğini, ağaç–zemin ve sarmaşık–dal referanslarını ve yalnız haritayla başlayan sahneyi kontrol eder. Bu yapısal kontrol, doğanın güzel veya tamamlanmış olduğunu göstermez.
+
+## Güncel doğa çalışması
+[Çizgi film doğa stili](NATURE_STYLE.md). Yeni kaynaklar haritanın üzerine ayrı doğa nesneleri olarak yerleşir. Bu çalışma henüz nihai görsel onay veya sonraki aşamaların başlangıcı değildir.

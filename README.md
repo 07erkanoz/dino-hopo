@@ -4,20 +4,26 @@ Türkçe / English · Godot 4.6.3 · GDScript · 2D platform adventure
 
 GitHub: https://github.com/07erkanoz/dino-hopo
 
-## Güncel çalışma: önce harita ve doğa
+## Güncel çalışma: çizgi film doğası
 
-Üretim sırası kullanıcı düzeltmesiyle yeniden kuruldu: **harita → doğa → engeller/zorluklar → canlılar → bulmaca/görevler → hareket/etkileşim**.
+Kullanıcının talimatıyla **aşama2 — doğa** başladı. Harita planı üzerinde daha sade, sıcak renkli ve kahramanların çizim diliyle uyumlu bir çevre hazırlanıyor. Düşman, dövüş, görev ve yeni karakter hareketi eklenmiyor.
 
-**F5 artık Harita Atölyesi'ni açar.** Burada yalnız teknik harita taslağı vardır; düşman, silah, görev veya oynanabilir kahraman yoktur. Doğa çiziminin tamamlandığı iddia edilmez.
+**F5 Doğa Atölyesi'ni açar.** Harita/Doğa düğmesi, altı bölge odağı, sürükleme/yakınlaşma ve TR/EN bulunur. H panelleri gizler; R genel görünüme döner. Şu an doğa çalışmasıdır, tamamlanmış oyun veya nihai görsel onay değildir.
 
-[Esas üretim planı](docs/PRODUCTION_PLAN.md) · [İlk harita taslağı](docs/maps/01-map-plan.md)
+[Doğa gezintisini izle](art/nature/nature-tour-01.mp4) · [Doğa stili ve kaynaklar](docs/NATURE_STYLE.md) · [Üretim sırası](docs/PRODUCTION_PLAN.md) · [Harita](docs/maps/01-map-plan.md)
 
-- Sürükle: haritada gezin; tekerlek: yakınlaş.
-- Genel plan/bölge düğmeleri; R: genel plan; Tab: rotalar; TR/EN: dil.
-- Veri: `world/nature/01-map.json`; sahne: `scenes/nature_workspace.tscn`.
-- Yapısal kontrol: `godot --headless --path . --script tests/nature_plan_smoke.gd`.
+![Giriş korusu — Godot sahnesi](art/nature/review-grove.png)
 
-Aşağıdaki oynanış kayıtları ve eski sahne **önceki denemelerin arşividir**. Oyun denemesi `scenes/main.tscn` olarak korunur, varsayılan açılmaz.
+![Dalına bağlı sarmaşık — Godot sahnesi](art/nature/review-roots.png)
+
+Kaynaklar `art/nature/`, stil/yerleşim `world/nature/`, sahne `scenes/nature_workspace.tscn`.
+
+```
+godot --headless --path . --script tests/nature_plan_smoke.gd
+godot --headless --path . --script tests/nature_style_smoke.gd
+```
+
+Aşağıdaki oyun kayıtları eski denemelerin arşividir; önce doğa aşamasını ele alıyoruz.
 
 ---
 
@@ -72,4 +78,4 @@ Grafik ekranında `godot --path . --script tests/capture_art.gd` gerçek Godot e
 Linux/Windows/Android/iOS hedeflenir. Henüz derlenmiş platform paketleri yok. Export templates gerekir; Android için SDK/JDK; iOS son paketleme ve imzalama için Mac/Xcode gerekir.
 
 ## English
-The active stage is now **map first, then nature**. F5 opens a geography-only map workspace with pan/zoom, region views and TR/EN labels. This is a layout draft, not finished scenery or a playable level. Gameplay/creatures/quests/animation follow the map and nature stages. The previous game prototype is preserved at `scenes/main.tscn` and can be opened manually with F6. See `docs/PRODUCTION_PLAN.md`.
+The active stage is **cartoon nature**, following the map layout. F5 opens a nature-only workspace with map/nature switching, region views, pan/zoom and TR/EN. Independent trees, source-pixel branch sockets, attached slim vines, terrain/soil, rocks, plants and water form the scenery. No gameplay actors are spawned. This is a visual study, not a finished game. The previous prototype remains archived at `scenes/main.tscn`. See `docs/NATURE_STYLE.md`.

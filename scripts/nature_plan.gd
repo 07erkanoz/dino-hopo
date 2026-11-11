@@ -5,7 +5,7 @@ const PATH := "res://world/nature/01-map.json"
 static func read() -> Dictionary:
 	return JSON.parse_string(FileAccess.get_file_as_string(PATH))
 
-static func surface_at(data: Dictionary, x: float) -> float:
+static func base_surface_at(data: Dictionary, x: float) -> float:
 	var points: Array = data.surface
 	for i in range(1, points.size()):
 		if x <= points[i][0]:
@@ -13,6 +13,16 @@ static func surface_at(data: Dictionary, x: float) -> float:
 			var b: Array = points[i]
 			return lerpf(a[1], b[1], clampf((x-a[0]) / float(b[0]-a[0]), 0, 1))
 	return float(points[-1][1])
+
+static func surface_at(data: Dictionary, x: float) -> float:
+	var y := base_surface_at(data,x)
+	for pad in data.get("root_pads",[]):
+		var distance := absf(x-float(pad.x))
+		if distance >= pad.radius: continue
+		var t := clampf((distance-pad.flat_half)/float(pad.radius-pad.flat_half),0,1)
+		t = t*t*(3-2*t)
+		y = minf(y,lerpf(pad.level,base_surface_at(data,x),t))
+	return y
 
 static func tree_root(data: Dictionary, tree: Dictionary) -> Vector2:
 	return Vector2(tree.x, surface_at(data, tree.x))

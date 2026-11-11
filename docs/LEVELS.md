@@ -44,3 +44,6 @@ Kullanıcı küçük/robotik dinozorları ve yalnız zıplama akışını eleşt
 
 ## Güncel başlangıç: harita taslağı
 Önceki oynanış dosyası arşivde kalır. Yeni ilk harita `world/nature/01-map.json`;6144×1536 ve altı coğrafi bölge çalışma taslağıdır. Engel, canlı, görev ve hareket aşamaları harita/doğa sonrasına bırakıldı. [Harita belgesi](maps/01-map-plan.md).
+
+## Doğa çalışması
+Aynı ilk haritanın doğa görünümü hazırlanıyor. Temel akış/altı bölge korunur; kaynak ağaca göre dal yuvaları ve yerel kök zeminleri netleştirildi. Şelale havuzu yüzeye, dere nehir seviyesine bağlandı. Bu aşama yalnız doğa kompozisyonudur; engel/düşman/görev veya oynanabilir yeni bölüm tamamlandı anlamına gelmez.

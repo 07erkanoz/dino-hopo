@@ -1,0 +1,94 @@
+{
+  "id": "cartoon-01",
+  "status": "nature_study",
+  "reference_actor_height": 128,
+  "trees": {
+    "path": "res://art/nature/cartoon-trees-01.png",
+    "regions": [
+      [
+        0,
+        0,
+        768,
+        1024
+      ],
+      [
+        768,
+        0,
+        768,
+        1024
+      ]
+    ],
+    "models": [
+      {
+        "root_pixel": [
+          440,
+          986
+        ],
+        "reference_height": 960,
+        "branch_pixel": [
+          635,
+          492
+        ]
+      },
+      {
+        "root_pixel": [
+          384,
+          986
+        ],
+        "reference_height": 950,
+        "branch_pixel": [
+          164,
+          505
+        ]
+      }
+    ]
+  },
+  "props": {
+    "path": "res://art/nature/cartoon-ground-plants-01.png",
+    "regions": [
+      [
+        61,
+        88,
+        399,
+        363
+      ],
+      [
+        533,
+        147,
+        465,
+        281
+      ],
+      [
+        1085,
+        86,
+        358,
+        359
+      ],
+      [
+        46,
+        614,
+        421,
+        316
+      ],
+      [
+        518,
+        580,
+        486,
+        354
+      ],
+      [
+        1041,
+        652,
+        466,
+        244
+      ]
+    ],
+    "soil_sample": [
+      95,
+      125,
+      320,
+      260
+    ]
+  },
+  "soil_path": "res://art/nature/cartoon-soil-quiet-01.png"
+}

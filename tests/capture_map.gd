@@ -9,6 +9,10 @@ func capture() -> void:
 	root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 	var scene = load("res://scenes/nature_workspace.tscn").instantiate()
 	root.add_child(scene)
+	scene.show_nature = false
+	scene.nature.visible = false
+	scene.build_ui()
+	scene.overview()
 	for i in 6: await process_frame
 	await RenderingServer.frame_post_draw
 	var error := root.get_texture().get_image().save_png("res://art/planning/01-map-overview.png")

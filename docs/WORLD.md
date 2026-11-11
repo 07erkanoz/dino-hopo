@@ -36,3 +36,6 @@ Headless hareket, seçim, atlas, kaynak görsel bütünlüğü ve dünya etkile�
 
 ## Önce harita/doğa — güncel çalışma ayrımı
 Bu dosyanın önceki motor/sahne anlatımı eski denemeye aittir. Güncel varsayılan yalnız harita atölyesidir. `world/nature/01-map.json` eski düşman/silah verisinden ayrıdır. [Esas üretim planı](PRODUCTION_PLAN.md) ve [harita taslağı](maps/01-map-plan.md) yeni çalışmayı tanımlar. Doğa tamamlanmış sayılmaz.
+
+## Aşama2 doğa görünümü
+Harita verisi korunarak `nature_scenery.gd`, `nature_assets.gd` ve `nature_vine.gd` eklendi. Yeni çizgi film kaynakları ayrı doğa nesneleri olarak yerleşir. Araziye küçük kök destekleri eklendi; şelale havuzu gerçek arazi seviyesinden türetildi. Varsayılan çalışma hâlâ kahramansız/düşmansız doğa-harita atölyesidir. [Görsel sözleşme](NATURE_STYLE.md).

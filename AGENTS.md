@@ -13,6 +13,8 @@
 - Dünya görsel kuralları docs/WORLD.md içinde: tek sabit poster, blur/sis, dev sıradan çiçek, tekrarlı yuvarlak ağaç duvarı ve kopuk kaya stilleri reddedildi. Teknik test geçmesini görsel onay gibi sunma.
 - Bumerangda son karar: keşifle edinilir, dönerse tekrar kullanılır, araziye takılırsa kaybedilir. Eski3 atış önerisini geri getirme.
 
-- EN GÜNCEL ÖNCELİK: docs/PRODUCTION_PLAN.md. Kullanıcı sırası harita→doğa→engeller/zorluklar→canlılar→bulmaca/görevler→hareket/etkileşim. Şu an harita aşaması; yeni dövüş/düşman/animasyon ekleme. Doğa eksiklerini efekt/oyunla örtme.
-- F5 varsayılanı nature_workspace.tscn; eski main.tscn arşiv denemesidir. Harita taslağını bitmiş doğa/oyun gibi sunma.
+- EN GÜNCEL ÖNCELİK: docs/PRODUCTION_PLAN.md. Kullanıcı sırası harita→doğa→engeller/zorluklar→canlılar→bulmaca/görevler→hareket/etkileşim. Kullanıcı doğa aşamasına geçirdi; şu an aşama2, yeni dövüş/düşman/animasyon ekleme. Doğa eksiklerini efekt/oyunla örtme.
+- F5 varsayılanı nature_workspace.tscn; eski main.tscn arşiv denemesidir. F5 doğa görünümüyle açılır, Harita/Doğa düğmesiyle taslağa dönülür. Doğa çalışmasını bitmiş oyun veya onaylı nihai doğa gibi sunma.
 - Sarmaşık serbest koordinatla başlamaz; aynı dünya katmanındaki destek ağacı ve dalına referans verir. Ağaç kökü terrain yüzeyinden türetilir.
+
+- Doğa stili: docs/NATURE_STYLE.md. Kullanıcı gerçekçi çizim değil, çizgi film doğası istedi. Aynı renk/çizgi ailesi, küçük normal çiçekler, sade toprak ve kaynak pikselden ölçülen dal yuvaları.

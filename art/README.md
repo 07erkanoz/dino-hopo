@@ -1,6 +1,6 @@
 # Dino Hop! — Çizimler / Artwork
 
-**Güncel aşama harita/doğa önceliğidir.** [Üretim planı](../docs/PRODUCTION_PLAN.md) · [Teknik harita taslağı](../docs/maps/01-map-plan.md). Aşağıdaki oyun görselleri önceki denemeler ve kaynak arşividir.
+**Güncel aşama çizgi film doğasıdır.** [Yeni doğa seti ve gerçek görüntüler](../docs/NATURE_STYLE.md). [Üretim planı](../docs/PRODUCTION_PLAN.md) · [Teknik harita taslağı](../docs/maps/01-map-plan.md). Aşağıdaki oyun görselleri önceki denemeler ve kaynak arşividir.
 
 
 ## Onaylanan dört kahraman
@@ -64,3 +64,10 @@ Kaynaklar: `animation/cagan-locomotion-study.png` (12 kare), `animation/ceratops
 ![Temas anı](review/combat-contact-in-engine.png)
 
 `animation/cagan-club-attack-study.png`:8 gövde+sopa karesi; `animation/ceratopsian-hit-study.png`:4 tepki karesi. Tam şeffaf kaynaklar, ayrı yeni hareket çalışmalarıdır; onaylı pafta kaynaklarına dokunulmadı. Yeni karelerin görsel onayı henüz yoktur. Başarısız matlı ilk sürüm yalnız `review/cagan-attack-rejected-matte.png` arşivindedir. Aktif atlas sayısı74. [Ses kaynakları](../audio/README.md), [temas sözleşmesi](../docs/HIT_FEEDBACK.md).
+
+## Çizgi film doğası — yeni kaynaklar
+`nature/cartoon-trees-01.png`, `nature/cartoon-ground-plants-01.png`, `nature/cartoon-soil-quiet-01.png`. İki ağaç, altı çevre/bitki parçası ve sade toprak dolgusu aynı palette üretildi.
+
+![Doğa çalışması](nature/review-grove.png)
+
+Bunlar eski oyun denemesiyle karıştırılmaz. Aktif sahnede kahraman/düşman yoktur; doğa nihai onay almadan sonraki aşamalar açılmadı.

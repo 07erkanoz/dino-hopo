@@ -139,3 +139,21 @@ Tarih: 2026-11-11 (Europe/Istanbul). Her anlamlı çalışma bu dosyaya eklenir.
 ## 019 — Harita önceliği teslimi
 - Üretim planı, ayrı harita verisi, yalnız harita açan sahne ve teknik plan görüntüsü `a8022b2` kaydıyla GitHub main dalına gönderildi.
 - Yapısal harita kontrolü geçti; harita/doğa tamamlandı olarak işaretlenmedi. Bu teslim kaydı aynı dala gönderilir.
+
+## 020 — 2026-11-12: çizgi film doğasına geçiş
+- Kullanıcı doğa aşamasına geçilmesini ve gerçekçi çizimler yerine çizgi film benzeri çevre istedi. Önceki yalnız-harita kuralı bu talimatla aşama2'ye güncellendi; oyun öğelerine ilerlenmedi.
+- Onaylı kahraman paftası stil referansı alınarak iki tam ağaç ve altı çevre/bitki parçası görsel aracıyla üretildi; ayrı şeffaf PNG'ler art/nature altında. Kahraman kaynakları değişmedi.
+- İlk köklü toprak tekrarının büyük simetrik/desenli göründüğü gerçek sahne kontrolünde görüldü; daha sakin, düşük kontrastlı ayrı opak toprak dolgusu üretildi. İlk atlas korunur, desenli toprak aktif ana dolgu değildir.
+- NatureAssets ayrı stil manifestini okur; NatureScenery aynı haritada doğayı kurar. Eski oyun/düşman/dövüş sınıfları bu sahnede çalışmaz.
+- Destek ağacının kök/dal pikselleri ölçüldü. Dal yuvası opak kahverengi ağaç pikseline, sarmaşık bu Marker2D'nin altına bağlandı. Kalın eski sarmaşık resmi kullanılmadı; ince gövde, küçük yaprak ve bağ kıvrımı çizildi.
+- Eğimde köklerin altında boşluk kalmaması için ağaç kimliğine bağlı, yüzeyi yumuşak toprak destekleri eklendi. Bağımsız dekor ağaçları da aynı yüzeye oturur.
+- Normal çiçek boyları22–34 birim. İki uzak parallax katmanı renk alanlarıyla ayrılır; sis/blur veya tam resim arka plan kullanılmaz.
+- Şelale havuzu yüzeyin8 birim üzerine ve çıkışı nehir seviyesine bağlandı; kaya kütlesi/mağara kesitinde köşeler yuvarlatıldı.
+- F5 Doğa Atölyesi görünümünü açar. Harita/Doğa anahtarı, bölge odakları, gezdirme, zoom veTR/EN korunur. H paneli gizler. Doğa hareketi/oynanış eklenmedi.
+- Godot import ve doğa/veri kontrolleri geçti. Testler kaynak şeffaflığı, kahraman hash'leri, gerçekten görünen dala bağlı sarmaşık, çiçek boyu ve oyun nesnesi yokluğunu doğrular; estetik onay sayılmaz.
+- Dört gerçek Godot doğa görüntüsü ve güncel plan görüntüsü alınır. Yeni görsel doğa henüz kullanıcı tarafından nihai onaylanmadı.
+
+## 021 — Doğa inceleme kaydı
+-10s gerçek Godot kamera gezintisi24fps ile kaydedildi. Bağımsız ağaç/parallax ve dalına bağlı sarmaşıklar kamera hareketinde görülebilir. Aktör veya oyun/nature animasyonu eklenmedi.
+- Sade toprakla son dört doğa görüntüsü ve güncel harita şeması yenilendi. Kaynak PNG'ler korunur; MP4 yalnız native kaydın sıkıştırılmasıdır.
+- Son nature_plan_smoke ve nature_style_smoke kontrolleri geçti. Yeni stil nihai görsel onayı almış sayılmadı.

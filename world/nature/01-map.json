@@ -1,6 +1,6 @@
 {
   "id": "01-nature-plan",
-  "status": "map_draft",
+  "status": "nature_study",
   "width": 6144,
   "height": 1536,
   "reference_actor_height": 128,
@@ -320,17 +320,17 @@
       ],
       "pool": [
         3770,
-        1010
+        899.143
       ],
       "width": 80,
       "outlet": [
         [
           3770,
-          1010
+          899.143
         ],
         [
           3360,
-          1100
+          1032
         ],
         [
           2910,
@@ -404,12 +404,13 @@
         {
           "id": "b1",
           "offset": [
-            130,
-            -410
+            130.0,
+            -329.333
           ]
         }
       ],
-      "layer": "world"
+      "layer": "world",
+      "model": 0
     },
     {
       "id": "t02",
@@ -419,12 +420,13 @@
         {
           "id": "b1",
           "offset": [
-            145,
-            -360
+            -152.842,
+            -334.168
           ]
         }
       ],
-      "layer": "world"
+      "layer": "world",
+      "model": 1
     },
     {
       "id": "t03",
@@ -434,12 +436,13 @@
         {
           "id": "b1",
           "offset": [
-            -145,
-            -420
+            146.25,
+            -370.5
           ]
         }
       ],
-      "layer": "world"
+      "layer": "world",
+      "model": 0
     },
     {
       "id": "t04",
@@ -449,12 +452,13 @@
         {
           "id": "b1",
           "offset": [
-            -120,
-            -380
+            -148.211,
+            -324.042
           ]
         }
       ],
-      "layer": "world"
+      "layer": "world",
+      "model": 1
     }
   ],
   "vines": [
@@ -468,7 +472,7 @@
       "id": "v02",
       "tree_id": "t03",
       "branch_id": "b1",
-      "length": 340
+      "length": 304
     }
   ],
   "stage_order": [
@@ -480,8 +484,8 @@
     "character_and_nature_motion"
   ],
   "notes": {
-    "tr": "Yalnız yerleşim taslağı. Doğa çizimi ve oyun bölümü tamamlanmış değildir.",
-    "en": "Layout draft only. Nature artwork and the playable level are not finished."
+    "tr": "Doğa çalışması · çizgi film biçimleri. Oynanış öğesi içermez.",
+    "en": "Nature study · cartoon shapes. No gameplay objects."
   },
   "layers": [
     {
@@ -495,6 +499,129 @@
     {
       "id": "world",
       "scroll_scale": 1.0
+    }
+  ],
+  "nature_style": "res://world/nature/style-01.json",
+  "decor_trees": [
+    {
+      "id": "d01",
+      "x": 900,
+      "height": 400,
+      "model": 0,
+      "layer": "world",
+      "branches": []
+    },
+    {
+      "id": "d02",
+      "x": 1880,
+      "height": 443,
+      "model": 1,
+      "layer": "world",
+      "branches": []
+    },
+    {
+      "id": "d03",
+      "x": 3020,
+      "height": 486,
+      "model": 0,
+      "layer": "world",
+      "branches": []
+    },
+    {
+      "id": "d04",
+      "x": 4200,
+      "height": 529,
+      "model": 1,
+      "layer": "world",
+      "branches": []
+    },
+    {
+      "id": "d05",
+      "x": 4800,
+      "height": 442,
+      "model": 0,
+      "layer": "world",
+      "branches": []
+    },
+    {
+      "id": "d06",
+      "x": 6000,
+      "height": 485,
+      "model": 1,
+      "layer": "world",
+      "branches": []
+    }
+  ],
+  "root_pads": [
+    {
+      "tree_id": "t01",
+      "x": 420,
+      "level": 1097.6,
+      "flat_half": 145,
+      "radius": 310
+    },
+    {
+      "tree_id": "t02",
+      "x": 1420,
+      "level": 875.429,
+      "flat_half": 145,
+      "radius": 310
+    },
+    {
+      "tree_id": "t03",
+      "x": 3320,
+      "level": 1042.222,
+      "flat_half": 145,
+      "radius": 310
+    },
+    {
+      "tree_id": "t04",
+      "x": 5540,
+      "level": 1024.0,
+      "flat_half": 145,
+      "radius": 310
+    },
+    {
+      "tree_id": "d01",
+      "x": 900,
+      "level": 1042.717,
+      "flat_half": 145,
+      "radius": 310
+    },
+    {
+      "tree_id": "d02",
+      "x": 1880,
+      "level": 869.799,
+      "flat_half": 145,
+      "radius": 310
+    },
+    {
+      "tree_id": "d03",
+      "x": 3020,
+      "level": 1070.123,
+      "flat_half": 145,
+      "radius": 310
+    },
+    {
+      "tree_id": "d04",
+      "x": 4200,
+      "level": 1056.842,
+      "flat_half": 145,
+      "radius": 310
+    },
+    {
+      "tree_id": "d05",
+      "x": 4800,
+      "level": 1120,
+      "flat_half": 145,
+      "radius": 310
+    },
+    {
+      "tree_id": "d06",
+      "x": 6000,
+      "level": 1042.605,
+      "flat_half": 145,
+      "radius": 310
     }
   ]
 }

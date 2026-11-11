@@ -43,3 +43,6 @@ Ana rota, üst rota ve alt geçit ayrı çizgilerdir. Bunlar yalnız bağlantı 
 F5 → Harita Atölyesi. Genel plan veya altı bölge düğmesi; sürükleyerek gezinme, tekerlekle yakınlaşma. R genel plana döner, Tab rota çizgilerini açar/kapatır, TR/EN dili değiştirir.
 
 Çizgiler, renk alanları ve ağaç işaretleri **teknik şemadır**; oyun doğası olarak sunulmaz. Sonraki doğa aşamasında bu yerleşim için tutarlı biçim, renk, ölçü ve parça bağlantıları hazırlanır.
+
+## Doğa aşamasındaki bağlantı ayrıntıları
+Kullanıcı bu planın ardından doğaya geçilmesini istedi. Görsel doğa için ağaçların kaynak dal pikselleri ölçüldü; şemadaki yaklaşık dal offsetleri bunlarla güncellendi. Ağaç diplerine küçük zemin yükseltileri ve şelale havuzuna yüzey bağlantısı eklendi. Ana yerleşim planı korunur. [Doğa stili](../NATURE_STYLE.md).
