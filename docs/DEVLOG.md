@@ -49,3 +49,7 @@ Tarih: 2026-11-11 (Europe/Istanbul). Her anlamlı çalışma bu dosyaya eklenir.
 - İlk görüntü incelemesinde uzunboyun kafası platformun arkasında kalıyordu; konumu düzeltildi. Galeri fonu açıklaştırıldı.
 - Doğrulama: Godot import geçti. Oynanış smoke testleri geçti. 20 atlas bölgesinde kaynak sınırı, RGBA, görünür çizim ve şeffaf çevre kontrolleri geçti.
 - Kalan kapsam: akıcı tam animasyonlar, tam TileSet dikişleri ve köşeler, ayrı parallax katmanları, ses ve canlı davranışları. Bu paket ilk gerçek çizim teslimidir; tam oyunun tüm görselleri değildir.
+
+## 008 — GitHub teslimi
+- İlk çizim paketi, motor bağlantısı ve gerçek ekran görüntüleri `a141dab` kaydıyla GitHub main dalına başarıyla gönderildi.
+- Bu sonuç kaydı ayrı dokümantasyon commit’iyle aynı dala gönderilir.
