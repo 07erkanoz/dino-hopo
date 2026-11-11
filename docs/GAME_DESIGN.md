@@ -5,8 +5,11 @@
 
 Şelaleler, nehirler, su, bulutlar ve mağaralar; gizli alanlar, düşen kayaları aşma, tırmanma, kanatlı tarih öncesi dosta binme; bol dinozor çeşidi ve komik sesler. En az 10 bölüm.
 
-## Hikâye ve kahraman önerisi — henüz kesin değil
-Yontuk ve Pörtlek, uçan yumurtaya bağlanıp kaçan dev ziyafet pastasının peşine düşer. Alt başlık: Kayıp Ziyafet / The Lost Feast. Kullanıcı oyun adını Dino Hop! olarak kabul etti; kahraman adları ve hikâye ayrıca onaylanacak.
+## Onaylanan kadro
+Dört kahraman: iki erkek, iki kadın. 01 **Çağan**, 03 **Deniz**; 02 ve 04 için isim bekleniyor. Görsel pafta ve poz atlası onaylandı, kaynakları korunur. [Karakter sözleşmesi](CHARACTERS.md).
+
+## Hikâye önerisi — henüz kesin değil
+Kahramanlar uçan yumurtaya bağlanıp kaçan dev ziyafet pastasının peşine düşebilir. Eski Yontuk/Pörtlek isim önerisi güncel kadroda kullanılmıyor. Alt başlık: Kayıp Ziyafet / The Lost Feast. Kullanıcı oyun adını Dino Hop! olarak kabul etti; kahraman adları ve hikâye ayrıca onaylanacak.
 
 ## Oynanış hedefi
 Keşfet → tehlikeyi gözle → hareketi öğren → zor birleşimde uygula → sır bul. Ana yol tek oyuncuyla tamamlanır; iki oyuncu ek takım hareketleri yapar. 2–3 gizli alan/bölüm bir tasarım hedefidir.
@@ -21,3 +24,5 @@ Zorluk zamanlamadan ve mekaniklerin birleşmesinden gelir. Düşen kaya öncesi 
 
 ## Ses
 Her tür için homurtu/hapşırık/hıçkırık çeşitleri; kısa çizgi film efektleri. Müzik ve efekt sesleri ayrı ayarlanmalı. Prototipte ses varlığı yok; ses tasarımı bekliyor.
+
+Güncel mekanik ayrıntıları: [Savaş](COMBAT.md), [Dünya](WORLD.md).

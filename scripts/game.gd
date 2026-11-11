@@ -2,10 +2,16 @@ extends Node2D
 
 const Player = preload("res://scripts/player.gd")
 const Art = preload("res://scripts/art.gd")
+const Roster = preload("res://scripts/roster.gd")
+const CharacterSelect = preload("res://scripts/character_select.gd")
+const Forest = preload("res://scripts/forest.gd")
+const Dino = preload("res://scripts/dino.gd")
+const Boomerang = preload("res://scripts/boomerang.gd")
+const RockZone = preload("res://scripts/rock_zone.gd")
 const BACKGROUND = preload("res://art/backgrounds/waterfall-valley.png")
 const TEXT := {
-	"tr": {"solo": "Tek oyuncu", "duo": "İki oyuncu · aynı ekran", "sub": "Şelale Vadisi · çizim ve hareket denemesi", "help": "P1: A/D + W     P2: ←/→ + ↑     R: geri dön     Esc: menü", "fruit": "Meyve", "check": "Kontrol noktası!", "finish": "Test alanı tamam!", "back": "Menüye dön", "hint": "Üst yoldaki meyveleri keşfet!"},
-	"en": {"solo": "One player", "duo": "Two players · shared screen", "sub": "Waterfall Valley · art and movement preview", "help": "P1: A/D + W     P2: ←/→ + ↑     R: respawn     Esc: menu", "fruit": "Fruit", "check": "Checkpoint!", "finish": "Sandbox complete!", "back": "Back to menu", "hint": "Explore the fruit on the upper path!"}
+	"tr": {"solo": "Tek oyuncu", "duo": "İki oyuncu · aynı ekran", "sub": "Çiçekli Vadi · ilk oynanabilir dünya", "help": "P1: A/D · W/Boşluk · F sopa · G bumerang   |   P2: ←/→ · ↑ · K sopa · L bumerang", "fruit": "Meyve", "check": "Kontrol noktası!", "finish": "Çiçekli Vadi tamamlandı!", "back": "Menüye dön", "hint": "Üst yoldaki meyveleri keşfet!"},
+	"en": {"solo": "One player", "duo": "Two players · shared screen", "sub": "Blooming Valley · first playable world", "help": "P1: A/D · W/Space · F club · G boomerang   |   P2: ←/→ · ↑ · K club · L boomerang", "fruit": "Fruit", "check": "Checkpoint!", "finish": "Blooming Valley complete!", "back": "Back to menu", "hint": "Explore the fruit on the upper path!"}
 }
 var language := "tr"
 var world: Node2D
@@ -25,11 +31,22 @@ var menu: Control
 var left_held := false
 var right_held := false
 var soil_texture: AtlasTexture
+var level: Dictionary = {}
+var selected_heroes: Array = [0, 2]
+var targets: Array = []
+var power_pickups: Array[Vector2] = []
+var secret_found := false
+var secret_fade := 1.0
+var inventory_label: Label
+var region_label: Label
+var forest: Node2D
 
 func _ready() -> void:
+	level = JSON.parse_string(FileAccess.get_file_as_string("res://world/levels/01.json"))
 	soil_texture = AtlasTexture.new()
-	soil_texture.atlas = Art.sprite("props", 2).atlas
-	soil_texture.region = Rect2(1155, 156, 248, 245)
+	soil_texture.atlas = Art.sprite("habitat", 3).atlas
+	var soil_bounds := Art.sprite("habitat", 3).region
+	soil_texture.region = Rect2(soil_bounds.position + Vector2(24, 100), soil_bounds.size - Vector2(48, 130))
 	overlay = CanvasLayer.new()
 	add_child(overlay)
 	show_menu()
@@ -95,7 +112,7 @@ func show_menu() -> void:
 		var button := Button.new()
 		button.text = tr_text("solo" if count == 1 else "duo")
 		button.custom_minimum_size = Vector2(480, 64)
-		button.pressed.connect(start_game.bind(count))
+		button.pressed.connect(show_character_select.bind(count))
 		box.add_child(button)
 	var lang := Button.new()
 	lang.text = "Türkçe / English"
@@ -109,30 +126,70 @@ func show_menu() -> void:
 	gallery.custom_minimum_size.y = 54
 	gallery.pressed.connect(show_gallery)
 	box.add_child(gallery)
+	var controls := Button.new()
+	controls.text = "Kontroller" if language == "tr" else "Controls"
+	controls.custom_minimum_size.y = 46
+	controls.pressed.connect(func():
+		var dialog := AcceptDialog.new()
+		dialog.title = "Kontroller" if language == "tr" else "Controls"
+		dialog.dialog_text = tr_text("help") + ("\nW/↑: sarmaşığa tırman · S/↓: in · Boşluk/Shift: ayrıl\nR: kontrol noktasına dön · Esc: menü" if language == "tr" else "\nW/↑: climb vines · S/↓: descend · Space/Shift: jump off\nR: checkpoint · Esc: menu")
+		add_child(dialog)
+		dialog.popup_centered()
+		dialog.confirmed.connect(dialog.queue_free))
+	box.add_child(controls)
 	queue_redraw()
 
-func start_game(count: int) -> void:
+func show_character_select(count: int) -> void:
+	active = false
+	if is_instance_valid(world):
+		world.queue_free()
+	players.clear()
 	clear_ui()
+	var selection := CharacterSelect.new()
+	selection.language = language
+	selection.player_count = count
+	selection.choices = selected_heroes.duplicate()
+	selection.cancelled.connect(show_menu)
+	selection.confirmed.connect(func(heroes: Array): start_game(count, heroes))
+	overlay.add_child(selection)
+	queue_redraw()
+
+func start_game(count: int, heroes: Array = []) -> void:
+	clear_ui()
+	if is_instance_valid(world): world.queue_free()
+	if not heroes.is_empty():
+		for i in heroes.size(): selected_heroes[i] = int(heroes[i])
 	left_held = false
 	right_held = false
 	world = Node2D.new()
 	add_child(world)
 	players.clear()
+	targets.clear()
 	platforms.clear()
 	berries.clear()
+	power_pickups.clear()
 	score = 0
 	completed = false
 	saved_checkpoint = false
-	for rect in [Rect2(0, 600, 1100, 400), Rect2(1260, 600, 1940, 400), Rect2(340, 460, 192, 40), Rect2(650, 340, 192, 40), Rect2(970, 410, 192, 40), Rect2(1450, 470, 192, 40), Rect2(1760, 345, 192, 40), Rect2(2060, 440, 192, 40), Rect2(2390, 330, 192, 40), Rect2(2670, 460, 192, 40)]:
-		make_platform(rect)
-	for spot in [Vector2(390, 415), Vector2(470, 415), Vector2(700, 295), Vector2(780, 295), Vector2(1030, 365), Vector2(1510, 425), Vector2(1820, 300), Vector2(2120, 395), Vector2(2450, 285), Vector2(2730, 415), Vector2(2870, 550)]:
-		berries.append(spot)
+	secret_found = false
+	secret_fade = 1.0
+	for box in level.platforms:
+		make_platform(Rect2(box[0], box[1], box[2], box[3]))
+	for spot in level.fruit:
+		berries.append(Vector2(spot[0], spot[1]))
+	for spot in [level.boomerang_pickup, [3520, 285]]:
+		power_pickups.append(Vector2(spot[0], spot[1]))
 	total = berries.size()
 	for i in count:
 		var player := Player.new()
 		player.slot = i
-		player.tint = Color("efa444") if i == 0 else Color("45bcb1")
-		player.position = Vector2(150 + i * 90, 580)
+		player.hero_index = selected_heroes[i]
+		player.language = language
+		player.world_width = level.width
+		player.vines = level.vines
+		player.club_hit.connect(on_club_hit)
+		player.throw_requested.connect(try_throw)
+		player.position = Vector2(level.spawns[i][0], level.spawns[i][1])
 		player.checkpoint = player.position
 		player.collision_layer = 2
 		player.collision_mask = 1
@@ -141,9 +198,26 @@ func start_game(count: int) -> void:
 	camera = Camera2D.new()
 	camera.position = Vector2(640, 360)
 	world.add_child(camera)
-	hud = label_at("", Vector2(24, 16), 26, overlay)
-	label_at(tr_text("help"), Vector2(24, 54), 18, overlay)
-	toast = label_at(tr_text("hint"), Vector2(24, 82), 20, overlay)
+	forest = Forest.new()
+	forest.game = self
+	world.add_child(forest)
+	for spot in level.enemies:
+		var dino := Dino.new()
+		dino.position = Vector2(spot[0], spot[1])
+		dino.species = int(spot[2])
+		world.add_child(dino)
+		targets.append(dino)
+	for zone in level.rock_zones:
+		var rocks := RockZone.new()
+		rocks.position.x = zone[0]
+		rocks.origin_y = zone[1]
+		rocks.floor_y = zone[2]
+		rocks.game = self
+		world.add_child(rocks)
+	hud = label_at("", Vector2(26, 18), 23, overlay)
+	inventory_label = label_at("", Vector2(26, 49), 15, overlay)
+	toast = label_at(tr_text("hint"), Vector2(26, 93), 17, overlay)
+	region_label = label_at("", Vector2(484, 24), 20, overlay)
 	var menu_button := Button.new()
 	menu_button.text = "≡"
 	menu_button.position = Vector2(1190, 16)
@@ -151,7 +225,7 @@ func start_game(count: int) -> void:
 	menu_button.pressed.connect(show_menu)
 	overlay.add_child(menu_button)
 	# Readability panels behind HUD, keep their draw order behind text.
-	for bounds in [Rect2(12, 10, 680, 43), Rect2(12, 55, 790, 55)]:
+	for bounds in [Rect2(14, 12, 340, 66), Rect2(472, 12, 300, 48), Rect2(14, 89, 600, 31)]:
 		var panel := Panel.new()
 		var style := StyleBoxFlat.new()
 		style.bg_color = Color(1.0, 0.96, 0.85, 0.88)
@@ -178,34 +252,40 @@ func make_platform(rect: Rect2) -> void:
 	world.add_child(body)
 
 func make_touch_controls() -> void:
-	var actions := ["left", "right", "jump"]
-	for i in 3:
+	var actions := ["left", "right", "club", "throw", "jump"]
+	for i in actions.size():
 		var button := TouchScreenButton.new()
 		var circle := CircleShape2D.new()
-		circle.radius = 46.0
+		circle.radius = 44.0
 		button.shape = circle
-		button.position = [Vector2(78, 640), Vector2(190, 640), Vector2(1190, 640)][i]
-		button.visibility_mode = TouchScreenButton.VISIBILITY_ALWAYS
+		button.position = [Vector2(74, 645), Vector2(182, 645), Vector2(966, 645), Vector2(1074, 645), Vector2(1190, 645)][i]
+		button.visibility_mode = TouchScreenButton.VISIBILITY_TOUCHSCREEN_ONLY
 		var action: String = actions[i]
 		button.pressed.connect(touch_event.bind(action, true))
 		button.released.connect(touch_event.bind(action, false))
 		overlay.add_child(button)
-		var circle_visual := Polygon2D.new()
+		var ring := Polygon2D.new()
 		var points := PackedVector2Array()
-		for j in 32:
-			points.append(Vector2.from_angle(j * TAU / 32.0) * 46.0)
-		circle_visual.polygon = points
-		circle_visual.color = Color(1, 0.96, 0.83, 0.65)
-		button.add_child(circle_visual)
-		var symbol := label_at(["←", "→", "↑"][i], Vector2(-24, -35), 48, button)
-		symbol.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		for j in 32: points.append(Vector2.from_angle(j * TAU / 32.0) * 44)
+		ring.polygon = points
+		ring.color = Color(1, 0.96, 0.83, 0.75)
+		button.add_child(ring)
+		if action == "club" or action == "throw":
+			var image := Sprite2D.new()
+			image.texture = Art.sprite("equipment", 0 if action == "club" else 1)
+			image.scale = Vector2.ONE * (50.0 / maxf(image.texture.get_width(), image.texture.get_height()))
+			button.add_child(image)
+		else:
+			var symbol := label_at({"left":"←", "right":"→", "jump":"↑"}[action], Vector2(-24, -35), 48, button)
+			symbol.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func touch_event(action: String, pressed: bool) -> void:
-	if players.is_empty():
-		return
+	if players.is_empty(): return
 	if action == "left": left_held = pressed
 	if action == "right": right_held = pressed
 	if action == "jump": players[0].touch_jump = pressed
+	if action == "club": players[0].touch_club = pressed
+	if action == "throw": players[0].touch_throw = pressed
 	players[0].touch_axis = float(right_held) - float(left_held)
 
 func _process(_delta: float) -> void:
@@ -215,14 +295,14 @@ func _process(_delta: float) -> void:
 	for player in players:
 		center += player.position
 	center /= players.size()
-	camera.position = Vector2(clampf(center.x, 640, 2560), 360)
+	camera.position = Vector2(clampf(center.x, 640, float(level.width) - 640), 360)
 	for player in players:
 		if player.position.x < camera.position.x - 620:
 			player.position = Vector2(camera.position.x - 480, 220)
-		if player.position.x > 1550 and not saved_checkpoint:
+		if player.position.x > level.checkpoint[0] - 10 and not saved_checkpoint:
 			saved_checkpoint = true
 			for other in players:
-				other.checkpoint = Vector2(1560 + other.slot * 70, 580)
+				other.checkpoint = Vector2(level.checkpoint[0] + other.slot * 70, level.checkpoint[1])
 			toast.text = tr_text("check")
 		for i in range(berries.size() - 1, -1, -1):
 			if player.position.distance_to(berries[i] + Vector2(0, 35)) < 55:
@@ -231,12 +311,34 @@ func _process(_delta: float) -> void:
 	if not completed:
 		var all_at_exit := true
 		for player in players:
-			if player.position.x < 3030:
+			if player.position.x < level.exit[0] - 40:
 				all_at_exit = false
 		if all_at_exit:
 			completed = true
 			toast.text = tr_text("finish")
-	hud.text = "Dino Hop!  ·  %s %d / %d" % [tr_text("fruit"), score, total]
+	var inventory: Array[String] = []
+	for player in players:
+		var state := ("havada" if language == "tr" else "in flight") if player.boomerang_active else (("var" if language == "tr" else "ready") if player.has_boomerang else "—")
+		inventory.append(Roster.hero_name(player.hero_index, language) + ": " + state)
+		for i in range(power_pickups.size() - 1, -1, -1):
+			if not player.has_boomerang and (player.position - Vector2(0, 45)).distance_to(power_pickups[i]) < 48:
+				player.has_boomerang = true
+				power_pickups.remove_at(i)
+				toast.text = "Bumerang buldun! Takılırsa kaybolur." if language == "tr" else "Boomerang found! Get it back or lose it."
+		var secret: Array = level.secret
+		if Rect2(secret[0], secret[1], secret[2], secret[3]).has_point(player.position):
+			if not secret_found:
+				secret_found = true
+				toast.text = "Gizli çiçek bahçesi!" if language == "tr" else "Secret flower garden!"
+		for target in targets:
+			if player.grace <= 0 and target.stunned <= 0 and absf(target.position.x - player.position.x) < 47 and absf(target.position.y - player.position.y) < 45:
+				player.respawn()
+	secret_fade = move_toward(secret_fade, 0.15 if secret_found else 1.0, _delta * 2)
+	hud.text = "%s  %d / %d" % [tr_text("fruit"), score, total]
+	inventory_label.text = ("Bumerang · " if language == "tr" else "Boomerang · ") + " | ".join(inventory)
+	for region in level.regions:
+		if center.x >= region.from and center.x < region.to:
+			region_label.text = region[language]
 	queue_redraw()
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -256,35 +358,45 @@ func draw_asset(group: String, index: int, foot: Vector2, height: float) -> void
 func _draw() -> void:
 	if not active:
 		return
-	# Full 16:9 painting stays behind the camera, avoiding repeated image seams.
-	draw_texture_rect(BACKGROUND, Rect2(camera.position - Vector2(640, 360), Vector2(1280, 720)), false)
-	# Background cast; these are artwork previews, not enemy AI or ride mechanics.
-	draw_asset("creatures", 1, Vector2(700, 605), 158)
-	draw_asset("creatures", 2, Vector2(2200, 605), 105)
-	draw_asset("creatures", 4, Vector2(1190, 712), 75)
-	var flight_y := 205.0 + sin(Time.get_ticks_msec() / 1100.0) * 12.0
-	draw_asset("creatures", 3, Vector2(1870, flight_y), 110)
+	var water_t := Time.get_ticks_msec() / 1000.0
+	draw_rect(Rect2(2780, -60, 105, 604), Color(0.28, 0.71, 0.74, 0.8))
+	for i in 14:
+		var y := -60 + fmod(water_t * 220 + i * 47, 600)
+		var x := 2788 + posmod(i * 19, 85)
+		draw_line(Vector2(x, y), Vector2(x - 2, y + 38), Color(0.9, 1, 0.85, 0.72), 4)
+	for i in 10:
+		var theta := water_t * 1.2 + i
+		draw_circle(Vector2(2825 + sin(theta * 2) * 75, 540 - absf(cos(theta)) * 25), 10 + i % 4, Color(0.89, 1, 0.91, 0.38))
 	for rect in platforms:
-		if rect.size.y > 100:
-			# An interior region, excluding outlined tile edges, fills the soil.
-			for x in range(int(rect.position.x), int(rect.end.x), 128):
-				var tile_width := minf(128, rect.end.x - x)
-				for y in range(int(rect.position.y) + 35, int(rect.end.y), 126):
-					draw_texture_rect(soil_texture, Rect2(x, y, tile_width, 128), false)
-			# Reuse the painted top as matching segments, not tiny stretched rocks.
-			for x in range(int(rect.position.x), int(rect.end.x), 192):
-				var width := minf(192, rect.end.x - x)
-				draw_texture_rect(Art.sprite("props", 0), Rect2(x - 1, rect.position.y - 12, width + 2, 86), false)
+		if rect.size.y >= 400:
+			for x in range(int(rect.position.x), int(rect.end.x), 160):
+				var tile_width := minf(160, rect.end.x - x)
+				for y in range(int(rect.position.y) + 12, int(rect.end.y), 160):
+					draw_texture_rect(soil_texture, Rect2(x, y, tile_width, 161), false)
+				var turf := AtlasTexture.new()
+				turf.atlas = soil_texture.atlas
+				var soil_bounds := Art.sprite("habitat", 3).region
+				turf.region = Rect2(soil_bounds.position, Vector2(soil_bounds.size.x, 100))
+				draw_texture_rect(turf, Rect2(x, rect.position.y - 12, tile_width + 1, 43), false)
 		else:
-			draw_texture_rect(Art.sprite("props", 0), Rect2(rect.position - Vector2(4, 12), Vector2(rect.size.x + 8, 88)), false)
+			# A rooted stone outcrop reaches the floor; no detached floating block.
+			draw_texture_rect(Art.sprite("habitat", 2), Rect2(rect.position - Vector2(8, 6), rect.size + Vector2(16, 14)), false)
 	for fruit in berries:
 		draw_asset("props", 3, fruit + Vector2(0, 15), 34)
-	draw_asset("props", 4, Vector2(1560, 600), 112)
+	draw_asset("props", 4, Vector2(level.checkpoint[0], 600), 112)
 	if saved_checkpoint:
 		draw_circle(Vector2(1560, 482), 7, Color("ffdb6b"))
-	draw_asset("props", 5, Vector2(3090, 605), 156)
-	draw_asset("creatures", 0, Vector2(875, 600), 92)
-	draw_asset("creatures", 5, Vector2(2590, 600), 84)
+	draw_asset("props", 5, Vector2(level.exit[0], level.exit[1] + 5), 156)
+	for vine in level.vines:
+		draw_texture_rect(Art.sprite("jungle", 3), Rect2(vine[0] - 32, vine[1], 64, vine[2] - vine[1]), false)
+	for pickup in power_pickups:
+		var texture := Art.sprite("equipment", 1)
+		var size := texture.get_size() * (42.0 / texture.get_width())
+		var float_y := sin(Time.get_ticks_msec() / 300.0) * 5
+		draw_circle(pickup + Vector2(0, float_y), 30, Color(1, 0.86, 0.35, 0.25))
+		draw_texture_rect(texture, Rect2(pickup + Vector2(0,float_y) - size / 2, size), false)
+	var cover := Art.sprite("jungle", 2)
+	draw_texture_rect(cover, Rect2(665, 202, 190, 146), false, Color(1, 1, 1, secret_fade))
 
 func show_gallery() -> void:
 	active = false
@@ -310,9 +422,9 @@ func show_gallery() -> void:
 	tabs.size = Vector2(1232, 555)
 	base.add_child(tabs)
 	var items := [
-		["Kahramanlar / Heroes", "res://art/characters/heroes-poses.png"],
-		["Vadi / Valley", "res://art/backgrounds/waterfall-valley.png"],
-		["Zemin / Props", "res://art/environment/jungle-props.png"],
+		["Kadro / Roster", "res://art/characters/approved-four-heroes-board.png"],
+		["Pozlar / Poses", "res://art/characters/approved-four-heroes-poses.png"],
+		["Orman / Jungle", "res://art/environment/jungle-modules.png"],
 		["Canlılar / Creatures", "res://art/creatures/creatures-natural-v3.png"]
 	]
 	for item in items:
@@ -330,3 +442,26 @@ func show_gallery() -> void:
 	base.add_child(back)
 	label_at("WIP · " + ("Poz çizimleri; tam animasyon seti değil." if language == "tr" else "Pose drawings; not a complete animation set."), Vector2(280, 663), 18, base)
 	queue_redraw()
+
+func on_club_hit(hero: CharacterBody2D) -> void:
+	if not active: return
+	for target in targets:
+		var offset: Vector2 = target.global_position - hero.global_position
+		if absf(offset.x) < 105 and offset.x * hero.facing > 0 and absf(offset.y) < 55:
+			var ray := PhysicsRayQueryParameters2D.create(hero.global_position + Vector2(0, -45), target.global_position + Vector2(0, -35), 1)
+			if get_world_2d().direct_space_state.intersect_ray(ray).is_empty(): target.stun()
+
+func try_throw(hero: CharacterBody2D) -> bool:
+	if not active or not hero.has_boomerang or hero.boomerang_active: return false
+	hero.boomerang_active = true
+	var projectile := Boomerang.new()
+	projectile.hero = hero
+	projectile.game = self
+	projectile.direction = hero.facing
+	projectile.position = hero.position + Vector2(hero.facing * 35, -54)
+	world.add_child(projectile)
+	return true
+
+func notify_boomerang_lost() -> void:
+	if active:
+		toast.text = "Bumerang takıldı! Yenisi bir yerde saklı…" if language == "tr" else "Boomerang got stuck! Find another one…"

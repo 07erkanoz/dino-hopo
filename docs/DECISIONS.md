@@ -18,3 +18,12 @@
 | D14 | Kabul | Kullanıcı gerçek çizimlere başlanmasını, görsellerin projeye eklenmesini istedi. |
 | D15 | Kabul | İlk dinozor çizimleri fazla yapmacık bulundu ve reddedildi. |
 | D16 | Yeni tasarım önerisi | Daha doğal oranlı, küçük gözlü, türleri belirgin canlılar; v3 onay bekliyor. |
+| D17 | Kabul | Dört seçilebilir kahraman: 2 erkek ve 2 kadın; her oyuncu birini seçer. |
+| D18 | Kabul | 01'in adı Çağan, 03'ün adı Deniz. Kullanıcının çocuklarının isimleri; EN'de aynı yazılır. 02/04 isimsiz. |
+| D19 | Kabul | Dört kahramanın pafta ve poz çizimleri birebir korunur. Kaynak PNG'ler hash ile sabitlenir. |
+| D20 | Teknik başlangıç | Tüm kahramanlar eşit hareket/silah yetenekleriyle başlar. Sopa ayrı ekipmandır. |
+| D21 | Geçersiz öneri | Bumerang için 3 atış/enerji fikri son kullanıcı kararıyla kaldırıldı. |
+| D22 | Kabul | Bumerang geri dönerse yeniden kullanılır; engele takılıp dönemezse kaybedilir. Keşifle bulunur. |
+| D23 | Kabul | İlerledikçe değişen doğal ağaç/kaya/yeşillik düzeni; Prehistorik 2'nin bölüm yapısı referans. Sabit poster önünde yürüme istenmiyor. |
+| D24 | Kabul | Yapmacık ve bulanık arka plan, aşırı büyük çiçekler, uyumsuz kaya/zemin, tekrarlı yuvarlak ağaç duvarları reddedildi. |
+| D25 | Teknik başlangıç | 128 birim kahraman; 22–35 birim sıradan çiçek; köklü zemin ve tabana bağlı kaya yükseltileri. Yeni dünya görseli henüz kullanıcı onayı almadı. |

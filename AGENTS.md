@@ -7,3 +7,8 @@
 - Kullanıcı metinleri Türkçe ve İngilizce olmalı.
 - Prototip çizimlerini nihai varlık diye sunma. Çevrim içi oyun uygulanmadan desteklendiğini söyleme.
 - Sırları depoya ekleme. .godot/ ve builds/ Git dışında kalmalı.
+
+- Onaylanan kahraman kaynakları immutable: art/characters/approved-four-heroes-*.png. Kullanıcı yeni çizim istemedikçe yeniden üretme; SHA-256 kontrolünü çalıştır. 01 Çağan,03 Deniz; özel adları EN'de değiştirme.
+- Dört kahraman vardır, kontrol yuvası ve hero_index ayrıdır. 02/04 için isim uydurma.
+- Dünya görsel kuralları docs/WORLD.md içinde: tek sabit poster, blur/sis, dev sıradan çiçek, tekrarlı yuvarlak ağaç duvarı ve kopuk kaya stilleri reddedildi. Teknik test geçmesini görsel onay gibi sunma.
+- Bumerangda son karar: keşifle edinilir, dönerse tekrar kullanılır, araziye takılırsa kaybedilir. Eski3 atış önerisini geri getirme.

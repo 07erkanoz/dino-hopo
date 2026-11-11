@@ -21,7 +21,7 @@ func run() -> void:
 	await process_frame
 	await process_frame
 	check(game.players.size() == 2, "Two players did not spawn")
-	check(game.berries.size() == 11, "Collectible layout changed unexpectedly")
+	check(game.berries.size() == game.level.fruit.size(), "Collectible layout changed unexpectedly")
 	for i in 90:
 		await physics_frame
 	for player in game.players:
@@ -62,7 +62,7 @@ func run() -> void:
 	check(game.players[0].touch_axis == 1.0, "Touch direction failed")
 	game.touch_event("right", false)
 	check(game.players[0].touch_axis == 0.0, "Touch direction stuck")
-	game.players[0].position = Vector2(3050, 580)
+	game.players[0].position = Vector2(game.level.exit[0] - 5, 580)
 	await process_frame
 	await process_frame
 	check(game.completed, "Exit did not complete sandbox")

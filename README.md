@@ -1,44 +1,53 @@
 # Dino Hop!
 
+Türkçe / English · Godot 4.6.3 · GDScript · 2D platform adventure
+
 GitHub: https://github.com/07erkanoz/dino-hopo
 
-Türkçe / English • Godot 4.6 • GDScript • 2D cartoon co-op platformer
+**İlk oynanabilir dünya geliştirme sürümü.** Onaylı dört kahraman oyuna bağlı; dünya görseli kullanıcı eleştirileriyle yeniden tasarlanıyor. Tamamlanmış oyun veya nihai bölüm değildir.
 
-## Durum / Status
-İlk çizim paketiyle çalışan hareket test alanı: şelaleli vadi, iki çizilmiş kahraman, platform/nesne atlası ve altı canlı. Tam bölümler, tam animasyonlar ve çevrim içi oyun henüz uygulanmadı.
-Movement sandbox with the first illustrated art pack; full levels, full animation sets and online play are not implemented.
+[Gerçek oynanış kaydı](art/review/forest-playtest.mp4) · [Görseller](art/README.md) · [İşlem günlüğü](docs/DEVLOG.md)
 
-## Yeni çizimler
-[Çizimlerin tamamı ve kullanım bilgileri](art/README.md) · Oyunda menüden **Çizim galerisi**.
+![Dört kahraman seçimi](art/review/character-select-in-engine.png)
 
-![Yeni çizimlerle Godot sahnesi](art/review/gameplay-in-engine.png)
+## Başlatma
+Godot 4.6 ile `project.godot` dosyasını açın, **F5** ile çalıştırın. Komut satırından `godot --path .`.
+Menüden tek/iki oyuncu, ardından dört kahramandan seçim yapılır.
 
-## Çalıştırma
-Godot 4.6 ile `project.godot` dosyasını açın ve F6 değil **F5** ile başlatın.
-Komut satırı: `godot --path .`
+| Kontrol | Oyuncu 1 | Oyuncu 2 |
+|---|---|---|
+| Hareket | A / D | ← / → |
+| Zıplama | W veya Boşluk | ↑ veya Shift |
+| Sarmaşığa tırman / in | W / S | ↑ / ↓ |
+| Sarmaşıktan ayrıl | Boşluk | Shift |
+| Sopa | F | K |
+| Bumerang | G | L |
 
-- Oyuncu 1: A/D hareket, W zıplama.
-- Oyuncu 2: yön tuşları; yukarı zıplama. Menüden iki oyuncu seçilir.
-- Kontrolcü: sol çubuk, alt yüz düğmesi zıplama; sırasıyla cihaz 0 ve 1.
-- Mobil: dokunmatik yön ve zıplama düğmeleri (tek yerel oyuncu).
-- R: kontrol noktasına dön. Escape: menüye dön.
-- Menü: Türkçe/English, tek/iki oyuncu.
+R: kontrol noktasına dön. Esc: menü. Kontrolcü: sol çubuk, alt yüz düğmesi zıplama, sol yüz düğmesi sopa, üst yüz düğmesi bumerang. Dokunmatik cihazda yön, zıplama, sopa ve bumerang düğmeleri; sarmaşık yanında zıplamaya basılı tutarak tırmanma. Fiziksel kontrolcü/mobil cihaz doğrulaması henüz yapılmadı.
 
-## Belgeler
-- [Oyun tasarımı](docs/GAME_DESIGN.md)
-- [Bölümler](docs/LEVELS.md)
-- [Kararlar](docs/DECISIONS.md)
-- [İşlem günlüğü](docs/DEVLOG.md)
-- [Görsel üretim kuralları](docs/ART_SPEC.md)
-- [Geliştirme yol haritası](docs/ROADMAP.md)
+## Güncel içerik
+- 01 **Çağan**, 03 **Deniz**, ayrıca ismi belirlenmemiş 02 ve04. Onaylı kaynak çizimler SHA-256 ile korunur.
+- Yerel tek/iki oyuncu; her oyuncu dört kahramandan birini seçer. Aynı kahraman da seçilebilir.
+- Sürekli kaydırılan5120 birimlik alan; üç parallax katmanı, bağımsız ağaçlar/bitkiler, hareketli su ve kelebekler.
+- Köklü toprak ve tabana oturan kayalık yükseltiler; nehir, şelale, sarmaşık, üst keşif alanı, düşen kayalar.
+- Sopa ile sersemletme; bulunarak edinilen, geri döndükçe tekrar atılan, araziye takılırsa kaybolan bumerang.
+- 19 meyve, kontrol noktası ve bölüm çıkışı.
 
-![İlk görsel hedef](art/reference/visual-target-01.png)
+Henüz yapılmayanlar: tam animasyon döngüleri, sesler, yüzme, kanatlı dosta binme, ağ/PC-mobil co-op, kalan bölümler ve dağıtım paketleri.
 
-Referans görseldeki eski “Lost Valley” başlığı geçersizdir; oyun adı **Dino Hop!**.
+## Tasarım ve kararlar
+[Karakterler](docs/CHARACTERS.md) · [Dünya](docs/WORLD.md) · [Silahlar](docs/COMBAT.md) · [Oyun tasarımı](docs/GAME_DESIGN.md) · [Bölümler](docs/LEVELS.md) · [Kararlar](docs/DECISIONS.md) · [Görsel sözleşmesi](docs/ART_SPEC.md) · [Yol haritası](docs/ROADMAP.md)
 
-## Doğrulama
-`godot --headless --path . --editor --import --quit`
-`godot --headless --path . --script tests/smoke.gd`
-`godot --headless --path . --script tests/art_smoke.gd`
+## Kontroller / Tests
+```
+godot --headless --path . --editor --import --quit
+godot --headless --path . --script tests/smoke.gd
+godot --headless --path . --script tests/art_smoke.gd
+godot --headless --path . --script tests/world_smoke.gd
+```
+Grafik ekranında `godot --path . --script tests/capture_art.gd` gerçek Godot ekran görüntülerini yeniler. `tests/record_demo.gd` gerçek tuş girdileriyle kısa bir otomatik oynanış kaydı içindir, kamera ışınlamaz.
 
-Linux, Windows ve Android çıktıları için Godot export templates gerekir; Android SDK/JDK, iOS son paketlemesi için macOS/Xcode gerekir. Bu başlangıçta dağıtım paketleri üretilmedi.
+Linux/Windows/Android/iOS hedeflenir. Henüz derlenmiş platform paketleri yok. Export templates gerekir; Android için SDK/JDK; iOS son paketleme ve imzalama için Mac/Xcode gerekir.
+
+## English
+An early local co-op platform adventure featuring four approved illustrated heroes, including Çağan and Deniz. One continuous world prototype includes independent parallax scenery, climbing vines, warning rocks, collectibles, checkpoints, clubs and discoverable returning boomerangs that can be lost on terrain. The scenery is under revision; this is not a finished game. Open `project.godot` in Godot4.6 and press F5. English is selectable in the menu.

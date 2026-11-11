@@ -9,3 +9,6 @@
 7. **Dağıtım:** Linux/Windows/Android cihaz testleri; Mac üzerinden iOS; imzalama ve mağaza hazırlığı.
 
 Başlangıç prototipi nihai oyun değildir. Şu an tam bölüm, ağ, saldırı, ses, tırmanma, yüzme ve uçuş uygulanmadı.
+
+## Güncel ilerleme
+Dört onaylı kahraman ve seçim ekranı, sopa/bumerang, modüler parallax dünya, tırmanma, düşen kaya ve ilk5120 birimlik bölüm temeli uygulandı. Orman görseli kullanıcı eleştirileriyle yeniden ele alındı; son düzen henüz onaylı değil.42 atlas ve kaynak hash kontrolleri ile hareket/dünya testleri bulunur. Tam animasyon/ses/diğer dünya mekanikleri, ağ ve platform paketleri sonraki aşamalar.

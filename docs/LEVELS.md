@@ -30,3 +30,11 @@ Hapşıran küçük otçul; kayaya boynuzu takılan boynuzlu; platform görevi g
 
 ## İlk çizim paketi uygulaması
 Şelaleli vadi arka planı, kahraman pozları, çimli platformlar, meyve/tabela/mağara ve altı canlı hareket test alanına yerleştirildi. Bu sahne görsel dil denemesidir; Bölüm 1 tamamlandı veya Şelale bölümü oynanabilir oldu anlamına gelmez. Dinozorlar bu sürümde görsel yerleştirmedir.
+
+
+## Güncel ilk bölüm uygulaması
+`world/levels/01.json` altında **Çiçekli Vadi / Blooming Valley** çalışma adıyla 5120 birimlik ilk bölüm temeli kuruldu. Önceki Kahkaha Korusu adı hâlâ tasarım önerisidir; çalışma adı 12 bölümlük planın kesin onayı değildir.
+
+19 meyve, iki sarmaşık, üst keşif alanı, iki bumerang bulma noktası, dört devriyeli dinozor, iki düşen-kaya bölgesi, kontrol noktası ve çıkış bulunur. Bölümün beş parçası aynı sürekli alanda ilerler. Eski basit test sahnesinden farklı olarak kamera 1280'lik tek sahnede kalmaz.
+
+Son kullanıcı geri bildirimine göre eş yükselen kutular ve dev çiçekler kaldırıldı; tabana bağlı doğal kaya/zemin görseli ve çarpışmaları kullanılır. Görsel düzen hâlâ kullanıcı değerlendirmesine açıktır; tamamlandı olarak işaretlenmez.

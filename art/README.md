@@ -1,41 +1,49 @@
 # Dino Hop! — Çizimler / Artwork
 
-Bu klasörde kaynak PNG çizimleri, atlas koordinatları ve Godot'tan alınmış gerçek ekran görüntüleri bulunur. 2026-11-11 tarihli ilk çizim paketi.
+## Onaylanan dört kahraman
+![Onaylanan kadro](characters/approved-four-heroes-board.png)
 
-## Oyunda yerleştirilmiş görünüm / In-engine view
-![Godot oyun sahnesi](review/gameplay-in-engine.png)
+01 **Çağan**, 03 **Deniz**. 02 ve04 için henüz isim seçilmedi. Kaynak pafta ve poz atlası kullanıcı tarafından onaylandı; aynı PNG'ler motor içinde kullanılır. [Karakter sözleşmesi](../docs/CHARACTERS.md).
 
-Bu bir hayali oyun ekranı veya tek resim olarak sahneye yapıştırılmış bir mockup değildir. Karakterler, platformlar, meyveler, tabela, mağara ve canlılar ayrı atlas bölgelerinden Godot tarafından çizilir. Arka plan ayrı resimdir. Çizimler hareket prototipine bağlanmıştır; tam bölüm veya tamamlanmış oyun değildir.
+![Onaylanan pozlar](characters/approved-four-heroes-poses.png)
 
-## Kahramanlar / Heroes
-![İki kahraman, sekiz poz](characters/heroes-poses.png)
+Atlas: 4 sütun kahraman, 4 satır hareket pozu. Bunlar temel pozlardır; tüm animasyon durumlarının tamamlandığı anlamına gelmez. Kaynak hash'leri `characters/approved-sha256.json` içinde.
 
-4 sütun × 2 satır. Her kahramanda bekleme, iki koşu ana pozu ve zıplama pozu. Çizim sırası `art/atlas-regions.json` içinde kayıtlıdır. Kahraman adları henüz kesinleşmedi. Bunlar iki pozla gösterilen temel hareketlerdir; akıcı nihai yürüyüş/koşu için ara kareler ve ek durumlar gerekir.
+## Gerçek motor görüntüleri
+![Seçim ekranı](review/character-select-in-engine.png)
+![İlk bölüm](review/gameplay-in-engine.png)
+![Şelale bölgesi](review/waterfall-in-engine.png)
 
-## Şelaleli vadi / Waterfall valley
-![Vadi arka planı](backgrounds/waterfall-valley.png)
+[13 saniyelik gerçek oynanış kaydı](review/forest-playtest.mp4): Godot MovieMaker ile20fps, gerçek tuş girdileriyle kayıt. Kamera manuel ışınlanmaz. MP4 yalnız kayıt videosunun sıkıştırılmış hâlidir; üretilmiş hayali oyun videosu değildir. Görsel dünya kullanıcı değerlendirmesi ve revizyon aşamasındadır.
 
-1672×941; 1280×720 sahneye uyarlanır. Bu sürüm tek arka plan tabakasıdır, ayrı parallax katmanları değildir.
+## Bağımsız dünya parçaları
+![Dallanan ağaçlar ve köklü zemin](environment/forest-habitat-v2.png)
 
-## Çevre parçaları / Environment props
-![Zemin, meyve, tabela, mağara](environment/jungle-props.png)
+Güncel habitat: iki farklı doğal dallanan ağaç, köklü kaya çıkıntısı, köklü toprak kesiti. Oyun ayrı düğümlerden ve üç hareket katmanından oluşur; bu atlas arka plana yapıştırılmış bir manzara değildir. Tam görsel onayı henüz verilmedi.
 
-1536×1024 RGBA; 3×2 yerleşim. Sıra: yüzen platform, çimli blok, toprak blok; meyve, kontrol noktası, mağara kapısı. Kaynak panonun içinden koordinatla kullanılan ayrı şekillerdir. Tam 64×64 iç/dış köşe TileSet üretimi henüz yapılmadı; bu parçalar ızgaraya oturtularak kullanılıyor. Kaynakta şeffaf renk pikselleri bulunur; alpha destekleyen görüntüleyici kullanılmalı.
+![Sopa ve bumerang](equipment/club-boomerang-effects.png)
 
-## Canlılar / Creatures — v3
-![Daha doğal oranlı canlılar](creatures/creatures-natural-v3.png)
+Sopa, bumerang, vuruş bulutu ve yıldız. Ekipmanlar kahraman resminin üstüne boyanmaz, ayrı sprite olarak takılır.
 
-İlk sürüm kullanıcı tarafından fazla yapmacık bulundu. Güncel çalışma yönü: doğal gövde oranları, küçük gözler, türlere özgü silüetler ve boyalı yüzeyler. İkinci düzeltmede atlas yerleşimi ve küçük ölçekte okunabilirlik sadeleştirildi. **Yeni görünüm kullanıcı onayı bekliyor; kesinleşmiş sayılmaz.**
+Küçük çiçekler/eğrelti/sarmaşık: `environment/jungle-modules.png` atlasından. Oradaki eski yuvarlak ağaç ve gri dekor taşı aktif sahnede kullanılmaz. Eski `environment/jungle-props.png` meyve, tabela ve mağara için kullanılır; eski turuncu blok zeminleri yeni habitatla değiştirildi.
 
-Üst sıra: boynuzlu otçul, uzunboyun, stegosaur. Alt sıra: eyerli pterozor, plesiosaur, tüylü raptor. Pterozor ve plesiosaur dinozor değil; tarih öncesi canlı çeşitliliğidir. Tek poz çizimleridir; AI, yürüme animasyonu ve binme mekaniği bu paketle tamamlanmış değildir.
+## Canlılar
+![Doğal oranlı canlılar](creatures/creatures-natural-v3.png)
 
-## Kaynak ve kullanım durumu
-Bu PNG çizimleri bu proje için sohbet içindeki OpenAI görsel üretim aracıyla üretildi. Referans görsel düzenlendiğinde aynı araç kullanıldı. Mevcut oyundan karakter veya sprite kopyalanmadı. Üçüncü taraf stok görsel/lisans eklenmedi; ticari isim/marka ve nihai içerik incelemesi ayrıca yapılacak.
+Altı tarih öncesi canlı. Pterozor/plesiosaur bilimsel olarak dinozor değildir. Dört canlı örneğinde temel fizik devriyesi ve sersemleme bağlanmıştır; her türün tam hareket/AI/animasyon seti henüz yoktur.
 
-`review/creatures-v1-rejected.png` ve `review/creatures-natural-v2.png` tasarım geçmişidir; aktif sahne tarafından kullanılmaz. `review/*-in-engine.png` gerçek Godot ekran çıktısıdır. Ham PNG'ler yeniden boyutlandırılıp kesilmedi; atlas bölgeleri motor içinde okunur.
+## Tasarım geçmişi
+- `review/amazon-background-rejected.png`: kahramanlara uyumsuz bulunan ilk Amazon manzarası; kullanılmaz.
+- `review/warm-forest-style-study.png`: stil araştırması; sabit oyun arka planı olarak kullanılmaz.
+- `review/duo-exploration-before-four-heroes.png`, `characters/heroes-poses.png`: dört kişilik onaylı kadrodan önceki araştırmalar.
+- `review/creatures-v1-rejected.png`: yapmacık bulunan oyuncak benzeri canlılar; kullanılmaz.
+- `review/creatures-natural-v2.png`: atlas sınır problemi nedeniyle v3 ile değiştirildi.
+- `backgrounds/waterfall-valley.png`: eski tam manzara; güncel oynanışta değil, menü dekorunda bulunur.
+- `reference/visual-target-01.png`: eski Lost Valley başlıklı başlangıç panosu; güncel ad Dino Hop!.
 
-## Görmek ve doğrulamak
-- F5 → **Çizim galerisi / Art gallery**: dört sekmede kaynak çizimleri.
-- F5 → **İki oyuncu / Two players**: iki kahramanı çizimlerle deneyin.
-- `godot --headless --path . --script tests/art_smoke.gd`: 20 sprite bölgesinin sınır, RGBA, içerik ve şeffaflık testi.
-- Grafik ekranında `godot --path . --script tests/capture_art.gd`: dört gerçek ekran çıktısını yeniler.
+## Kaynak ve ölçüler
+PNG çizimleri bu proje için OpenAI görsel üretim aracıyla üretildi. Kahraman stili ve kompozisyon referansları aynı araçla kullanıldı. Prehistorik2 ekranı yalnız çalışma klasöründe görsel inceleme için tutuldu; depoya ve oyuna eklenmedi, kaynak sprite kopyalanmadı.
+
+Ham PNG'ler korunur. `atlas-regions.json` motorun okuyacağı gerçek piksel bölgelerini kaydeder; alpha içeriği ölçülür. RGBA dosyalarının tam şeffaf piksellerinde görünmeyen RGB renkleri olabilir; alpha destekleyen görüntüleyici kullanılmalı.
+
+Godot menüsünde **Çizim galerisi / Art gallery** bulunur. Doğrulama: `tests/art_smoke.gd`42 aktif sprite bölgesini ve onaylı kahraman kaynaklarının hash'lerini kontrol eder. Ticari isim/marka kontrolü henüz yapılmadı.

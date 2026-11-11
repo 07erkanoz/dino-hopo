@@ -53,3 +53,42 @@ Tarih: 2026-11-11 (Europe/Istanbul). Her anlamlı çalışma bu dosyaya eklenir.
 ## 008 — GitHub teslimi
 - İlk çizim paketi, motor bağlantısı ve gerçek ekran görüntüleri `a141dab` kaydıyla GitHub main dalına başarıyla gönderildi.
 - Bu sonuç kaydı ayrı dokümantasyon commit’iyle aynı dala gönderilir.
+
+
+## 009 — Dört kahramanın onayı ve isimleri
+- Kullanıcı 2 erkek + 2 kadın, toplam4 seçilebilir kahraman istedi. Önceki2 kişilik araştırma ayrı arşive alındı.
+- Yeni kadro paftası ve16 hareket pozu üretildi. Kullanıcı bu karakterleri onayladı ve birebir korunmasını istedi.
+- 01 Çağan, 03 Deniz olarak adlandırıldı; 02/04 için isim uydurulmadı.
+- Kaynak PNG'ler depoya alındı; SHA-256 kaydı ve otomatik bütünlük kontrolü eklendi.
+- Seçim ekranı, her oyuncunun ayrı seçim yapması ve kontrol yuvasının görsel kimlikten ayrılması uygulandı.
+
+## 010 — Silah kararları
+- Sopa ve bumerang ekipman/efekt atlası üretildi; kahraman kaynaklarına dokunmadan elde ekipman çizimi uygulandı.
+- Kullanıcı bumerangın sıradan sınırsız atış olmasını istemedi. Önerilen3 atış modeli daha sonra kullanıcı tarafından değiştirildi.
+- Son kural uygulandı: bulunarak kazanılır, dönerse tekrar kullanılır; araziye takılırsa kaybedilir. Her iki yönde ray çarpışması ve tek aktif atış sınırı var.
+- Dinozorlarda kısa fizik devriyesi ve yıldızlı sersemleme, sopa menzili ve boomerang hedef kontrolü eklendi.
+
+## 011 — Dünya yaklaşımının düzeltilmesi
+- İlk Amazon poster çizimi kullanıcı tarafından kahramanlara uyumsuz bulundu; reddedilen çizim olarak arşivlendi, oyuna alınmadı.
+- Sabit tam resim önünde hareket etme istenmediği için bağımsız nesneli üç Parallax2D katmanı kuruldu; su, kelebek ve rüzgâr hareketleri ayrı.
+- İlk modüler sahne de kullanıcı tarafından tekrar eden yuvarlak ağaçlar, büyük çiçekler, bulanık arka/ön ayrımı ve uyumsuz kayalar nedeniyle reddedildi.
+- Prehistorik2 orman ekranı yalnız çalışma klasöründe referans olarak incelendi; dosya depoya/oyuna eklenmedi.
+- Sisli renk karışımı kaldırıldı; arka katmanlar keskin sınırlı paletle ayrıldı. Sıradan çiçekler22–35, kahraman128 birime ayarlandı; büyük buket gizleme dekoru eğreltiyle değişti.
+- Dallanan iki farklı ağaç, köklü doğal kaya ve toprak için yeni habitat atlası üretildi. Tekrarlı yuvarlak ağaçlar ve ayrı gri kaya dekoru aktif sahneden kaldırıldı.
+- Havada duran eş kutular yerine zemine ulaşan köklü kaya yükseltileri kondu; çarpışmalar da buna göre güncellendi.
+- Ekrandaki kalıcı tuş/debug satırları kontrol yardımına taşındı; mobil tuşlar yalnız dokunmatik cihazda görünür.
+- Yeni dünya görünümü henüz kullanıcı tarafından onaylanmadı; teknik çalışması görsel tamamlanma olarak sunulmaz.
+
+## 012 — İlk bölümün motor temeli
+- 5120 birimlik alan ve5 çevre bölgesi JSON verisine taşındı. Konum, geometri, meyve, keşif, sarmaşık, kaya, dinozor ve çıkış bu veriden kurulur.
+- Tırmanma, kontrol noktası, üst keşif alanı, iki bumerang bulma noktası ve iki uyarılı düşen kaya bölgesi bağlandı.
+- Kontrollerde klavye, kontrolcü ve dokunmatik eylemler bulunur; yerel iki oyuncu aynı dünya kamerasını kullanır.
+- İlk testte kaya kontrolü yanlış düğümü seçiyordu; konum ve script kimliğiyle doğru kaya bölgesini seçecek biçimde düzeltildi. TypedArray içinde farklı Node türü araması log hatası yarattı; Parallax2D tür kontrolüyle giderildi.
+- Godot import ve hareket testleri geçti. 42 atlas bölgesi ve onaylı kahraman PNG hash kontrolleri geçti. Dünya testleri: seçim/isim, sahiplik, yeniden atış, takılınca kayıp, yakın dövüş, tırmanma, sır, kamera ve düşen kaya geçti.
+- Gerçek Godot/OpenGL ekran çıktıları güncelleniyor. Tam animasyon, ses, yüzme, uçan dosta binme, çevrim içi co-op ve platform paketleri hâlâ sonraki aşamalar.
+
+## 013 — Hareketli kontrol kaydı
+- Gerçek tuş girdilerini çalıştıran record_demo.gd ile Godot MovieMaker'da13 saniyelik kayıt alındı. Kamera otomatik karakter takibiyle kayar; video üretim aracıyla hayali sahne yapılmadı.
+- Kaydın10. saniyesinde Çağan nehir kıyısı/kontrol noktası sonrası yükseltilerde,8/19 meyveyle ilerliyor; ilk geçişin oynanabilirliği gözlendi.
+-44MB ara AVI yalnız work/ altında; depoya2.3MB sıkıştırılmış MP4 eklendi.
+- Karakter seçimi, ilk alan ve şelale bölgesinin gerçek ekran görüntüleri son düzenle yenilendi. Bunlar görsel revizyon durumundadır, kullanıcı onayı yerine geçmez.

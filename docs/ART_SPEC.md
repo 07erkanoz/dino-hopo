@@ -33,3 +33,19 @@ Tamamlanmamış üretim işleri: daha akıcı animasyon ara kareleri, tırmanma/
 
 ## Dinozor görsel yönü
 Kullanıcı ilk bebek/oyuncak görünümünü reddetti. Dev göz, şişkin oyuncak gövde ve plastik görünüm kullanılmaz. Daha doğal hayvan oranları, türlere özgü duruş ve daha sade boyalı yüzeyler denenir. Mizah hareket ve durumdan gelir. v3 bu yönün yeni önerisidir; kullanıcı henüz onaylamadı.
+
+
+## Güncel onaylı kadro ve dünya kaynakları
+- `art/characters/approved-four-heroes-board.png`: onaylı dört kahraman paftası.
+- `art/characters/approved-four-heroes-poses.png`: onaylı 1254×1254 RGBA, 4×4 poz atlası; sütunlar 01/02/03/04, satırlar bekleme/koşu-temas/koşu-geçiş/zıplama.
+- `art/characters/approved-sha256.json`: kaynak bütünlüğü; değişiklik testi hata verir.
+- `art/equipment/club-boomerang-effects.png`: ayrı sopa, bumerang, çizgi film vuruş bulutu ve yıldızlar.
+- `art/environment/jungle-modules.png`: ilk modüler orman denemesi. Büyük yuvarlak ağaçlar ve gri taş artık aktif ormanda kullanılmaz; sarmaşık, küçük çiçek ve eğrelti parçaları kullanılır.
+- `art/environment/forest-habitat-v2.png`: iki doğal dallanan ağaç, köklü kaya çıkıntısı ve köklü toprak dokusu. İlk modüler tasarım eleştirisinden sonra üretildi. Henüz kullanıcı görsel onayı yok.
+- `art/review/amazon-background-rejected.png`: kullanıcı tarafından reddedilen poster; oyun sahnesinde kullanılmaz.
+- `art/review/warm-forest-style-study.png`: yalnız stil denemesi; oyun arka planı değildir.
+- `art/review/duo-exploration-before-four-heroes.png`: dört kişilik kadrodan önceki iki karakter araştırması, güncel kadro değil.
+
+Motor aynı PNG'leri bölgelerle okur, kaynak çizimleri kesip yeniden boyutlandırarak değiştirmez. Oyun dünyasında arka plan tek resim değildir: ayrı sprite düğümleri ve üç Parallax2D katmanı kullanılır. Menü dekoru ayrı tam resim olabilir.
+
+Yeni ölçütler: kahraman boyu yaklaşık128, fizik kapsülü88, çiçek22–35. Teknik ilk paftadaki64×96 karakter hedefi görsel okunabilirlik için bu prototipte değişmiştir. 64px yerleşim referansı korunur; karmaşık dış kaya silüeti dikdörtgen fizik üstüyle birebir piksel temas garantisi değildir. Tam TileSet iç/dış köşeleri ve tüm animasyonlar sonraki üretim işidir.
