@@ -1,0 +1,96 @@
+{
+  "tool": "OpenAI image_gen built-in",
+  "reference_direction": "taslaklar/taslak-a.png",
+  "prompts": [
+    {
+      "id": "sky",
+      "prompt": "Create an original production 2D hand-painted game background, wide 16:9 1920x1080 or higher. Style reference is supplied Taslak A: warm golden sunlight, saturated turquoise blue sky, creamy golden clouds, terracotta ochre cliffs, teal and jade tropical layered woodland, yellow-lime sunlit canopy. Not pixel art, not vector, not photorealism. Generate ONLY THE SKY LAYER: clear cyan sky with richly painted warm cream cumulus clouds mostly in upper half, lower half lighter turquoise empty sky. No ground, mountains, foliage, animals, UI, lettering or sun disc. Horizontal seamless repeating sky, identical visual content and color at left and right edges, clouds avoid edges. Entire image opaque. Beautiful textured hand painting matches Taslak A."
+    },
+    {
+      "id": "mountains",
+      "prompt": "Original hand-painted detailed 2D side-view platform game assets matching reference Taslak A precisely: golden afternoon light upper left, vivid yellow-lime leaf highlights, turquoise/teal shadow greens, warm orange ochre rocks and warm umber contours, richly painted brush texture. Clear air, no fog or blur. No pixel art, flat vectors, plastic 3D, copied game graphics, logos or text. ONLY distant landscape parallax layer, wide 16:9 image. Transparent empty sky in upper 15 percent. Ochre and rose-gold craggy tropical mountains rise across middle, teal forested terraces below, one distant thin turquoise waterfall at right third. No sky paint, no foreground plants or ground platform, no characters. Lower edge filled with distant blue teal forest. Left/right edges must wrap seamlessly at same height and color. Actual transparent background, no matte or checkerboard.",
+      "transparent_background": true,
+      "references": [
+        "taslaklar/taslak-a.png"
+      ]
+    },
+    {
+      "id": "forest",
+      "prompt": "Original hand-painted detailed 2D side-view platform game assets matching reference Taslak A precisely: golden afternoon light upper left, vivid yellow-lime leaf highlights, turquoise/teal shadow greens, warm orange ochre rocks and warm umber contours, richly painted brush texture. Clear air, no fog or blur. No pixel art, flat vectors, plastic 3D, copied game graphics, logos or text. ONLY middle distance tropical woodland parallax layer, wide 16:9 transparent PNG. Upper 38 percent completely empty alpha; irregular natural palm and spreading tree silhouettes at middle height with golden lime canopies and teal shadows, lower half filled lush forest. Dense yet varied heights, no repeated round tree wall. No mountains, sky, cliffs, ground platforms, characters. Side-on camera. Actual clean transparent background above foliage. Left and right boundaries seamless horizontal tiling.",
+      "transparent_background": true,
+      "references": [
+        "taslaklar/taslak-a.png"
+      ]
+    },
+    {
+      "id": "near",
+      "prompt": "Original hand-painted detailed 2D side-view platform game assets matching reference Taslak A precisely: golden afternoon light upper left, vivid yellow-lime leaf highlights, turquoise/teal shadow greens, warm orange ochre rocks and warm umber contours, richly painted brush texture. Clear air, no fog or blur. No pixel art, flat vectors, plastic 3D, copied game graphics, logos or text. ONLY near vegetation parallax border layer, wide 16:9 transparent PNG. Middle 70 percent empty transparent gameplay area. Detailed large fern fronds and tropical leaves clustered along bottom 20 percent, with a branching warm orange-brown tree trunk and canopy framing far LEFT edge only, slender hanging vines. Small ordinary flowers, no giant blooms. No sky, ground strip, terrain or characters. Golden rim light painted into leaf surfaces, no external glow. Actual clean alpha with no white or colored matte, seamless left/right repeat bottom foliage.",
+      "transparent_background": true,
+      "references": [
+        "taslaklar/taslak-a.png"
+      ]
+    },
+    {
+      "id": "terrain",
+      "prompt": "Original hand-painted detailed 2D side-view platform game assets matching reference Taslak A precisely: golden afternoon light upper left, vivid yellow-lime leaf highlights, turquoise/teal shadow greens, warm orange ochre rocks and warm umber contours, richly painted brush texture. Clear air, no fog or blur. No pixel art, flat vectors, plastic 3D, copied game graphics, logos or text. Production modular terrain and prop sprite sheet. EXACTLY 4 columns by 3 rows, 12 equal cells, generous transparent gutters, all items isolated entirely inside their cells, NO labels. On genuine transparent alpha. Row 1: (1) grass topped rectangular orange soil tile with horizontal flat top, tileable left/right (2) plain matching orange soil fill tile (3) grass-topped ochre rock floating platform (4) shallow turquoise water surface horizontal strip. Row 2: (1) vertical turquoise waterfall ribbon (2) whole branching tropical tree including roots and canopy, no crop (3) smaller alternate crooked tree whole including roots and canopy (4) low lush bush. Row 3: (1) fern (2) thin hanging vine with tiny leaves and curled top (3) fallen wooden log (4) small natural rock cluster. Uniform painterly style and light, practical terrain assets, transparent background not checkerboard. Tree should use almost full cell height; soil tiles fill most cell width. No shadows cast on background.",
+      "transparent_background": true,
+      "references": [
+        "taslaklar/taslak-a.png"
+      ]
+    },
+    {
+      "id": "cagan",
+      "prompt": "Original hand-painted detailed 2D side-view platform game assets matching reference Taslak A precisely: golden afternoon light upper left, vivid yellow-lime leaf highlights, turquoise/teal shadow greens, warm orange ochre rocks and warm umber contours, richly painted brush texture. Clear air, no fog or blur. No pixel art, flat vectors, plastic 3D, copied game graphics, logos or text. REFERENCE 2 is the immutable approved hero board, use ONLY hero 01 Çağan identity: stocky strong adult, shaggy dark chestnut hair with blue teal feather, orange one shoulder spotted tunic, turquoise sash, bare feet, friendly face and stubble. Reference 1 provides scene rendering palette. Produce SKELETAL CUTOUT parts sheet, NOT poses or assembled figure. EXACT 4 columns x 4 rows, 16 equal cells in a square image, each with ONE independent isolated part, generous transparent gutters. Strict right-facing SIDE VIEW. Row1: head including hair feather and neck stub; torso wearing orange spotted tunic with shoulder stubs and no arms/head; pelvis with turquoise belt skirt and hip overlap; wooden club vertical handle down. Row2: right upper arm shoulder to elbow; right forearm elbow to wrist; right gripping hand; left upper arm. Row3: left forearm; left gripping hand; right thigh; right calf. Row4: right bare foot pointing right; left thigh; left calf; left bare foot pointing right. Limbs drawn mostly vertical neutral hanging, rounded full opaque overlap pads at joints, consistent anatomy scale across cells, no sharp severed flat ends. Hand size appropriate, all skin same golden tan. Plain genuine transparent alpha, no background shadows, no matte or halo, no labels. No duplicate full figures.",
+      "transparent_background": true,
+      "references": [
+        "taslaklar/taslak-a.png",
+        "art/characters/approved-four-heroes-board.png"
+      ]
+    },
+    {
+      "id": "dino",
+      "prompt": "Original hand-painted detailed 2D side-view platform game assets matching reference Taslak A precisely: golden afternoon light upper left, vivid yellow-lime leaf highlights, turquoise/teal shadow greens, warm orange ochre rocks and warm umber contours, richly painted brush texture. Clear air, no fog or blur. No pixel art, flat vectors, plastic 3D, copied game graphics, logos or text. Small walking quadruped ceratopsian skeletal cutout sprite sheet, natural animal proportions, olive jade body with ochre belly and gold frill rim, warm ivory horns, small believable eye, adult animal not toy. Match reference creature's first ceratopsian species, with bright Taslak A scene lighting. Facing LEFT in strict SIDE VIEW. EXACT 4x4 equal grid 16 separated parts, each cell one detached part, generous transparent gutters and true alpha. Row1: torso only without legs head tail; head including horns and bony frill but no neck; short neck connector; tapered tail pointing right. Row2: far front upper leg; far front lower leg; far front foot; far hind upper leg. Row3: far hind lower leg; far hind foot; near front upper leg; near front lower leg. Row4: near front foot; near hind upper leg; near hind lower leg; near hind foot. Entire limbs fit inside cells, consistent physical scale; rounded opaque overlap padding at every joint. No complete animals, no labels, no floor shadows, no matte, no checkerboard.",
+      "transparent_background": true,
+      "references": [
+        "taslaklar/taslak-a.png",
+        "art/creatures/creatures-natural-v3.png"
+      ]
+    },
+    {
+      "id": "ptero",
+      "prompt": "Original hand-painted detailed 2D side-view platform game assets matching reference Taslak A precisely: golden afternoon light upper left, vivid yellow-lime leaf highlights, turquoise/teal shadow greens, warm orange ochre rocks and warm umber contours, richly painted brush texture. Clear air, no fog or blur. No pixel art, flat vectors, plastic 3D, copied game graphics, logos or text. Second enemy: small original flying pterosaur, natural animal proportions, rusty orange back and golden ochre wing membranes, teal blue accent crest, small natural eyes, long narrow beak. LEFT facing side view, friendly adventurous wildlife style rather than monster. Production SKELETAL CUTOUT parts atlas, EXACT 3 columns x3 rows 9 equal cells, one detached isolated part per cell, no labels. Row1: torso including rounded shoulder and hip pads, no head wings tail legs; head with long closed beak and teal crest and neck stub; slender tail pointing right with small triangular tip. Row2: near upper wing shoulder-to-elbow with membrane and rounded pivot pad; near outer wing elbow-to-wingtip with membrane; far upper wing. Row3: far outer wing; near leg with small gripping foot; far leg with foot. Wings extended in side view as large pointed membranes, coherent proportions, no complete animal. All parts fully inside cells with transparent gutters and true transparent background no matte no floor shadows.",
+      "transparent_background": true,
+      "references": [
+        "taslaklar/taslak-a.png"
+      ]
+    },
+    {
+      "id": "icons",
+      "prompt": "Original hand-painted detailed 2D side-view platform game assets matching reference Taslak A precisely: golden afternoon light upper left, vivid yellow-lime leaf highlights, turquoise/teal shadow greens, warm orange ochre rocks and warm umber contours, richly painted brush texture. Clear air, no fog or blur. No pixel art, flat vectors, plastic 3D, copied game graphics, logos or text. Game pickup and UI artwork production sprite sheet, exactly 4 columns by3 rows equal cells, twelve distinct isolated icons/panels, generous transparent gutters, no text or numbers whatsoever. Row1: roasted meat leg; golden orange mango with green leaf; speckled ivory prehistoric egg; golden five pointed bonus star. Row2: red heart life icon; long horizontal carved ochre stone score plaque with EMPTY dark center; smaller carved stone lives plaque with EMPTY center; stone tablet bonus with abstract spiral carving. Row3: translucent dark teal circular touch button with white LEFT arrow; same with RIGHT arrow; same with UP jump arrow; same with wooden CLUB attack symbol. Icons tactile hand-painted matching reference warm ochre highlights, no modern flat vector graphics, good readability at small sizes. Actual transparent alpha, no surrounding shadow or glow or matte. All four buttons identical circle diameter.",
+      "transparent_background": true,
+      "references": [
+        "taslaklar/taslak-a.png"
+      ]
+    }
+  ],
+  "correction_prompts": [
+    {
+      "id": "dino-alpha-cleanup",
+      "reference": "art/v2/sources/dino.png",
+      "transparent_background": true,
+      "prompt": "PRECISE BACKGROUND REMOVAL EDIT. Input is a sixteen-part dinosaur rig sheet. Preserve EVERY dinosaur part in its original grid cell, exact scale, position, identity, natural painted texture, anatomy and color. REMOVE the entire blurry gold/brown backdrop and all glow around every part and replace it with REAL FULLY TRANSPARENT ALPHA. No new backdrop, no cast shadows, no colored matte, no checkerboard printed into pixels. The empty spaces MUST have alpha 0. Retain antialiased clean edges without halo, and keep solid opaque overlapping joint pads. Output the identical layout 4x4 separated cutout parts as an actual RGBA transparent PNG, not a flat opaque gold sheet. Do not assemble, move, crop or add parts. No other changes."
+    },
+    {
+      "id": "cagan-solid-joints",
+      "reference": "art/v2/sources/cagan.png",
+      "transparent_background": true,
+      "prompt": "Precise production rig-part correction to the INPUT atlas. Preserve all 16 separate parts, their exact 4x4 cell positions, shapes, identity, painterly style, colors and overall dimensions. The detached limb ends currently look like hollow cut-off tubes: CORRECT every shoulder, elbow, wrist, hip, knee and ankle end to be a SOLID ROUNDED OPAQUE SKIN-COLORED OVERLAP PAD, naturally shaded skin, NO dark holes, NO hollow sockets, NO cut-surface oval outlines, NO severed tube look. Torso shoulder sockets should be covered by smooth matching skin pads. Neck stump smooth solid skin. Keep Çağan's face, hair, teal feather, orange spotted tunic, teal belt and wooden club unchanged. Keep ALL empty space true transparent alpha 0, remove any low alpha colored speckles. NO background, matte, glow, cast shadow, labels or new parts. Only fix the hollow endpoints so they layer seamlessly as a skeletal character."
+    },
+    {
+      "id": "dino-solid-joints",
+      "reference": "art/v2/sources/dino-clean.png",
+      "transparent_background": true,
+      "prompt": "Edit only the joint endpoints of this 4x4 dinosaur skeletal parts sheet. Keep every one of its 16 parts at exactly the same grid position and scale, keep identical art and colors. All current ends look like hollow tubes with black holes. REPLACE all hollow tube cross-sections on torso, neck, tail, upper legs, lower legs and feet with solid rounded olive-green skin/scales overlap pads, natural continuous opaque skin. No black holes, open sockets, rings or cut surface ellipse outlines. Preserve head horns frill body stripes unchanged. Actual transparent alpha 0 everywhere between parts. No backdrop, no glow, no shadows, no labels. This is a 2D cutout puppet, not a medical dissection. Entire ends must be solid round skin pads for clean overlap."
+    }
+  ]
+}
