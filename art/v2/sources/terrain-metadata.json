@@ -1,0 +1,245 @@
+[
+  {
+    "id": "grass-top",
+    "path": "art/v2/terrain/grass-top.png",
+    "size": [
+      512,
+      256
+    ],
+    "pivot": [
+      256,
+      251
+    ],
+    "source_crop": [
+      14,
+      85,
+      351,
+      278
+    ],
+    "tile_x": true
+  },
+  {
+    "id": "soil-fill",
+    "path": "art/v2/terrain/soil-fill.png",
+    "size": [
+      512,
+      256
+    ],
+    "pivot": [
+      256,
+      251
+    ],
+    "source_crop": [
+      391,
+      79,
+      695,
+      275
+    ],
+    "tile_x": true,
+    "tile_y": true
+  },
+  {
+    "id": "rock-platform",
+    "path": "art/v2/terrain/rock-platform.png",
+    "size": [
+      347,
+      237
+    ],
+    "pivot": [
+      173,
+      232
+    ],
+    "source_crop": [
+      734,
+      85,
+      1073,
+      314
+    ],
+    "tile_x": false
+  },
+  {
+    "id": "water-surface",
+    "path": "art/v2/terrain/water-surface.png",
+    "size": [
+      512,
+      144
+    ],
+    "pivot": [
+      256,
+      139
+    ],
+    "source_crop": [
+      1103,
+      142,
+      1435,
+      240
+    ],
+    "tile_x": true
+  },
+  {
+    "id": "waterfall",
+    "path": "art/v2/terrain/waterfall.png",
+    "size": [
+      318,
+      355
+    ],
+    "pivot": [
+      159,
+      350
+    ],
+    "source_crop": [
+      52,
+      369,
+      362,
+      716
+    ],
+    "tile_x": false
+  },
+  {
+    "id": "tree-branching",
+    "path": "art/v2/terrain/tree-branching.png",
+    "size": [
+      370,
+      358
+    ],
+    "pivot": [
+      185,
+      353
+    ],
+    "source_crop": [
+      362,
+      363,
+      724,
+      713
+    ],
+    "tile_x": false
+  },
+  {
+    "id": "tree-crooked",
+    "path": "art/v2/terrain/tree-crooked.png",
+    "size": [
+      355,
+      338
+    ],
+    "pivot": [
+      177,
+      333
+    ],
+    "source_crop": [
+      724,
+      385,
+      1071,
+      715
+    ],
+    "tile_x": false
+  },
+  {
+    "id": "bush",
+    "path": "art/v2/terrain/bush.png",
+    "size": [
+      335,
+      228
+    ],
+    "pivot": [
+      167,
+      223
+    ],
+    "source_crop": [
+      1102,
+      488,
+      1429,
+      708
+    ],
+    "tile_x": false
+  },
+  {
+    "id": "fern",
+    "path": "art/v2/terrain/fern.png",
+    "size": [
+      334,
+      241
+    ],
+    "pivot": [
+      167,
+      236
+    ],
+    "source_crop": [
+      21,
+      789,
+      347,
+      1022
+    ],
+    "tile_x": false
+  },
+  {
+    "id": "vine",
+    "path": "art/v2/terrain/vine.png",
+    "size": [
+      261,
+      333
+    ],
+    "pivot": [
+      130,
+      328
+    ],
+    "source_crop": [
+      471,
+      746,
+      724,
+      1071
+    ],
+    "tile_x": false
+  },
+  {
+    "id": "log",
+    "path": "art/v2/terrain/log.png",
+    "size": [
+      354,
+      176
+    ],
+    "pivot": [
+      177,
+      171
+    ],
+    "source_crop": [
+      724,
+      845,
+      1070,
+      1013
+    ],
+    "tile_x": false
+  },
+  {
+    "id": "rocks",
+    "path": "art/v2/terrain/rocks.png",
+    "size": [
+      341,
+      187
+    ],
+    "pivot": [
+      170,
+      182
+    ],
+    "source_crop": [
+      1099,
+      828,
+      1432,
+      1007
+    ],
+    "tile_x": false
+  },
+  {
+    "id": "foreground-tree-frame",
+    "path": "art/v2/terrain/foreground-tree-frame.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "pivot": [
+      0,
+      1080
+    ],
+    "tile_x": false,
+    "usage": "Nonrepeating scene-edge framing prop / Tekrarsız sahne kenarı dekoru"
+  }
+]

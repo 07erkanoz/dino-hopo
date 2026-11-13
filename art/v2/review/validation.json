@@ -1,0 +1,12 @@
+{
+  "png_count": 88,
+  "parallax_seams": "4/4 exact boundary-column match",
+  "cagan": "16 parts, valid opaque joint pivots and parent order",
+  "enemy_dino": "16 parts, valid opaque joint pivots and parent order",
+  "enemy_second": "9 parts, valid opaque joint pivots and parent order",
+  "cutout_alpha": "production PNGs: transparent RGB zero, alpha speckles 1..7 absent",
+  "terrain_tiles": "3 horizontal seams and soil vertical seam exact",
+  "approved_hero_sha256": "2/2 unchanged",
+  "result": "PASS",
+  "exit_code": 0
+}
