@@ -41,7 +41,6 @@ bu oyun incelenecek ve geliştirilecek, öncelikle Prehistorik 2 tarzında eğle
 
 ## Son olaylar
 
-- 2026-11-13 23:43 · sistem · ⧗ Oyunu inceleme ve geliştirme: iskelet animasyonu, hareket fiziği, bölüm, düşmanlar, dokunmatik kontroller, dışa aktarma: Claude Opus bitirdi; şimdi başka bir 
 - 2026-11-13 23:43 · sistem · Kullanıcı ekibi durdurdu.
 - 2026-11-13 23:43 · kullanici · android için beklesin şimdilik önce linux da deneyelim+
 - 2026-11-13 23:44 · mudur · Tamam, Android'i şimdilik bekletiyorum. Android SDK kurulumu ve üç platform için dışa aktarma yapan işi (#144) iptal ettim. Yerine yalnızca Linux sürümünü ürete
@@ -66,3 +65,4 @@ bu oyun incelenecek ve geliştirilecek, öncelikle Prehistorik 2 tarzında eğle
 - 2026-11-14 00:12 · sistem · ✓ Yalnızca Linux dışa aktarması: Codex Luna yaptı; testi geçti.
 - 2026-11-14 00:12 · sistem · Geliştirici bir şey öğrendi: Godot dışa aktarma şablonlarını kurulu motor sürümüyle eşleştir; farklı sürüm şablonları dışa aktarmayı engelleyebilir.
 - 2026-11-14 00:12 · mudur · Linux sürümü hazır, deneyebilirsiniz. Bu sırada Android ve Windows için hiçbir şey indirilmedi.  **Son durum:** - **Linux sürümü (#146):** Oyun `build/linux/oyu
+- 2026-11-14 00:16 · sistem · main dalına gönderildi: https://github.com/07erkanoz/dino-hopo
