@@ -1,0 +1,171 @@
+[
+  {
+    "id": "meat",
+    "path": "art/v2/pickups/meat.png",
+    "size": [
+      152,
+      152
+    ],
+    "pivot": [
+      76,
+      76
+    ],
+    "text_embedded": false
+  },
+  {
+    "id": "fruit",
+    "path": "art/v2/pickups/fruit.png",
+    "size": [
+      136,
+      152
+    ],
+    "pivot": [
+      68,
+      76
+    ],
+    "text_embedded": false
+  },
+  {
+    "id": "egg",
+    "path": "art/v2/pickups/egg.png",
+    "size": [
+      122,
+      152
+    ],
+    "pivot": [
+      61,
+      76
+    ],
+    "text_embedded": false
+  },
+  {
+    "id": "star",
+    "path": "art/v2/pickups/star.png",
+    "size": [
+      152,
+      152
+    ],
+    "pivot": [
+      76,
+      76
+    ],
+    "text_embedded": false
+  },
+  {
+    "id": "heart",
+    "path": "art/v2/pickups/heart.png",
+    "size": [
+      152,
+      136
+    ],
+    "pivot": [
+      76,
+      68
+    ],
+    "text_embedded": false
+  },
+  {
+    "id": "score-panel",
+    "path": "art/v2/ui/score-panel.png",
+    "size": [
+      528,
+      278
+    ],
+    "pivot": [
+      264,
+      139
+    ],
+    "text_embedded": false
+  },
+  {
+    "id": "lives-panel",
+    "path": "art/v2/ui/lives-panel.png",
+    "size": [
+      338,
+      253
+    ],
+    "pivot": [
+      169,
+      126
+    ],
+    "text_embedded": false
+  },
+  {
+    "id": "tablet",
+    "path": "art/v2/pickups/tablet.png",
+    "size": [
+      152,
+      152
+    ],
+    "pivot": [
+      76,
+      76
+    ],
+    "text_embedded": false
+  },
+  {
+    "id": "touch-left",
+    "path": "art/v2/ui/touch-left.png",
+    "size": [
+      264,
+      264
+    ],
+    "pivot": [
+      132,
+      132
+    ],
+    "text_embedded": false
+  },
+  {
+    "id": "touch-right",
+    "path": "art/v2/ui/touch-right.png",
+    "size": [
+      264,
+      264
+    ],
+    "pivot": [
+      132,
+      132
+    ],
+    "text_embedded": false
+  },
+  {
+    "id": "touch-jump",
+    "path": "art/v2/ui/touch-jump.png",
+    "size": [
+      264,
+      264
+    ],
+    "pivot": [
+      132,
+      132
+    ],
+    "text_embedded": false
+  },
+  {
+    "id": "touch-attack",
+    "path": "art/v2/ui/touch-attack.png",
+    "size": [
+      264,
+      264
+    ],
+    "pivot": [
+      132,
+      132
+    ],
+    "text_embedded": false
+  },
+  {
+    "id": "life-heart",
+    "path": "art/v2/ui/life-heart.png",
+    "size": [
+      152,
+      136
+    ],
+    "pivot": [
+      76,
+      68
+    ],
+    "text_embedded": false
+  }
+]

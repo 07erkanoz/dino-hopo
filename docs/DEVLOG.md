@@ -161,3 +161,50 @@ Tarih: 2026-11-11 (Europe/Istanbul). Her anlamlı çalışma bu dosyaya eklenir.
 ## 022 — Doğa çalışması GitHub teslimi
 - Yeni üç görsel kaynak, dört doğa görüntüsü, kamera gezintisi, yerleşim/stil verisi, kod ve Markdown kayıtları `2a75a00` ile main dalına gönderildi.
 - Aktif çalışma aşama2 olarak kaldı; yeni oynanış öğesi eklenmedi. Bu sonuç kaydı aynı dala gönderilir.
+
+## 023 — 2026-11-14: Job #141, oynanabilir Bölüm 01 (iskelet animasyonu, fizik, düşmanlar, dokunmatik, dışa aktarma)
+
+**İnceleme bulguları**
+- Godot 4.7.2 ile içe aktarma ve 7 eski test hatasızdı. Ana sahne doğa atölyesiydi; oyun `main.tscn` arşivindeydi.
+- Oyuncu ve düşmanlar `_draw` ile kare atlası çiziyordu. İskelet, InputMap, coyote/tampon ayarı, can ya da ölüm akışı, kazanma ekranı, dokunmatik görünürlük kuralı ve dışa aktarma ön ayarı yoktu.
+- Klavye tuşları koda gömülüydü (`is_physical_key_pressed`). Zıplamadan önce 45 ms'lik bir bekleme gecikme yaratıyordu.
+- Korunan mantık: sopa vuruşu (8 evre, süpürülen uç, tek isabet, duvar engeli), vuruş geri bildirimi (hit-stop, bulut, ses), bumerang (bulunur, döner, takılırsa kaybolur), dört kahramanlı karakter seçimi ve TR/EN.
+- Doğa atölyesi ayrı sahne olarak kaldı.
+
+**Yapılanlar**
+- InputMap `tools/setup_input.gd` ile `project.godot`'a yazıldı. Tek oyuncu için her şey açık; p1_/p2_ eylemleri klavyeyi ve gamepad 0/1'i böler.
+- `player.gd`: `@export` fizik değerleri, coyote time, zıplama tamponu, değişken zıplama, köşe düzeltme, zemine yapışma; kalp, ölüm ve düşme sinyalleri. Zıplama öncesi bekleme kaldırıldı.
+- `scripts/rig/`: Skeleton2D rig kurucu, IK ve AnimationTree. Çağan'ın 10 animasyonu, iki düşman rigi. Ayrıntı: ANIMATION.md.
+- `dino.gd`: ceratopsian (devriye, uyarı, hücum) ve pterozor (süzülme, dalış). Can, ölüm, solma ve puan eklendi.
+- `forest.gd`: 4 Parallax2D katmanı, boyalı zemin ve sütunlar, yüzen kayalar, su ve şelale gölgelendiricileri, rüzgâr salınımı, CanvasModulate, ön plan çerçeve ağacı.
+- `game.gd`, `hud.gd`, `touch_controls.gd`: türlü toplanabilirler, puan, kalp ve can, gizli alan bonusu, kazanma, oyun bitti ve yeniden başla ekranları, kamera takibi.
+- `01.json`: ikinci su çukuru, ikinci ceratopsian, havadaki pterozorlar, türlü toplanabilirler, `kill_y`. Erişilebilirlik testi üç tasarım hatası buldu ve düzeltildi: 4670'teki sütuna çıkılamıyordu (basamak kaya eklendi), 1820'deki meyve çok yüksekteydi, et bir sütunun içinde kalıyordu.
+- `export_presets.cfg`, `tools/verify.sh`, `tools/run_tests.sh`, `tools/capture.sh` eklendi. Yeni testler: physics, animation, enemy, score, touch, level. `smoke.gd`, `*_smoke.gd` desenine uysun diye `game_smoke.gd` oldu.
+- Tasarım gereği güncellenen eski testler:
+  - Puan artık değer biriktiriyor: meyve sayısı ayrı alanda (`fruit_collected`).
+  - Zıplamada bekleme yok: "anticipate" yerine jump/fall/land kontrol ediliyor.
+  - Parallax katmanı en az 3.
+  - Varsayılan sahne artık oyun.
+
+**Doğrulama**
+- `bash tools/verify.sh` exit 0: içe aktarma temiz, 13/13 test geçti, Linux ve Windows çıktıları `build/` altında.
+- Android: SKIPPED. Bu makinede JDK ve Android SDK (platform-tools, build-tools) yok. Godot'un mesajı betik çıktısında görünür.
+- Başsız düzenleyici açılışında (`--editor`) hata ya da uyarı yok.
+- Ekran görüntüleri `ciktilar/ekran/` altında: oyun içi, Çağan'ın her animasyonu, iki düşman, mobil 20:9/16:9/4:3, Taslak A karşılaştırması. Bu makinede xvfb-run olmadığı için başsız `kwin_wayland --virtual` kullanıldı.
+
+**Sınırlamalar ve geçici çözümler**
+- Kontrol noktası, çıkış ve bumerang tuşunun v2 görseli yok; kodla çizildi (D45).
+- 02–04 kahramanlarının rig parçası yok; eski poz çizimleriyle çizilirler.
+- Fiziksel gamepad ve gerçek Android cihazda deneme yapılmadı.
+- Ses yalnızca eski efektler; müzik yok.
+- Görsel ve hareket kalitesi kullanıcı onayı almadı.
+- `tests/record_*.gd` eski kayıt betikleri arşiv olarak duruyor ve yüklenebiliyor.
+- Bu iş sırasında bir ara araç izinleri yazmayı engelledi; iş kaldığı yerden sürdü.
+
+## 024 — 2026-11-14: Job #141 birleştirme çakışması
+
+- #141 değişikliği güncel ekip dalının (`ea40138`) üzerine yeniden uygulandı; Bölüm 01, rigler, düşmanlar ve dokunmatik kontroller aynen korundu, yeni özellik yok.
+- Çakışmanın nedeni: ekip klasöründe izlenmeyen `tests/record_nature.gd.uid` ve Godot'un ürettiği `.import` dosyaları vardı, commit bunları da ekliyordu. Artık `art/v2`, `arastirma` ve `taslaklar` altındaki `.import` dosyaları ile bu `.uid` dosyası izlenmiyor (`.gitignore`); `--import` onları yeniden üretir, hiçbir sahne bu UID'lere bağlı değil.
+- `export_presets.cfg` denetimden geçen sürümüyle geri geldi; Android preset'i değiştirilmedi. Android aracı kurulmadı, APK üretilmedi.
+- `tools/verify.sh` yeniden animasyon kanıtı (Çağan'ın 9 animasyonu, iki düşman rigi, ayak kayması) ve ekran görüntüsü gruplarını yazıyor; biri eksikse başarısız oluyor. Türkçe yerelde `[a-z]` aralığı "i"yi atladığı için düşman animasyon adları `cut` ile ayrılıyor.
+- `ciktilar/DOGRULAMA.md`: her maddeyi kod, test ve görüntüyle eşleyen inceleme rehberi.

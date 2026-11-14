@@ -1,3 +1,12 @@
 .godot/
 builds/
 *.tmp
+build/
+.cache/
+ciktilar/ekran/*.tmp
+# Godot regenerates these on --import; tracking them caused merge conflicts
+# with untracked copies in other team worktrees.
+art/v2/**/*.import
+arastirma/**/*.import
+taslaklar/*.import
+tests/record_nature.gd.uid
