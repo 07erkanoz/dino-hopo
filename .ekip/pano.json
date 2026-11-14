@@ -1,6 +1,6 @@
 {
  "format": 1,
- "exported": "2026-11-14T00:15:58+00:00",
+ "exported": "2026-11-14T00:17:22+00:00",
  "project": {
   "uid": "925a8179f252479f80b2fb0b9584c961",
   "name": "dino-hopo",
@@ -27,7 +27,7 @@
   },
   "branch": "ekip/16-bu-oyun-incelenecek-ve",
   "created": "2026-11-13T21:43:23+00:00",
-  "updated": "2026-11-14T00:12:31+00:00",
+  "updated": "2026-11-14T00:16:08+00:00",
   "style": "hizli",
   "surum": 2,
   "tur": "yazilim",
@@ -4169,6 +4169,24 @@
    "text": "Linux sürümü hazır, deneyebilirsiniz. Bu sırada Android ve Windows için hiçbir şey indirilmedi.\n\n**Son durum:**\n- **Linux sürümü (#146):** Oyun `build/linux/oyun.x86_64` dosyası olarak dışa aktarıldı. Ekransız (headless) modda hatasız açıldı ve kabul kontrolünden geçti. İş ilk denemede düştü, ikinci denemede 39 saniyede bitti.\n- **Geliştirme işi (#141):** Çakışma çözüldü ve kabul komutu geçti. Bölüm 01, Çağan'ın iskelet animasyonu (9 hareket ve tırmanma) ve iskelet animasyonlu 2 düşman türü projede duruyor.\n- **Android ve Windows:** Siz söyleyene kadar bekliyor. Android'i indiren iş (#144) kesin olarak durdu. Şu an çalışan bir iş yok.\n\n**Nasıl denenir:** Terminalde proje klasöründe `./build/linux/oyun.x86_64` komutunu çalıştırın. Dosya açılmazsa önce `chmod +x build/linux/oyun.x86_64` komutunu verin. Klavye ya da gamepad ile oynanır.\n\n**Bilmeniz gereken bir eksik:** Denetim, bölümün baştan sona oynanabilir olduğunu yalnızca hesapla gösterdi, gerçek oynanışla doğrulamadı. Bu yüzden sizin denemeniz önemli. Özellikle şunlara bakmanızı isterim:\n1. Karakterin hareketleri doğal ve akıcı mı (koşma, zıplama, sopayla vurma, hasar alma)?\n2. Zıplama yüksekliği ve kontrol hissi Prehistorik 2'ye yakın mı?\n3. Doğa ve arka plan taslak A'daki gibi görünüyor mu?\n4. Bölümü sonuna kadar bitirebiliyor musunuz, bir yerde takılıyor musunuz?\n\nGördüklerinizi yazın, düzeltmeleri ona göre planlayayım.",
    "data": {},
    "created": "2026-11-14T00:12:31+00:00"
+  },
+  {
+   "id": 3583,
+   "project": 16,
+   "task": null,
+   "sender": "sistem",
+   "recipient": null,
+   "kind": "sistem",
+   "text": "main dalına gönderildi: https://github.com/07erkanoz/dino-hopo",
+   "data": {
+    "github": {
+     "url": "https://github.com/07erkanoz/dino-hopo",
+     "mode": "dogrudan",
+     "branch": "main",
+     "repo": "https://github.com/07erkanoz/dino-hopo"
+    }
+   },
+   "created": "2026-11-14T00:16:08+00:00"
   }
  ],
  "files": [],
@@ -4778,7 +4796,7 @@
  ],
  "paused": [],
  "references": [],
- "stamp": "a4b8fcc7849b4f8f83d2bf4b49168ac9",
+ "stamp": "53a84a7577b54783a7bccc0d22d0ad36",
  "kod": {
   "remote": "https://github.com/07erkanoz/dino-hopo.git",
   "branch": "ekip/16-bu-oyun-incelenecek-ve",
