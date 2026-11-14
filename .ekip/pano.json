@@ -1,6 +1,6 @@
 {
  "format": 1,
- "exported": "2026-11-14T01:21:39+00:00",
+ "exported": "2026-11-14T10:16:41+00:00",
  "project": {
   "uid": "925a8179f252479f80b2fb0b9584c961",
   "name": "dino-hopo",
@@ -27,7 +27,7 @@
   },
   "branch": "ekip/16-bu-oyun-incelenecek-ve",
   "created": "2026-11-13T21:43:23+00:00",
-  "updated": "2026-11-14T00:17:36+00:00",
+  "updated": "2026-11-14T10:16:26+00:00",
   "style": "hizli",
   "surum": 2,
   "tur": "yazilim",
@@ -4205,6 +4205,35 @@
     }
    },
    "created": "2026-11-14T00:17:36+00:00"
+  },
+  {
+   "id": 3678,
+   "project": 16,
+   "task": null,
+   "sender": "sistem",
+   "recipient": null,
+   "kind": "sistem",
+   "text": "main dalına gönderildi: https://github.com/07erkanoz/dino-hopo",
+   "data": {
+    "github": {
+     "url": "https://github.com/07erkanoz/dino-hopo",
+     "mode": "dogrudan",
+     "branch": "main",
+     "repo": "https://github.com/07erkanoz/dino-hopo"
+    }
+   },
+   "created": "2026-11-14T01:21:45+00:00"
+  },
+  {
+   "id": 3679,
+   "project": 16,
+   "task": null,
+   "sender": "sistem",
+   "recipient": null,
+   "kind": "sistem",
+   "text": "· Ekibin kabul edilen işi klasörünüzde: /home/erkanoz/projeler/dino-hopo (build/ ile birlikte)",
+   "data": {},
+   "created": "2026-11-14T10:16:26+00:00"
   }
  ],
  "files": [],
@@ -4814,7 +4843,7 @@
  ],
  "paused": [],
  "references": [],
- "stamp": "f6fa5ee20740483c8a1aa4839a023e6b",
+ "stamp": "44409bcf251d401da8c4a09ade526d44",
  "kod": {
   "remote": "https://github.com/07erkanoz/dino-hopo.git",
   "branch": "ekip/16-bu-oyun-incelenecek-ve",
