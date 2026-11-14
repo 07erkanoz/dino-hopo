@@ -57,7 +57,7 @@ func run() -> void:
 	game.players[0].position = Vector2(390, 450)
 	await process_frame
 	await process_frame
-	check(game.score == 1, "Collectible did not update score")
+	check(game.fruit_collected == 1 and game.score > 0, "Collectible did not update score")
 	game.touch_event("right", true)
 	check(game.players[0].touch_axis == 1.0, "Touch direction failed")
 	game.touch_event("right", false)

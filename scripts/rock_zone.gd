@@ -1,5 +1,5 @@
 extends Node2D
-const Art = preload("res://scripts/art.gd")
+const ROCK = preload("res://art/v2/terrain/rocks.png")
 var game: Node2D
 var floor_y := 536.0
 var origin_y := 70.0
@@ -37,5 +37,4 @@ func _draw() -> void:
 			draw_circle(Vector2(sin(cycle * 10 + i) * 17, origin_y + 10 + fmod(cycle * 110 + i * 28, 150)), 2 + i % 2, Color("a1794e"))
 		draw_string(ThemeDB.fallback_font, Vector2(-7, origin_y + 13), "!", HORIZONTAL_ALIGNMENT_LEFT, -1, 25, Color("fff3b5"))
 	if falling:
-		var texture := Art.sprite("jungle", 4)
-		draw_texture_rect(texture, Rect2(-28, rock_y - 28, 56, 50), false)
+		draw_texture_rect(ROCK, Rect2(-30, rock_y - 30, 60, 50), false)

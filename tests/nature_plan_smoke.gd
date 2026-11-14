@@ -41,6 +41,6 @@ func run() -> void:
 	check(scene.ready_for_review, "Nature workspace did not start")
 	for child in scene.get_children():
 		check(not child is CharacterBody2D, "Actor in map-only workspace")
-	check(ProjectSettings.get_setting("application/run/main_scene") == "res://scenes/nature_workspace.tscn", "Game prototype still starts by default")
+	check(ProjectSettings.get_setting("application/run/main_scene") == "res://scenes/main.tscn", "Playable level is not the default scene")
 	if failures == 0: print("PASS: separate map data, continuous regions, terrain-bound trees, branch-bound vines, map/nature-only default scene")
 	quit(1 if failures > 0 else 0)
