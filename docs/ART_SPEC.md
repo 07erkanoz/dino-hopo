@@ -63,3 +63,13 @@ Yeni ölçütler: kahraman boyu yaklaşık128, fizik kapsülü88, çiçek22–35
 `art/nature/cartoon-trees-01.png`:2 ağaç; `cartoon-ground-plants-01.png`:6 parça; `cartoon-soil-quiet-01.png`:opak sade dolgu. Eski gerçekçi ağaç/kaya kaynakları bu doğa sahnesine alınmadı. Harita ve stil manifesti `world/nature/` içindedir. Dal pikseli opak kahverengi kaynak üzerinden ölçülür; sarmaşık Marker2D çocuğudur. İnce sarmaşık görseli motor içinde çizilir, büyük yapraklı eski resim kullanılmaz.
 
 `art/nature/review-*.png` gerçek Godot doğa görüntüleridir. İlk fazla desenli kök dolgusu yerine sade toprak kullanıldı. Yeni kaynaklar/stil kullanıcı tarafından henüz nihai onay almadı. Kahraman kaynakları değişmedi.
+
+## art/v2 kullanım durumu (Job #141, 2026-11-14)
+- Oyunda kullanılanlar:
+  - 4 paralaks katmanı.
+  - Zemin: ot, toprak, kaya platform, su, şelale, çalı, eğrelti, kayalar, kütük, sarmaşık, iki ağaç, çerçeve ağacı.
+  - 41 rig parçası (Çağan, ceratopsian, pterozor).
+  - 6 toplanabilir ve 7 UI görseli.
+- Görseller değiştirilmedi; ölçek ve pivotlar manifestten okunur.
+- `assembled-rest.png`, `preview-composite.png` ve `compare-taslak-a.png` yalnızca referans, oyunda kullanılmaz.
+- Eksikler kodla geçici olarak karşılandı (D45): kontrol noktası bayrağı, çıkış kapısı ve bumerang dokunmatik tuşu (eski ekipman görseli). 02–04 kahramanlarının rig parçası yok.

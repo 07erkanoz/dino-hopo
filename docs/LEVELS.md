@@ -47,3 +47,20 @@ Kullanıcı küçük/robotik dinozorları ve yalnız zıplama akışını eleşt
 
 ## Doğa çalışması
 Aynı ilk haritanın doğa görünümü hazırlanıyor. Temel akış/altı bölge korunur; kaynak ağaca göre dal yuvaları ve yerel kök zeminleri netleştirildi. Şelale havuzu yüzeye, dere nehir seviyesine bağlandı. Bu aşama yalnız doğa kompozisyonudur; engel/düşman/görev veya oynanabilir yeni bölüm tamamlandı anlamına gelmez.
+
+## Bölüm 01, oynanabilir sürüm (Job #141, 2026-11-14)
+Veri: `world/levels/01.json`. Genişlik 5120. Doğuş noktası 150. Kontrol noktası 1560. Çıkış 5010. `kill_y` 720 (su).
+
+| Bölge | Aralık | İçerik |
+|---|---|---|
+| Çiçekli koru | 0–1100 | Başlangıç, basamak taş, sarmaşık (590) → sütun üstünde **gizli çiçek bahçesi** (+1500, taş tablet, bumerang) |
+| Su çukuru 1 | 1100–1280 | Şelale ve havuz; düşen 1 can kaybeder |
+| Nehir kıyısı | 1280–2176 | Kontrol noktası, ceratopsian 1 (1700), et, sarmaşıklar |
+| Kayalık şelale | 2176–2944 | Yüksek zemin, sütun (yumurta), platform (kalp), düşen kayalar, arka plan şelalesi |
+| Dev ağaçlar | 2944–3712 | **Su çukuru 2** (3244–3400), yüzen kaya (yıldız), pterozor 1 (3240), sarmaşık, sütun |
+| Yüksek düzlük | 3712–4224 | Ceratopsian 2 (3950), yüzen kaya, düşen kayalar |
+| Gizli geçit | 4224–5120 | Pterozor 2 (4510), basamak kaya → sütun (yumurta), çıkış kapısı |
+
+- Toplam 19 meyve ve 8 bonus (et 2, yumurta 2, kalp, yıldız, tablet, meyve).
+- `level_test`, oyuncunun dışa açılmış zıplama ve koşu değerleriyle çıkışın ve 28 toplanabilirin tamamına erişilebildiğini kontrol eder.
+- Bölüm düzeni teknik başlangıçtır; kullanıcı onayı almadı.

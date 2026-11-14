@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 		lose()
 		return
 	for target in game.targets:
-		if not is_instance_valid(target): continue
+		if not is_instance_valid(target) or not target.alive: continue
 		var key := "%s:%s" % [target.get_instance_id(), returning]
 		if hit_targets.has(key): continue
 		var center: Vector2 = target.hit_center()

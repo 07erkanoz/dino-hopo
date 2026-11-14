@@ -1,30 +1,43 @@
-# Hareket çalışması — 2026-11-12
+# Animasyon: iskelet (Skeleton2D) sistemi (Job #141, 2026-11-14)
 
-Kullanıcı kahraman/dinozor hareketlerini robotik, dinozorları küçük ve oynanışı yetersiz buldu. Bu çalışma önce Çağan ve ilk boynuzlu dinozorun hareketini iyileştiren bir pilot uygulamadır. Tüm karakter ve türler tamamlandı olarak sunulmaz.
+Kullanıcı kararı: karakterler iskelet (kemik) animasyonuyla hareket eder. Parçalar `art/v2/rig/*`, pivotlar ve kemik sırası `art/v2/manifest.json` içindedir. Görseller değiştirilmedi. Hareketler kullanıcıdan henüz görsel onay almadı.
 
-## Kaynaklar
-- `art/animation/cagan-locomotion-study.png`: 8 koşu fazı + bekleme/hazırlık/hava/iniş, toplam12 yeni hareket çizimi.
-- `art/animation/ceratopsian-walk-study.png`: aynı yetişkin boynuzlu dinozor için8 dört ayaklı yürüyüş fazı.
-- İki PNG, önceki onaylı kahraman/canlı tasarımları referans alınarak görsel üretim aracıyla üretildi. **Yeni animasyon çalışmaları ayrıca kullanıcı onayı almadı.**
-- Onaylanmış dört kahraman paftası ve16 poz atlası değiştirilmedi; hash testleri geçer. Çağan'ın duruşu ve seçim resmi bu onaylı kaynaklardan kalır. Hareket çalışması ayrı kaynak dosyasıdır.
-- Tam hücre bölgeleri ve ortak pelvis/ayak pivotu kullanılır; her kareyi ayrı boy/merkeze normalize etmekten doğan sıçramalar önlenir. Kaynak hücrelerinde kasıtlı gövde yükselmesi/alçalması korunur.
+## Kurulum (`scripts/rig/rig.gd`)
+- Manifestteki her kemik bir `Bone2D` olur (konum, dönüş, `rest`). Her parça, kendi kemiğinin altında bir `Sprite2D` olarak durur (`offset = -pivot`). Kemikler `Skeleton2D` altındadır. Çizim sırası manifestteki `draw_order × 2` ile `z_index` olarak verilir.
+- Pozlar, kemik başına dinlenme açısına eklenen derece ve kök kemik için ofset olarak tanımlanır. Bacaklar iki kemikli **IK** ile çözülür: ayak hedefi verilir, uyluk, baldır ve ayak açıları hesaplanır, ayak tabanı yere paralel kalır.
+- Her animasyon **bütün kemikleri** anahtarlar, bu yüzden AnimationTree karışımları tutarlıdır. Döngüler örneklenir (24–32 anahtar, doğrusal açı). Elle kurulan pozlar kübik açı ara değerlemesi kullanır.
+- `AnimationPlayer` + `AnimationTree`: kök bir `AnimationNodeStateMachine`. Her durum, diğer her duruma yumuşatmalı (xfade) geçişle bağlıdır: saldırı 0,06 sn, hasar 0,05 sn, düşme 0,18 sn, diğerleri 0,12 sn. Yürüme ve koşma durumları `AnimationNodeTimeSeek` içerir ve evreleri **alınan yola** göre ilerler.
+- Rigler kodla kurulur ve manifest değiştikçe yeniden oluşur. Ayrı `.tscn` rig dosyası yoktur (bkz. D39).
 
-## Oynatma
-Çağan'ın sekiz koşu fazı gerçek yatay yer değiştirmesine bağlıdır; global zamanla iki resim değişimi kaldırıldı. Durduğunda veya engelde kaldığında adımlar ilerlemez. Hızlanma, frenleme ve yön değişimi için farklı ivmeler; kısa sıçrama hazırlığı ve iniş toparlanması var. Sopa tutuş noktası da hareket karesine göre değişir.
+## Çağan (`scripts/rig/cagan_rig.gd`, 16 kemik, ölçek 128/450)
+| Durum | Süre | Not |
+|---|---|---|
+| idle | 2,4 sn döngü | Nefes: pelvis 2 px iner, ayaklar IK ile yerde kalır, gövde, baş ve kollar gecikmeli sallanır |
+| walk | yol tabanlı | Adım uzunluğu 176 art px ≈ 50 birim/döngü; basan ayak geriye tam gövde hızıyla kayar |
+| run | yol tabanlı | Basma oranı 0,32 ve uçuş evresi; 312 art px ≈ 89 birim/döngü; öne eğilme ve geniş kol savruluşu |
+| jump | 0,32 sn | Çömelme → gerilme → dizler yukarı |
+| fall | 0,7 sn döngü | Bacaklar uzar, kollar dengede salınır |
+| land | 0,24 sn | Çöküş ve toparlanma |
+| attack | 0,58 sn | Hazırlık → vuruş → takip ve aşma (overshoot) → oturma; oyundaki 8 vuruş evresiyle eşleşir |
+| hurt | 0,42 sn | Geriye savrulma |
+| die | 1,2 sn | Diz kırılması → sırtüstü düşüş → sekme |
+| climb | 0,8 sn döngü | Sarmaşıkta kollar ve bacaklar karşılıklı çalışır |
 
-Boynuzlu dinozorun yürüyüş fazı gerçek mesafeye bağlıdır. Boyu208, kahraman128 mantıksal birim; hızlı küçük türler140 birim. Büyük hayvanın çarpışması ve hedef hacmi de büyütüldü. Kahraman artık hayvanın gövdesinin içinden geçmez; çizim sırası kahramanın görünürlüğünü korur.
+- **Ayak kayması yok**: `player.gd`, evreyi `yol / adım uzunluğu` ile ilerletir. Basan ayağın geriye kayışı IK ile tam bu uzunluğa ayarlanır. `animation_test`, sabit yürüyüşte basan ayağın dünya konumu değişimini **0,02 px** ölçtü (sınır 3 px).
+- **Ağırlık**:
+  - Kalkışta esneme, inişte düşme hızına göre ezilme (yay sönümlü `squash`).
+  - Hız ve ivmeye göre öne veya arkaya eğilme (savrulma).
+  - Başın ivmeye gecikmeli tepki vermesi (takip hareketi).
+  - Saldırıda sopanın hedefi aşıp geri oturması.
+- Vuruş algılama, sopa ucunu gerçek kemik dönüşümünden alır (`club_tip_global`).
 
-## İlk karşılaşma
-Küçük sıkışık devriyeler yerine nehir sonrasında geniş açıklık oluşturuldu. Büyük dinozorun durumları: devriye →0.7s uyarı → hamle → toparlanma; sopa/bumerangla sersemleme. Uyarı ve toparlanma süresi karşılık verme/kaçınma fırsatıdır. Açıklık önündeki sarmaşık alternatif kaçınma yoludur.
+## Düşmanlar
+- **Ceratopsian** (`dino_rig.gd`, 16 kemik, 4 bacak IK, çapraz yürüyüş): idle, walk (yol tabanlı), windup (baş eğik, ayak eşeleme), charge (yol tabanlı), hurt, die (bacaklar yanlara açılarak çöküş). Yükseklik 196 birim.
+- **Pterozor** (`ptero_rig.gd`, 9 kemik): fly (iki parçalı kanatta dış parça gecikir), swoop (dalış, kanatlar katlanır), hurt, die (gevşek kanatla düşüş).
+- Hasar alınca beyaz parlama ve geri itilme oynar. Ölünce ölme animasyonu oynar ve beden 2,2 sn sonra solar.
 
-Kahraman3 canla başlar. Darbe kısa geri savurma ve hasar dokunulmazlığı verir. Can bitince veya çukura düşünce kontrol noktasına döner. İlk vuruşta sürekli ışınlanma kaldırıldı.
+## Önceki çalışma
+`art/animation/*-study.png` kareli hareket çalışmaları ve `art/atlas-regions.json` bölgeleri arşivde duruyor. Çağan oyunda artık bu kareler yerine rigle çizilir. 02, 03 ve 04 numaralı kahramanların rig parçası henüz yok; onlar eski poz çizimleriyle çizilir.
 
-## Kayıt ve doğrulama
-[9 saniyelik motor kaydı](../art/review/motion-study-v2.mp4), testin karşılaşma açıklığından başlatılmasıyla alınır. Sonrasında yalnız tuş girdileri uygulanır; karakter veya kamera kare kare ışınlanmaz. Bu ilk hareket incelemesidir, nihai oyun kalitesi onayı değildir.
-
-`tests/motion_smoke.gd`:8 adımın kullanılması, durunca ayak fazının durması, hızlanma, hazırlık/hava/iniş, büyük tür ölçeği, uyarı/hamle/toparlanma, can ve hasar aralığı.
-
-Kalanlar: Deniz/02/04 için aynı kalitede hareket dizileri; küçük türlerin tam yürüyüşü, özel tırmanma ve saldırı kareleri; tam elle temizlenmiş/pürüzsüz üretim animasyonu ve ses eşleşmesi. Pilot koşu kareleri tek başına doğal animasyon kalitesini garanti etmez; hareketli görsel değerlendirme gerekir.
-
-## Saldırı güncellemesi
-Önceki crouch/landing pozlarını saldırı gibi değiştirme yaklaşımı Çağan için kaldırıldı. Ayrı8 gövde+sopa ve4 hedef tepki karesi geldi. [Temas zinciri](HIT_FEEDBACK.md) güncel uygulamadır.
+## Görüntüler
+`ciktilar/ekran/cagan-*.png` (her animasyondan bir kare), `rig-cagan.png`, `rig-dino.png`, `rig-ptero.png` (her animasyondan 6 örnek), `dusman-*.png`. Yeniden üretmek için: `bash tools/capture.sh`.

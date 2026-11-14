@@ -41,7 +41,7 @@ func run() -> void:
 		await physics_frame
 		jump_states[hero.motion_state] = true
 	key(KEY_W, false)
-	check(jump_states.has("anticipate") and jump_states.has("jump") and jump_states.has("land"), "Jump omitted preparation, air or landing state")
+	check(jump_states.has("jump") and jump_states.has("fall") and jump_states.has("land"), "Jump omitted rise, fall or landing state")
 	var dinosaur = game.targets[0]
 	check(dinosaur.body_height > 128 * 1.5, "Large dinosaur is still smaller than the hero")
 	hero.position = Vector2(1000, 600)

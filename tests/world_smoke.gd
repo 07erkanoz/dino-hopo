@@ -28,7 +28,7 @@ func run() -> void:
 	await frames(90)
 	check(game.players[0].hero_index == 3 and game.players[1].hero_index == 0)
 	check(game.players[0].slot == 0 and game.players[1].slot == 1)
-	check(game.forest.depth_layers.size() == 3)
+	check(game.forest.depth_layers.size() >= 3)
 	check(game.level.width > 4000 and game.level.regions.size() == 5)
 	var hero = game.players[0]
 	check(not hero.has_boomerang and not game.try_throw(hero))

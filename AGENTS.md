@@ -1,5 +1,5 @@
 # Dino Hop! çalışma kuralları
-- Motor Godot 4.6, dil GDScript. Oyun adı Dino Hop!.
+- Motor Godot 4 (4.7.2 ile doğrulandı; proje 4.6+ uyumlu), dil GDScript. Oyun adı Dino Hop!.
 - Her anlamlı işlem sonunda docs/DEVLOG.md içine tarih, işlem, doğrulama ve sınırlamaları yaz.
 - Tasarım kararlarını docs/DECISIONS.md içinde durumuyla kaydet: kabul, öneri, teknik başlangıç.
 - Bölüm değişikliklerinde docs/LEVELS.md güncelle; önerileri kullanıcı kabulü gibi sunma.
@@ -13,8 +13,8 @@
 - Dünya görsel kuralları docs/WORLD.md içinde: tek sabit poster, blur/sis, dev sıradan çiçek, tekrarlı yuvarlak ağaç duvarı ve kopuk kaya stilleri reddedildi. Teknik test geçmesini görsel onay gibi sunma.
 - Bumerangda son karar: keşifle edinilir, dönerse tekrar kullanılır, araziye takılırsa kaybedilir. Eski3 atış önerisini geri getirme.
 
-- EN GÜNCEL ÖNCELİK: docs/PRODUCTION_PLAN.md. Kullanıcı sırası harita→doğa→engeller/zorluklar→canlılar→bulmaca/görevler→hareket/etkileşim. Kullanıcı doğa aşamasına geçirdi; şu an aşama2, yeni dövüş/düşman/animasyon ekleme. Doğa eksiklerini efekt/oyunla örtme.
-- F5 varsayılanı nature_workspace.tscn; eski main.tscn arşiv denemesidir. F5 doğa görünümüyle açılır, Harita/Doğa düğmesiyle taslağa dönülür. Doğa çalışmasını bitmiş oyun veya onaylı nihai doğa gibi sunma.
+- EN GÜNCEL ÖNCELİK (Job #141, kullanıcı talebi): Taslak A yönünde oynanabilir Bölüm 01; iskelet animasyonu (art/v2/rig), hareket fiziği, düşmanlar, dokunmatik, Linux/Windows/Android dışa aktarma. Önceki aşama sırası docs/PRODUCTION_PLAN.md içinde arşivdir. Doğrulama: bash tools/verify.sh.
+- F5 varsayılanı scenes/main.tscn (oyun). Doğa atölyesi scenes/nature_workspace.tscn ayrı sahne olarak kalır. art/v2 görselleri değiştirilmez; eksik parçalar için geçici kod çözümü DEVLOG ve DECISIONS D45 içinde kaydedilir.
 - Sarmaşık serbest koordinatla başlamaz; aynı dünya katmanındaki destek ağacı ve dalına referans verir. Ağaç kökü terrain yüzeyinden türetilir.
 
 - Doğa stili: docs/NATURE_STYLE.md. Kullanıcı gerçekçi çizim değil, çizgi film doğası istedi. Aynı renk/çizgi ailesi, küçük normal çiçekler, sade toprak ve kaynak pikselden ölçülen dal yuvaları.
